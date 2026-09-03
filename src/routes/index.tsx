@@ -1,14 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { GridBackground } from "#/components/layout/GridBackground";
+import { PageContainer } from "#/components/layout/PageContainer";
+import { Hero } from "#/components/sections/Hero";
 
-export const Route = createFileRoute("/")({ component: Home });
-
-function Home() {
+const Home = () => {
 	return (
-		<div className="p-8">
-			<h1 className="text-4xl font-bold">Welcome to TanStack Start</h1>
-			<p className="mt-4 text-lg">
-				Edit <code>src/routes/index.tsx</code> to get started.
-			</p>
-		</div>
+		<PageContainer>
+			<GridBackground />
+			<Hero />
+		</PageContainer>
 	);
-}
+};
+export const Route = createFileRoute("/")({ component: Home });
