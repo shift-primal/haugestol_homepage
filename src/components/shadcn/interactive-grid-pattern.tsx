@@ -1,5 +1,4 @@
 import type React from "react";
-import { useState } from "react";
 import { cn } from "#/lib/shadcn.utils";
 
 /**
@@ -34,7 +33,6 @@ export function InteractiveGridPattern({
 	...props
 }: InteractiveGridPatternProps) {
 	const [horizontal, vertical] = squares;
-	const [hoveredSquare, setHoveredSquare] = useState<number | null>(null);
 
 	return (
 		// biome-ignore lint/a11y/noSvgWithoutTitle: <no need for title>
@@ -48,7 +46,6 @@ export function InteractiveGridPattern({
 				const x = (index % horizontal) * width;
 				const y = Math.floor(index / horizontal) * height;
 				return (
-					// biome-ignore lint/a11y/noStaticElementInteractions: <it makes sense>
 					<rect
 						// biome-ignore lint/suspicious/noArrayIndexKey: <it makes sense>
 						key={index}
@@ -57,14 +54,9 @@ export function InteractiveGridPattern({
 						width={width}
 						height={height}
 						className={cn(
-							"stroke-gray-400/30 transition-[fill] duration-50 ease-in-out not-[&:hover]:duration-1000",
-							hoveredSquare === index
-								? "fill-gray-600/10 dark:fill-gray-300/10"
-								: "fill-transparent",
+							"fill-transparent stroke-gray-400/30 transition-[fill] duration-50 ease-in-out hover:fill-gray-600/10 hover:dark:fill-gray-300/10 not-[&:hover]:duration-1000",
 							squaresClassName,
 						)}
-						onMouseEnter={() => setHoveredSquare(index)}
-						onMouseLeave={() => setHoveredSquare(null)}
 					/>
 				);
 			})}
