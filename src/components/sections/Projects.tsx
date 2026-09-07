@@ -12,7 +12,7 @@ export const Projects = () => {
 				className="text-3xl sm:text-4xl lg:text-5xl"
 			/>
 			<div className="flex flex-col gap-6 items-center justify-center py-16">
-				<div className="flex flex-col lg:flex-row gap-8 w-full items-center">
+				<div className="flex flex-col lg:flex-row gap-8 w-full items-center px-8 md:px-0">
 					{PROJECTS.map((project) => (
 						<ProjectCard key={project.title} {...project} />
 					))}
