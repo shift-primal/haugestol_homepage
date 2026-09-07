@@ -18,7 +18,7 @@ import {
 	navigationMenuTriggerStyle,
 } from "#/components/shadcn/navigation-menu";
 import { ThemeToggle } from "#/components/ui/ThemeToggle";
-import { EMAIL } from "#/lib/config";
+import { EMAIL, GITHUB_LINK } from "#/lib/config";
 
 type Link = {
 	label: string;
@@ -50,7 +50,7 @@ const contactLinks: Link[] = [
 	{
 		label: "GitHub",
 		icon: GithubLogoIcon,
-		href: "https://github.com/shift-primal",
+		href: GITHUB_LINK,
 	},
 	{ label: "Email", icon: EnvelopeIcon, href: `mailto:${EMAIL}` },
 ];

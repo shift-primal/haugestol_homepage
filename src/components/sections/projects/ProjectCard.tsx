@@ -87,12 +87,12 @@ export const ProjectCard = ({
 	const isDesktop = useMediaQuery("(min-width: 1024px)");
 
 	return (
-		<Card className="mx-auto w-full max-w-xl pt-0 lg:max-w-none lg:grow">
+		<Card className="w-full pt-0">
 			<Carousel>
 				<CarouselContent>
 					{Object.entries(images).map(([id, img]) => (
 						<CarouselItem key={id}>
-							<div className="p-1">
+							<div className="p-4 md:p-2">
 								{isDesktop ? (
 									<ProjectDialog id={id} img={img} title={title} />
 								) : (

@@ -1,13 +1,20 @@
+import { cn } from "#/lib/shadcn.utils";
+
 export const SectionContainer = ({
 	children,
 	sectionName,
+	className,
 }: {
 	children: React.ReactNode;
 	sectionName: string;
+	className?: string;
 }) => (
 	<section
 		id={sectionName}
-		className="relative z-10 py-10 px-4 sm:py-12 md:px-16 md:py-16 xl:px-48 xl:py-24 2xl:px-64 pointer-events-none"
+		className={cn(
+			"relative z-10 mx-auto w-full max-w-7xl px-4 py-14 pointer-events-none sm:px-6 sm:py-20 lg:px-8 lg:py-28",
+			className,
+		)}
 	>
 		{children}
 	</section>
