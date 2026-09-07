@@ -7,8 +7,8 @@ import { NAME, TAGLINE, TECHNOLOGIES_SHOWCASE } from "#/lib/config";
 
 export const Hero = () => (
 	<SectionContainer sectionName="hero">
-		<div className="flex flex-col px-6 pt-12 sm:px-10 sm:pt-16 lg:px-0 lg:pt-0">
-			<div className="relative">
+		<div className="flex flex-col">
+			<div className="relative w-fit pointer-events-auto">
 				<span
 					aria-hidden
 					className="invisible inline-block whitespace-nowrap text-3xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
@@ -23,8 +23,10 @@ export const Hero = () => (
 				words={TECHNOLOGIES_SHOWCASE}
 				className="text-xl tracking-tighter sm:text-2xl md:text-3xl lg:text-4xl"
 			/>
-			<p className="mt-6 max-w-md text-muted-foreground">{TAGLINE}</p>
-			<div className="mt-6 flex flex-wrap items-center gap-3">
+			<p className="mt-6 max-w-md text-muted-foreground w-fit pointer-events-auto">
+				{TAGLINE}
+			</p>
+			<div className="mt-6 flex flex-wrap items-center gap-3 w-fit">
 				<Button
 					onClick={() =>
 						document
@@ -53,14 +55,15 @@ export const Hero = () => (
 				<Button
 					variant="outline"
 					size="icon-lg"
-					aria-label="Email"
-					nativeButton={false}
-					render={(props) => (
-						<a href="mailto:kasper@haugestol.com" {...props}>
-							<EnvelopeIcon />
-						</a>
-					)}
-				/>
+					aria-label="Contact section"
+					onClick={() =>
+						document
+							.getElementById("projects")
+							?.scrollIntoView({ behavior: "smooth" })
+					}
+				>
+					<EnvelopeIcon />
+				</Button>
 			</div>
 		</div>
 	</SectionContainer>

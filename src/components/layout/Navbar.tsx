@@ -18,6 +18,7 @@ import {
 	navigationMenuTriggerStyle,
 } from "#/components/shadcn/navigation-menu";
 import { ThemeToggle } from "#/components/ui/ThemeToggle";
+import { EMAIL } from "#/lib/config";
 
 type Link = {
 	label: string;
@@ -51,7 +52,7 @@ const contactLinks: Link[] = [
 		icon: GithubLogoIcon,
 		href: "https://github.com/shift-primal",
 	},
-	{ label: "Email", icon: EnvelopeIcon, href: "mailto:kasper@haugestol.com" },
+	{ label: "Email", icon: EnvelopeIcon, href: `mailto:${EMAIL}` },
 ];
 
 export const Navbar = () => {

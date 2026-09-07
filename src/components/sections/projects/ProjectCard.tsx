@@ -18,6 +18,7 @@ import {
 } from "#/components/shadcn/carousel";
 import {
 	Dialog,
+	DialogClose,
 	DialogContent,
 	DialogTrigger,
 } from "#/components/shadcn/dialog";
@@ -57,17 +58,21 @@ const ProjectDialog = ({ img, title }: DialogProps) => (
 				className="relative z-20 aspect-video w-full object-cover"
 			/>
 		</DialogTrigger>
-		<DialogContent className="max-w-[calc(100%-2rem)] border-none bg-transparent p-0 ring-0 sm:max-w-[90vw]">
-			<img
-				src={img.src}
-				srcSet={img.srcset}
-				sizes="90vw"
-				width={img.w}
-				height={img.h}
-				alt={`${title} preview`}
-				loading="lazy"
-				className="max-h-[85vh] w-auto object-contain"
-			/>
+		<DialogContent className="fixed inset-0 top-0 left-0 h-screen w-screen max-w-none translate-x-0 translate-y-0 border-none bg-transparent p-0 ring-0 sm:max-w-none">
+			<DialogClose className="flex h-full w-full appearance-none items-center justify-center border-0 bg-transparent p-4 outline-none cursor-zoom-out">
+				{/* biome-ignore lint/a11y/useKeyWithClickEvents: only stops the close-click from bubbling; Escape/close button still close the dialog for keyboard users */}
+				<img
+					src={img.src}
+					srcSet={img.srcset}
+					sizes="100vw"
+					width={img.w}
+					height={img.h}
+					alt={`${title} preview`}
+					loading="lazy"
+					onClick={(event) => event.stopPropagation()}
+					className="max-h-full max-w-full cursor-default object-contain"
+				/>
+			</DialogClose>
 		</DialogContent>
 	</Dialog>
 );

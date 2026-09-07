@@ -2,13 +2,11 @@ import type { Img } from "vite-imagetools";
 
 // Hero
 
-export interface HeroProps {
-	name: string;
-	tagline: string;
-	technologies: string[];
-}
-
 export const NAME = "Kasper Haugestøl";
+
+export const GITHUB_LINK = "https://github.com/shift-primal";
+
+export const EMAIL = "kasper@haugestol.com";
 
 export const TAGLINE =
 	"Building reliable, cloud-native systems — from CI/CD pipelines to full-stack apps.";
@@ -20,6 +18,11 @@ export const TECHNOLOGIES_SHOWCASE = [
 	"Database",
 	"DevOps",
 ];
+
+// About
+
+export const BIO =
+	"Short bio goes here — background, what you focus on, what you're looking for.";
 
 // Projects
 

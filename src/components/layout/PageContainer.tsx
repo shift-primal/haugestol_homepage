@@ -1,7 +1,7 @@
 export const PageContainer = ({ children }: { children: React.ReactNode }) => {
 	return (
 		<div
-			className="mx-auto min-h-full overflow-x-hidden p-4 relative sm:p-6"
+			className="mx-auto min-h-full overflow-x-hidden relative"
 			id="page-container"
 		>
 			{children}

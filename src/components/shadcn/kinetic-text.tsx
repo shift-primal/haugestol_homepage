@@ -33,7 +33,7 @@ export function KineticText({
 					// biome-ignore lint/suspicious/noArrayIndexKey: <it makes sense>
 					key={i}
 					aria-hidden="true"
-					className="will-change-[font-weight,-webkit-text-stroke-width,padding] [-webkit-text-stroke-color:transparent] [-webkit-text-stroke-width:var(--text-stroke-width)] [transition:font-weight_0.4s,-webkit-text-stroke-color_0.4s,padding_0.4s] hover:px-(--hover-padding) hover:font-black hover:[-webkit-text-stroke-color:currentcolor] hover:[-webkit-text-stroke-width:calc(var(--text-stroke-width)*2)] has-[+span+span:hover]:font-normal has-[+span:hover]:px-(--hover-padding) has-[+span:hover]:font-semibold [:hover+&]:px-(--hover-padding) [:hover+&]:font-semibold [:hover+span+&]:font-normal"
+					className="will-change-[font-weight,-webkit-text-stroke-width,padding] [-webkit-text-stroke-color:transparent] [-webkit-text-stroke-width:var(--text-stroke-width)] [transition:font-weight_0.4s,-webkit-text-stroke-color_0.4s,padding_0.4s] hover:px-(--hover-padding) hover:font-black hover:[-webkit-text-stroke-color:currentcolor] hover:[-webkit-text-stroke-width:calc(var(--text-stroke-width)*2)] has-[+span+span:hover]:font-normal has-[+span:hover]:px-(--hover-padding) has-[+span:hover]:font-semibold [:hover+&]:px-(--hover-padding) [:hover+&]:font-semibold [:hover+span+&]:font-normal pointer-events-auto"
 				>
 					{letter === " " ? "\u00A0" : letter}
 				</span>
