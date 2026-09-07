@@ -22,6 +22,11 @@ import {
 	DialogContent,
 	DialogTrigger,
 } from "#/components/shadcn/dialog";
+import {
+	HoverCard,
+	HoverCardContent,
+	HoverCardTrigger,
+} from "#/components/shadcn/hover-card";
 import { useMediaQuery } from "#/hooks/useMediaQuery";
 import type { Project } from "#/lib/config";
 
@@ -121,16 +126,27 @@ export const ProjectCard = ({
 				<CardDescription>{description}</CardDescription>
 			</CardHeader>
 			<CardContent>
-				<Button
-					variant="outline"
-					className="w-full"
-					nativeButton={false}
-					render={(props) => (
-						<a {...props} href={liveHref} rel="noopener" target="_blank">
-							<ArrowRightIcon />
-						</a>
+				<HoverCard>
+					<HoverCardTrigger>
+						<Button
+							disabled={!liveHref}
+							variant="outline"
+							className="w-full"
+							nativeButton={false}
+							render={(props) => (
+								<a {...props} href={liveHref} rel="noopener" target="_blank">
+									<span>Se live demo!</span>
+									<ArrowRightIcon />
+								</a>
+							)}
+						/>
+					</HoverCardTrigger>
+					{!liveHref && (
+						<HoverCardContent className="bg-destructive/75">
+							Project has not been deployed yet!
+						</HoverCardContent>
 					)}
-				/>
+				</HoverCard>
 			</CardContent>
 		</Card>
 	);

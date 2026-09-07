@@ -63,23 +63,27 @@ const groovehausScreenshots = import.meta.glob<Img>(
 
 export const PROJECTS: Project[] = [
 	{
-		title: "Project 1",
+		title: "Pokédex",
 		liveHref: "https://pokemon.haugestol.com",
 		githubHref: "https://github.com/shift-primal/pdex_26",
-		description: "Cool project 1",
+		description:
+			"Full National Pokédex on PokéAPI — virtualized search, evolution chains, per-form detail pages and advanced filtering.",
 		images: pokemonScreenshots,
 	},
 	{
-		title: "Project 2",
+		title: "BFQ",
 		liveHref: "https://quiz.haugestol.com",
 		githubHref: "https://github.com/shift-primal/bfq",
-		description: "Cool project 2",
+		description:
+			"A personal trivia quiz — how well do you know Kasper? Dynamically scored, store-based state, with a live leaderboard.",
 		images: quizScreenshots,
 	},
 	{
-		title: "Project 3",
+		title: "Groovehaus",
+		githubHref: "https://github.com/shift-primal/groovehaus",
 		// liveHref: "https://example.com", - Not live
-		description: "Cool project 3",
+		description:
+			"Marketplace for vinyl, gear, and instruments — cart, auth, and Stripe checkout.",
 		images: groovehausScreenshots,
 	},
 ];
