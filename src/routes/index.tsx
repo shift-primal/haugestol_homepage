@@ -1,13 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { GridBackground } from "#/components/layout/GridBackground";
 import { PageContainer } from "#/components/layout/PageContainer";
+import { About } from "#/components/sections/About";
+import { Contact } from "#/components/sections/Contact";
 import { Hero } from "#/components/sections/Hero";
+import { Projects } from "#/components/sections/Projects";
 
 const Home = () => {
 	return (
 		<PageContainer>
 			<GridBackground />
 			<Hero />
+			<About />
+			<Projects />
+			<Contact />
 		</PageContainer>
 	);
 };

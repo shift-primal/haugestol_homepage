@@ -11,7 +11,7 @@ export function ThemeToggle() {
 	useEffect(() => setMounted(true), []);
 
 	return (
-		<div className="flex justify-center p-6">
+		<div className="flex justify-center p-1 sm:p-2">
 			<AnimatedThemeToggler
 				theme={mounted && resolvedTheme === "dark" ? "dark" : "light"}
 				onThemeChange={setTheme}

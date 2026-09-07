@@ -1,0 +1,132 @@
+import { ArrowRightIcon, GithubLogoIcon } from "@phosphor-icons/react";
+import type { Img } from "vite-imagetools";
+import { Button } from "#/components/shadcn/button";
+import {
+	Card,
+	CardAction,
+	CardContent,
+	CardDescription,
+	CardHeader,
+	CardTitle,
+} from "#/components/shadcn/card";
+import {
+	Carousel,
+	CarouselContent,
+	CarouselItem,
+	CarouselNext,
+	CarouselPrevious,
+} from "#/components/shadcn/carousel";
+import {
+	Dialog,
+	DialogContent,
+	DialogTrigger,
+} from "#/components/shadcn/dialog";
+import { useMediaQuery } from "#/hooks/useMediaQuery";
+import type { Project } from "#/lib/config";
+
+interface DialogProps {
+	id: string;
+	img: Img;
+	title: string;
+}
+
+const ProjectImage = ({ img, title }: Omit<DialogProps, "id">) => (
+	<img
+		src={img.src}
+		srcSet={img.srcset}
+		sizes="90vw"
+		width={img.w}
+		height={img.h}
+		alt={`${title} preview`}
+		loading="lazy"
+		className="relative z-20 aspect-video w-full object-cover"
+	/>
+);
+
+const ProjectDialog = ({ img, title }: DialogProps) => (
+	<Dialog>
+		<DialogTrigger className="block w-full cursor-zoom-in">
+			<img
+				src={img.src}
+				srcSet={img.srcset}
+				sizes="(min-width: 1024px) 400px, 90vw"
+				width={img.w}
+				height={img.h}
+				alt={`${title} preview`}
+				loading="lazy"
+				className="relative z-20 aspect-video w-full object-cover"
+			/>
+		</DialogTrigger>
+		<DialogContent className="max-w-[calc(100%-2rem)] border-none bg-transparent p-0 ring-0 sm:max-w-[90vw]">
+			<img
+				src={img.src}
+				srcSet={img.srcset}
+				sizes="90vw"
+				width={img.w}
+				height={img.h}
+				alt={`${title} preview`}
+				loading="lazy"
+				className="max-h-[85vh] w-auto object-contain"
+			/>
+		</DialogContent>
+	</Dialog>
+);
+
+export const ProjectCard = ({
+	title,
+	liveHref,
+	githubHref,
+	description,
+	images,
+}: Project) => {
+	const isDesktop = useMediaQuery("(min-width: 1024px)");
+
+	return (
+		<Card className="mx-auto w-full max-w-xl pt-0 lg:max-w-none lg:grow">
+			<Carousel>
+				<CarouselContent>
+					{Object.entries(images).map(([id, img]) => (
+						<CarouselItem key={id}>
+							<div className="p-1">
+								{isDesktop ? (
+									<ProjectDialog id={id} img={img} title={title} />
+								) : (
+									<ProjectImage img={img} title={title} />
+								)}
+							</div>
+						</CarouselItem>
+					))}
+				</CarouselContent>
+				<CarouselPrevious variant="secondary" className="left-4 opacity-65" />
+				<CarouselNext variant="secondary" className="right-4 opacity-65" />
+			</Carousel>
+			<CardHeader>
+				<CardAction>
+					<Button
+						variant="outline"
+						nativeButton={false}
+						render={(props) => (
+							<a {...props} href={githubHref} rel="noopener" target="_blank">
+								<GithubLogoIcon />
+							</a>
+						)}
+					/>
+				</CardAction>
+				<CardTitle>{title}</CardTitle>
+				<CardDescription>{description}</CardDescription>
+			</CardHeader>
+			<CardContent>
+				<Button
+					variant="outline"
+					className="w-full"
+					nativeButton={false}
+					render={(props) => (
+						<a {...props} href={liveHref} rel="noopener" target="_blank">
+							<ArrowRightIcon />
+						</a>
+					)}
+				/>
+			</CardContent>
+		</Card>
+	);
+};

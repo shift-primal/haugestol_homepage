@@ -1,6 +1,6 @@
-import { TanStackDevtools } from "@tanstack/react-devtools";
+// import { TanStackDevtools } from "@tanstack/react-devtools";
 import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
-import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+// import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { ThemeProvider } from "next-themes";
 import { Navbar } from "#/components/layout/Navbar";
 import appCss from "../styles.css?url";
@@ -18,14 +18,14 @@ const RootDocument = ({ children }: { children: React.ReactNode }) => {
 						<main className="min-h-0 flex-1 overflow-y-auto">{children}</main>
 					</div>
 				</ThemeProvider>
-				<TanStackDevtools
-					plugins={[
-						{
-							name: "Tanstack Router",
-							render: <TanStackRouterDevtoolsPanel />,
-						},
-					]}
-				/>
+				{/* <TanStackDevtools */}
+				{/* 	plugins={[ */}
+				{/* 		{ */}
+				{/* 			name: "Tanstack Router", */}
+				{/* 			render: <TanStackRouterDevtoolsPanel />, */}
+				{/* 		}, */}
+				{/* 	]} */}
+				{/* /> */}
 				<Scripts />
 			</body>
 		</html>

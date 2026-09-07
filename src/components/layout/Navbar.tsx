@@ -1,4 +1,5 @@
 import {
+	ChatCircleTextIcon,
 	EnvelopeIcon,
 	GithubLogoIcon,
 	HouseIcon,
@@ -37,6 +38,11 @@ const navLinks: Link[] = [
 		icon: RocketIcon,
 		href: "projects",
 	},
+	{
+		label: "Contact",
+		icon: ChatCircleTextIcon,
+		href: "contact",
+	},
 ];
 
 const contactLinks: Link[] = [
@@ -54,8 +60,8 @@ export const Navbar = () => {
 	};
 
 	return (
-		<NavigationMenu className="flex-none shrink-0 w-full max-w-full h-min border-b-2 py-2 px-4 z-10 bg-background">
-			<NavigationMenuList className="gap-2">
+		<NavigationMenu className="flex-none shrink-0 w-full max-w-full h-min border-b-2 py-2 px-2 z-10 bg-background sm:px-4">
+			<NavigationMenuList className="gap-1 sm:gap-2">
 				{navLinks.map(({ label, icon: LinkIcon, href }) => (
 					<NavigationMenuItem key={label}>
 						<Button

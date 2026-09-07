@@ -5,6 +5,7 @@ import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import viteReact, { reactCompilerPreset } from "@vitejs/plugin-react";
 import { nitro } from "nitro/vite";
 import { defineConfig } from "vite";
+import { imagetools } from "vite-imagetools";
 
 const config = defineConfig({
 	resolve: { tsconfigPaths: true },
@@ -15,6 +16,7 @@ const config = defineConfig({
 		tanstackStart(),
 		viteReact(),
 		babel({ presets: [reactCompilerPreset()] }),
+		imagetools(),
 	],
 });
 
