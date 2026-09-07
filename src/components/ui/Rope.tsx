@@ -7,7 +7,7 @@ import { setPullFilter } from "#/lib/pull-filter";
 const BRIGHTNESS_FILTER = 0.25;
 
 // Primary tunables — adjust these to change how the rope looks and feels.
-const CONTAINER_WIDTH = 256;
+const CONTAINER_WIDTH = 32;
 const SEGMENT_LENGTH = 14; // px per simulated link — controls curve resolution
 const ROPE_LENGTH = 150; // target resting (unpulled) length of the cord
 const PULL_RATIO = 1.62; // how far past its resting length it can be pulled
@@ -17,7 +17,7 @@ const DAMPING = 0.985;
 const CONSTRAINT_ITERATIONS = 8;
 const MIN_PULL_Y = -100;
 const KNOB_WIDTH = 16;
-const KNOB_HEIGHT = 16;
+const KNOB_HEIGHT = 24;
 
 // Derived — computed from the tunables above, don't edit directly.
 const NUM_POINTS = Math.round(ROPE_LENGTH / SEGMENT_LENGTH) + 1;
@@ -29,8 +29,7 @@ const REFERENCE_FRAME_MS = 1000 / 60;
 const MAX_SUBSTEPS = 10; // caps catch-up after a stall (tab/focus change) instead of injecting one big kick
 const SETTLE_EPSILON = 0.02; // px of per-step movement below which a point counts as still
 const SETTLE_STEPS = 45; // consecutive still steps (~0.75s of sim time) before the loop parks itself
-
-const ANCHOR_X = CONTAINER_WIDTH / 1.5;
+const ANCHOR_X = CONTAINER_WIDTH / 2;
 
 interface Point {
 	x: number;
@@ -255,7 +254,7 @@ export const Rope = () => {
 	return (
 		<div
 			ref={containerRef}
-			className="pointer-events-none fixed top-0 right-6 z-50 sm:right-10"
+			className="pointer-events-none absolute top-0 right-1/4 z-50 sm:right-1/8 translate-x-1/2"
 			style={{ width: CONTAINER_WIDTH, height: CONTAINER_HEIGHT }}
 		>
 			<svg
@@ -274,23 +273,25 @@ export const Rope = () => {
 					className="text-foreground/60"
 				/>
 			</svg>
-			<div
-				ref={knobRef}
-				role="switch"
-				tabIndex={0}
-				aria-checked={isDark}
-				aria-label="Toggle color theme"
-				onPointerDown={handlePointerDown}
-				onPointerMove={handlePointerMove}
-				onPointerUp={handlePointerUp}
-				onPointerCancel={handlePointerUp}
-				className="pointer-events-auto absolute top-0 left-0 origin-top touch-none cursor-grab border-2 border-foreground outline-none active:cursor-grabbing focus-visible:ring-1 focus-visible:ring-ring/50 rounded-t-full"
-				style={{
-					width: KNOB_WIDTH,
-					height: KNOB_HEIGHT,
-					transform: `translate(${ANCHOR_X - KNOB_WIDTH / 2}px, ${REST_LENGTH}px)`,
-				}}
-			/>
+			<div className="w-full h-full">
+				<div
+					ref={knobRef}
+					role="switch"
+					tabIndex={0}
+					aria-checked={isDark}
+					aria-label="Toggle color theme"
+					onPointerDown={handlePointerDown}
+					onPointerMove={handlePointerMove}
+					onPointerUp={handlePointerUp}
+					onPointerCancel={handlePointerUp}
+					className="pointer-events-auto absolute top-0 left-0 origin-top touch-none cursor-grab outline-none active:cursor-grabbing focus-visible:ring-1 focus-visible:ring-ring/50 rounded-t-full bg-primary"
+					style={{
+						width: KNOB_WIDTH,
+						height: KNOB_HEIGHT,
+						transform: `translate(${ANCHOR_X - KNOB_WIDTH / 2}px, ${REST_LENGTH}px)`,
+					}}
+				/>
+			</div>
 		</div>
 	);
 };
