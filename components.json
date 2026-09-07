@@ -23,6 +23,7 @@
   "menuAccent": "subtle",
   "registries": {
     "@magicui": "https://magicui.design/r/{name}",
-    "@animate-ui": "https://animate-ui.com/r/{name}.json"
+    "@animate-ui": "https://animate-ui.com/r/{name}.json",
+    "@soundcn": "https://soundcn.xyz/r/{name}.json"
   }
 }

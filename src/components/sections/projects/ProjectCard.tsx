@@ -127,20 +127,30 @@ export const ProjectCard = ({
 			</CardHeader>
 			<CardContent>
 				<HoverCard>
-					<HoverCardTrigger>
-						<Button
-							disabled={!liveHref}
-							variant="outline"
-							className="w-full"
-							nativeButton={false}
-							render={(props) => (
-								<a {...props} href={liveHref} rel="noopener" target="_blank">
-									<span>Se live demo!</span>
-									<ArrowRightIcon />
-								</a>
-							)}
-						/>
-					</HoverCardTrigger>
+					<HoverCardTrigger
+						render={({ ref, ...triggerProps }) => (
+							<Button
+								disabled={!liveHref}
+								variant="outline"
+								className="w-full"
+								nativeButton={false}
+								render={(buttonProps) => (
+									<a
+										{...buttonProps}
+										{...triggerProps}
+										ref={ref}
+										href={liveHref}
+										rel="noopener"
+										target="_blank"
+									>
+										<span>Se live demo!</span>
+										<ArrowRightIcon />
+									</a>
+								)}
+							/>
+						)}
+					/>
+
 					{!liveHref && (
 						<HoverCardContent className="bg-destructive/75">
 							Project has not been deployed yet!
