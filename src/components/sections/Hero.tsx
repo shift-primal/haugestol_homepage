@@ -5,7 +5,7 @@ import { TAGLINE } from "#/lib/config";
 
 export const Hero = () => (
 	<SectionContainer sectionName="hero">
-		<div className="flex min-h-[40svh] flex-col justify-center gap-6 lg:min-h-0 lg:justify-normal">
+		<div className="flex min-h-[40svh] flex-col justify-center gap-6 lg:min-h-0 lg:justify-normal mt-0 lg:mt-20">
 			<HeroIntro />
 			<p className="max-w-lg text-muted-foreground pointer-events-auto">
 				{TAGLINE}

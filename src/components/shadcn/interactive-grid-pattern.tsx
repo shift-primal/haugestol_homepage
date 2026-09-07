@@ -1,4 +1,5 @@
 import type React from "react";
+import { useMemo } from "react";
 import { cn } from "#/lib/shadcn.utils";
 
 /**
@@ -34,32 +35,40 @@ export function InteractiveGridPattern({
 }: InteractiveGridPatternProps) {
 	const [horizontal, vertical] = squares;
 
+	const gridRects = useMemo(() => {
+		return Array.from({ length: horizontal * vertical }).map((_, index) => ({
+			id: index,
+			x: (index % horizontal) * width,
+			y: Math.floor(index / horizontal) * height,
+		}));
+	}, [horizontal, vertical, width, height]);
+
 	return (
 		// biome-ignore lint/a11y/noSvgWithoutTitle: <no need for title>
 		<svg
 			width={width * horizontal}
 			height={height * vertical}
-			className={cn("absolute border-gray-400/30", className)}
+			className={cn(
+				"absolute border-gray-400/30 select-none pointer-events-none sm:pointer-events-auto",
+				className,
+			)}
 			{...props}
 		>
-			{Array.from({ length: horizontal * vertical }).map((_, index) => {
-				const x = (index % horizontal) * width;
-				const y = Math.floor(index / horizontal) * height;
-				return (
-					<rect
-						// biome-ignore lint/suspicious/noArrayIndexKey: <it makes sense>
-						key={index}
-						x={x}
-						y={y}
-						width={width}
-						height={height}
-						className={cn(
-							"fill-transparent stroke-gray-400/30 transition-[fill] duration-50 ease-in-out hover:fill-gray-600/10 hover:dark:fill-gray-300/10 not-[&:hover]:duration-1000",
-							squaresClassName,
-						)}
-					/>
-				);
-			})}
+			{gridRects.map((rect) => (
+				<rect
+					key={rect.id}
+					x={rect.x}
+					y={rect.y}
+					width={width}
+					height={height}
+					className={cn(
+						"fill-transparent stroke-gray-400/30 transition-[fill] duration-50 ease-in-out",
+						// 2. Only allow hover styles on desktop viewports using CSS media features
+						"lg:hover:fill-gray-600/10 lg:hover:dark:fill-gray-300/10 lg:not-[&:hover]:duration-1000",
+						squaresClassName,
+					)}
+				/>
+			))}
 		</svg>
 	);
 }
