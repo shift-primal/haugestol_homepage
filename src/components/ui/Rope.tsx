@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useAppSound } from "#/hooks/useAppSound";
+import { useMediaQuery } from "#/hooks/useMediaQuery";
 import { useThemeTransition } from "#/hooks/useThemeTransition";
 import { setPullFilter } from "#/lib/pull-filter";
 
@@ -9,8 +10,12 @@ const BRIGHTNESS_FILTER = 0.25;
 // Primary tunables — adjust these to change how the rope looks and feels.
 const CONTAINER_WIDTH = 32;
 const SEGMENT_LENGTH = 14; // px per simulated link — controls curve resolution
-const ROPE_LENGTH = 150; // target resting (unpulled) length of the cord
-const PULL_RATIO = 1.62; // how far past its resting length it can be pulled
+
+const ROPE_LENGTH_DESKTOP = 150; // target resting (unpulled) length of the cord
+const ROPE_LENGTH_MOBILE = 100;
+const PULL_RATIO_DESKTOP = 1.62; // how far past its resting length it can be pulled
+const PULL_RATIO_MOBILE = 1.62;
+
 const STRETCH_TRIGGER_RATIO = 0.43; // fraction of resting length that must stretch taut before a pull arms the switch
 const GRAVITY = 0.7;
 const DAMPING = 0.985;
@@ -18,13 +23,11 @@ const CONSTRAINT_ITERATIONS = 8;
 const MIN_PULL_Y = -100;
 const KNOB_WIDTH = 16;
 const KNOB_HEIGHT = 24;
+const HITBOX_EXTRA_SIDE_DESKTOP = 10;
+const HITBOX_EXTRA_BOTTOM_DESKTOP = 16;
+const HITBOX_EXTRA_SIDE_MOBILE = 16;
+const HITBOX_EXTRA_BOTTOM_MOBILE = 24;
 
-// Derived — computed from the tunables above, don't edit directly.
-const NUM_POINTS = Math.round(ROPE_LENGTH / SEGMENT_LENGTH) + 1;
-const REST_LENGTH = SEGMENT_LENGTH * (NUM_POINTS - 1);
-const MAX_PULL = REST_LENGTH * PULL_RATIO;
-const CONTAINER_HEIGHT = MAX_PULL + KNOB_HEIGHT;
-const STRETCH_TRIGGER = REST_LENGTH * STRETCH_TRIGGER_RATIO;
 const REFERENCE_FRAME_MS = 1000 / 60;
 const MAX_SUBSTEPS = 10; // caps catch-up after a stall (tab/focus change) instead of injecting one big kick
 const SETTLE_EPSILON = 0.02; // px of per-step movement below which a point counts as still
@@ -41,8 +44,52 @@ interface Point {
 	pinned: boolean;
 }
 
-function createPoints(): Point[] {
-	return Array.from({ length: NUM_POINTS }, (_, i) => {
+interface RopeConfig {
+	numPoints: number;
+	restLength: number;
+	maxPull: number;
+	containerHeight: number;
+	stretchTrigger: number;
+	hitboxWidth: number;
+	hitboxHeight: number;
+}
+
+function computeConfig(
+	ropeLength: number,
+	pullRatio: number,
+	hitboxExtraSide: number,
+	hitboxExtraBottom: number,
+): RopeConfig {
+	const numPoints = Math.round(ropeLength / SEGMENT_LENGTH) + 1;
+	const restLength = SEGMENT_LENGTH * (numPoints - 1);
+	const maxPull = restLength * pullRatio;
+	const hitboxHeight = KNOB_HEIGHT + hitboxExtraBottom;
+	return {
+		numPoints,
+		restLength,
+		maxPull,
+		containerHeight: maxPull + hitboxHeight,
+		stretchTrigger: restLength * STRETCH_TRIGGER_RATIO,
+		hitboxWidth: KNOB_WIDTH + hitboxExtraSide * 2,
+		hitboxHeight,
+	};
+}
+
+const DESKTOP_CONFIG = computeConfig(
+	ROPE_LENGTH_DESKTOP,
+	PULL_RATIO_DESKTOP,
+	HITBOX_EXTRA_SIDE_DESKTOP,
+	HITBOX_EXTRA_BOTTOM_DESKTOP,
+);
+const MOBILE_CONFIG = computeConfig(
+	ROPE_LENGTH_MOBILE,
+	PULL_RATIO_MOBILE,
+	HITBOX_EXTRA_SIDE_MOBILE,
+	HITBOX_EXTRA_BOTTOM_MOBILE,
+);
+
+function createPoints(numPoints: number): Point[] {
+	return Array.from({ length: numPoints }, (_, i) => {
 		const y = i * SEGMENT_LENGTH;
 		return {
 			x: ANCHOR_X,
@@ -77,13 +124,16 @@ function buildPath(points: Point[], alpha: number): string {
 	return d;
 }
 
-const INITIAL_PATH_D = buildPath(createPoints(), 1);
+const INITIAL_PATH_D = buildPath(createPoints(DESKTOP_CONFIG.numPoints), 1);
 
 export const Rope = () => {
+	const isMobile = useMediaQuery("(max-width: 639px)");
+	const config = isMobile ? MOBILE_CONFIG : DESKTOP_CONFIG;
+
 	const containerRef = useRef<HTMLDivElement>(null);
 	const pathRef = useRef<SVGPathElement>(null);
 	const knobRef = useRef<HTMLDivElement>(null);
-	const pointsRef = useRef<Point[]>(createPoints());
+	const pointsRef = useRef<Point[]>(createPoints(DESKTOP_CONFIG.numPoints));
 	const draggingRef = useRef(false);
 	const pulledPastThresholdRef = useRef(false);
 	const wakeRef = useRef<() => void>(() => {});
@@ -92,6 +142,9 @@ export const Rope = () => {
 	const { playDragDown, playDragUp } = useAppSound();
 
 	useEffect(() => {
+		if (pointsRef.current.length !== config.numPoints) {
+			pointsRef.current = createPoints(config.numPoints);
+		}
 		const points = pointsRef.current;
 		const knob = points[points.length - 1];
 		let rafId: number;
@@ -181,15 +234,15 @@ export const Rope = () => {
 				const angleDeg =
 					Math.atan2(kx - renderX(prev, alpha), ky - renderY(prev, alpha)) *
 					(180 / Math.PI);
-				knobRef.current.style.transform = `translate(${kx - KNOB_WIDTH / 2}px, ${ky}px) rotate(${-angleDeg}deg)`;
+				knobRef.current.style.transform = `translate(${kx - config.hitboxWidth / 2}px, ${ky}px) rotate(${-angleDeg}deg)`;
 			}
 
-			const stretch = Math.hypot(knob.x - ANCHOR_X, knob.y) - REST_LENGTH;
+			const stretch = Math.hypot(knob.x - ANCHOR_X, knob.y) - config.restLength;
 
 			if (
 				draggingRef.current &&
 				!pulledPastThresholdRef.current &&
-				stretch > STRETCH_TRIGGER
+				stretch > config.stretchTrigger
 			) {
 				pulledPastThresholdRef.current = true;
 				setPullFilter(BRIGHTNESS_FILTER);
@@ -209,7 +262,7 @@ export const Rope = () => {
 
 		rafId = requestAnimationFrame(tick);
 		return () => cancelAnimationFrame(rafId);
-	}, [playDragDown]);
+	}, [playDragDown, config]);
 
 	const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
 		event.currentTarget.setPointerCapture(event.pointerId);
@@ -233,7 +286,7 @@ export const Rope = () => {
 		const dx = localX - ANCHOR_X;
 		const dy = localY;
 		const reach = Math.hypot(dx, dy) || 1;
-		const scale = Math.min(1, MAX_PULL / reach);
+		const scale = Math.min(1, config.maxPull / reach);
 		knob.x = ANCHOR_X + dx * scale;
 		knob.y = dy * scale;
 	};
@@ -254,12 +307,12 @@ export const Rope = () => {
 	return (
 		<div
 			ref={containerRef}
-			className="pointer-events-none absolute top-0 right-1/4 z-50 sm:right-1/8 translate-x-1/2"
-			style={{ width: CONTAINER_WIDTH, height: CONTAINER_HEIGHT }}
+			className="pointer-events-none absolute top-0 right-1/8 z-50 sm:right-1/8 translate-x-1/2"
+			style={{ width: CONTAINER_WIDTH, height: config.containerHeight }}
 		>
 			<svg
 				width={CONTAINER_WIDTH}
-				height={CONTAINER_HEIGHT}
+				height={config.containerHeight}
 				className="absolute inset-0 overflow-visible"
 			>
 				<title>Theme toggle pull cord</title>
@@ -284,13 +337,18 @@ export const Rope = () => {
 					onPointerMove={handlePointerMove}
 					onPointerUp={handlePointerUp}
 					onPointerCancel={handlePointerUp}
-					className="pointer-events-auto absolute top-0 left-0 origin-top touch-none cursor-grab outline-none active:cursor-grabbing focus-visible:ring-1 focus-visible:ring-ring/50 rounded-t-full bg-primary"
+					className="pointer-events-auto absolute top-0 left-0 origin-top touch-none cursor-grab outline-none active:cursor-grabbing focus-visible:ring-1 focus-visible:ring-ring/50 flex justify-center items-start"
 					style={{
-						width: KNOB_WIDTH,
-						height: KNOB_HEIGHT,
-						transform: `translate(${ANCHOR_X - KNOB_WIDTH / 2}px, ${REST_LENGTH}px)`,
+						width: config.hitboxWidth,
+						height: config.hitboxHeight,
+						transform: `translate(${ANCHOR_X - config.hitboxWidth / 2}px, ${config.restLength}px)`,
 					}}
-				/>
+				>
+					<div
+						className="rounded-t-full bg-primary"
+						style={{ width: KNOB_WIDTH, height: KNOB_HEIGHT }}
+					/>
+				</div>
 			</div>
 		</div>
 	);
