@@ -2,7 +2,6 @@
 import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 // import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { ThemeProvider } from "next-themes";
-import { Navbar } from "#/components/layout/Navbar";
 import appCss from "../styles.css?url";
 
 const RootDocument = ({ children }: { children: React.ReactNode }) => {
@@ -14,7 +13,6 @@ const RootDocument = ({ children }: { children: React.ReactNode }) => {
 			<body className="overflow-hidden">
 				<ThemeProvider attribute="class">
 					<div className="fixed inset-0 flex flex-col">
-						<Navbar />
 						<main className="min-h-0 flex-1 overflow-y-auto">{children}</main>
 					</div>
 				</ThemeProvider>
