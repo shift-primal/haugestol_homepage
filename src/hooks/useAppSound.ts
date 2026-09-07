@@ -1,6 +1,10 @@
+import switchOffUrl from "#/assets/sfx/switch-off.mp3";
+import switchOnUrl from "#/assets/sfx/switch-on.mp3";
 import { useSound } from "#/hooks/use-sound";
-import { switchOffSound } from "#/lib/switch-off";
-import { switchOnSound } from "#/lib/switch-on";
+import type { SoundAsset } from "#/lib/sound-types";
+
+const switchOnSound: SoundAsset = { name: "switch-on", src: switchOnUrl };
+const switchOffSound: SoundAsset = { name: "switch-off", src: switchOffUrl };
 
 const SOUNDS = {
 	dragUp: switchOffSound,

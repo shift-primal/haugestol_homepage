@@ -1,6 +1,10 @@
 import { useEffect, useRef } from "react";
 import { useAppSound } from "#/hooks/useAppSound";
 import { useThemeTransition } from "#/hooks/useThemeTransition";
+import { setPullFilter } from "#/lib/pull-filter";
+
+// Intensity for the brigthness filter on drag down
+const BRIGHTNESS_FILTER = 0.25;
 
 // Primary tunables — adjust these to change how the rope looks and feels.
 const CONTAINER_WIDTH = 256;
@@ -22,7 +26,9 @@ const MAX_PULL = REST_LENGTH * PULL_RATIO;
 const CONTAINER_HEIGHT = MAX_PULL + KNOB_HEIGHT;
 const STRETCH_TRIGGER = REST_LENGTH * STRETCH_TRIGGER_RATIO;
 const REFERENCE_FRAME_MS = 1000 / 60;
-const MAX_FRAME_MS = REFERENCE_FRAME_MS * 4;
+const MAX_SUBSTEPS = 10; // caps catch-up after a stall (tab/focus change) instead of injecting one big kick
+const SETTLE_EPSILON = 0.02; // px of per-step movement below which a point counts as still
+const SETTLE_STEPS = 45; // consecutive still steps (~0.75s of sim time) before the loop parks itself
 
 const ANCHOR_X = CONTAINER_WIDTH / 1.5;
 
@@ -31,35 +37,57 @@ interface Point {
 	y: number;
 	oldX: number;
 	oldY: number;
+	prevX: number;
+	prevY: number;
 	pinned: boolean;
 }
 
 function createPoints(): Point[] {
 	return Array.from({ length: NUM_POINTS }, (_, i) => {
 		const y = i * SEGMENT_LENGTH;
-		return { x: ANCHOR_X, y, oldX: ANCHOR_X, oldY: y, pinned: i === 0 };
+		return {
+			x: ANCHOR_X,
+			y,
+			oldX: ANCHOR_X,
+			oldY: y,
+			prevX: ANCHOR_X,
+			prevY: y,
+			pinned: i === 0,
+		};
 	});
 }
 
-function buildPath(points: Point[]): string {
-	let d = `M ${points[0].x} ${points[0].y}`;
+function renderX(p: Point, alpha: number) {
+	return p.prevX + (p.x - p.prevX) * alpha;
+}
+function renderY(p: Point, alpha: number) {
+	return p.prevY + (p.y - p.prevY) * alpha;
+}
+
+function buildPath(points: Point[], alpha: number): string {
+	let d = `M ${renderX(points[0], alpha)} ${renderY(points[0], alpha)}`;
 	for (let i = 1; i < points.length - 1; i++) {
-		const midX = (points[i].x + points[i + 1].x) / 2;
-		const midY = (points[i].y + points[i + 1].y) / 2;
-		d += ` Q ${points[i].x} ${points[i].y} ${midX} ${midY}`;
+		const x = renderX(points[i], alpha);
+		const y = renderY(points[i], alpha);
+		const nextX = renderX(points[i + 1], alpha);
+		const nextY = renderY(points[i + 1], alpha);
+		d += ` Q ${x} ${y} ${(x + nextX) / 2} ${(y + nextY) / 2}`;
 	}
 	const last = points[points.length - 1];
-	d += ` L ${last.x} ${last.y}`;
+	d += ` L ${renderX(last, alpha)} ${renderY(last, alpha)}`;
 	return d;
 }
+
+const INITIAL_PATH_D = buildPath(createPoints(), 1);
 
 export const Rope = () => {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const pathRef = useRef<SVGPathElement>(null);
-	const knobRef = useRef<HTMLButtonElement>(null);
+	const knobRef = useRef<HTMLDivElement>(null);
 	const pointsRef = useRef<Point[]>(createPoints());
 	const draggingRef = useRef(false);
 	const pulledPastThresholdRef = useRef(false);
+	const wakeRef = useRef<() => void>(() => {});
 
 	const { isDark, toggle } = useThemeTransition();
 	const { playDragDown, playDragUp } = useAppSound();
@@ -69,28 +97,25 @@ export const Rope = () => {
 		const knob = points[points.length - 1];
 		let rafId: number;
 		let lastTime: number | null = null;
+		let accumulator = 0;
+		let settledSteps = 0;
+		let running = true;
 
-		const tick = (time: number) => {
-			const dt =
-				lastTime === null
-					? REFERENCE_FRAME_MS
-					: Math.min(time - lastTime, MAX_FRAME_MS);
-			lastTime = time;
-			const timeScale = dt / REFERENCE_FRAME_MS;
-			const frameDamping = DAMPING ** timeScale;
-
+		const step = () => {
 			const knobIsPinned = draggingRef.current;
 			const isFixed = (p: Point) => p.pinned || (p === knob && knobIsPinned);
+			let maxMovement = 0;
 
 			for (let i = 1; i < points.length; i++) {
 				const p = points[i];
 				if (isFixed(p)) continue;
-				const vx = (p.x - p.oldX) * frameDamping;
-				const vy = (p.y - p.oldY) * frameDamping;
+				const vx = (p.x - p.oldX) * DAMPING;
+				const vy = (p.y - p.oldY) * DAMPING;
 				p.oldX = p.x;
 				p.oldY = p.y;
 				p.x += vx;
-				p.y += vy + GRAVITY * timeScale;
+				p.y += vy + GRAVITY;
+				maxMovement = Math.max(maxMovement, Math.abs(vx), Math.abs(vy));
 			}
 
 			for (let iter = 0; iter < CONSTRAINT_ITERATIONS; iter++) {
@@ -114,19 +139,70 @@ export const Rope = () => {
 				}
 			}
 
-			pathRef.current?.setAttribute("d", buildPath(points));
+			return maxMovement;
+		};
+
+		const wake = () => {
+			if (running) return;
+			running = true;
+			settledSteps = 0;
+			lastTime = null;
+			rafId = requestAnimationFrame(tick);
+		};
+		wakeRef.current = wake;
+
+		const tick = (time: number) => {
+			if (lastTime === null) lastTime = time;
+
+			accumulator += Math.min(
+				time - lastTime,
+				MAX_SUBSTEPS * REFERENCE_FRAME_MS,
+			);
+			lastTime = time;
+
+			let steps = 0;
+			let maxMovement = 0;
+			while (accumulator >= REFERENCE_FRAME_MS && steps < MAX_SUBSTEPS) {
+				for (const p of points) {
+					p.prevX = p.x;
+					p.prevY = p.y;
+				}
+				maxMovement = Math.max(maxMovement, step());
+				accumulator -= REFERENCE_FRAME_MS;
+				steps++;
+			}
+			if (steps === MAX_SUBSTEPS) accumulator = 0;
+			const alpha = accumulator / REFERENCE_FRAME_MS;
+
+			pathRef.current?.setAttribute("d", buildPath(points, alpha));
 			if (knobRef.current) {
-				knobRef.current.style.transform = `translate(${knob.x - KNOB_WIDTH / 2}px, ${knob.y}px)`;
+				const prev = points[points.length - 2];
+				const kx = renderX(knob, alpha);
+				const ky = renderY(knob, alpha);
+				const angleDeg =
+					Math.atan2(kx - renderX(prev, alpha), ky - renderY(prev, alpha)) *
+					(180 / Math.PI);
+				knobRef.current.style.transform = `translate(${kx - KNOB_WIDTH / 2}px, ${ky}px) rotate(${-angleDeg}deg)`;
 			}
 
 			const stretch = Math.hypot(knob.x - ANCHOR_X, knob.y) - REST_LENGTH;
+
 			if (
 				draggingRef.current &&
 				!pulledPastThresholdRef.current &&
 				stretch > STRETCH_TRIGGER
 			) {
 				pulledPastThresholdRef.current = true;
+				setPullFilter(BRIGHTNESS_FILTER);
 				playDragDown();
+			}
+
+			if (!draggingRef.current && steps > 0) {
+				settledSteps = maxMovement < SETTLE_EPSILON ? settledSteps + steps : 0;
+			}
+			if (!draggingRef.current && settledSteps >= SETTLE_STEPS) {
+				running = false;
+				return;
 			}
 
 			rafId = requestAnimationFrame(tick);
@@ -136,13 +212,14 @@ export const Rope = () => {
 		return () => cancelAnimationFrame(rafId);
 	}, [playDragDown]);
 
-	const handlePointerDown = (event: React.PointerEvent<HTMLButtonElement>) => {
+	const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
 		event.currentTarget.setPointerCapture(event.pointerId);
 		draggingRef.current = true;
 		pulledPastThresholdRef.current = false;
+		wakeRef.current();
 	};
 
-	const handlePointerMove = (event: React.PointerEvent<HTMLButtonElement>) => {
+	const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
 		if (!draggingRef.current || !containerRef.current) return;
 
 		const rect = containerRef.current.getBoundingClientRect();
@@ -162,10 +239,11 @@ export const Rope = () => {
 		knob.y = dy * scale;
 	};
 
-	const handlePointerUp = (event: React.PointerEvent<HTMLButtonElement>) => {
+	const handlePointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
 		if (!draggingRef.current) return;
 		draggingRef.current = false;
 		event.currentTarget.releasePointerCapture(event.pointerId);
+		setPullFilter(null);
 
 		if (pulledPastThresholdRef.current) {
 			playDragUp();
@@ -188,6 +266,7 @@ export const Rope = () => {
 				<title>Theme toggle pull cord</title>
 				<path
 					ref={pathRef}
+					d={INITIAL_PATH_D}
 					fill="none"
 					stroke="currentColor"
 					strokeWidth={2}
@@ -195,17 +274,17 @@ export const Rope = () => {
 					className="text-foreground/60"
 				/>
 			</svg>
-			<button
+			<div
 				ref={knobRef}
-				type="button"
 				role="switch"
+				tabIndex={0}
 				aria-checked={isDark}
 				aria-label="Toggle color theme"
 				onPointerDown={handlePointerDown}
 				onPointerMove={handlePointerMove}
 				onPointerUp={handlePointerUp}
 				onPointerCancel={handlePointerUp}
-				className="pointer-events-auto absolute top-0 left-0 touch-none cursor-grab border-2 border-foreground outline-none active:cursor-grabbing focus-visible:ring-1 focus-visible:ring-ring/50 rounded-full"
+				className="pointer-events-auto absolute top-0 left-0 origin-top touch-none cursor-grab border-2 border-foreground outline-none active:cursor-grabbing focus-visible:ring-1 focus-visible:ring-ring/50 rounded-t-full"
 				style={{
 					width: KNOB_WIDTH,
 					height: KNOB_HEIGHT,

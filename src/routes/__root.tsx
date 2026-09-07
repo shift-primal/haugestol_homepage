@@ -2,6 +2,7 @@
 import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 // import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { ThemeProvider } from "next-themes";
+import { Filter } from "#/components/layout/Filter";
 import appCss from "../styles.css?url";
 
 const RootDocument = ({ children }: { children: React.ReactNode }) => {
@@ -15,6 +16,7 @@ const RootDocument = ({ children }: { children: React.ReactNode }) => {
 					<div className="fixed inset-0 flex flex-col">
 						<main className="min-h-0 flex-1 overflow-y-auto">{children}</main>
 					</div>
+					<Filter />
 				</ThemeProvider>
 				{/* <TanStackDevtools */}
 				{/* 	plugins={[ */}

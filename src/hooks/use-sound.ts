@@ -31,7 +31,7 @@ export function useSound(
 
 	useEffect(() => {
 		let cancelled = false;
-		decodeAudioData(sound.dataUri).then((buffer) => {
+		decodeAudioData(sound.src).then((buffer) => {
 			if (!cancelled) {
 				bufferRef.current = buffer;
 				setDuration(buffer.duration);
@@ -40,7 +40,7 @@ export function useSound(
 		return () => {
 			cancelled = true;
 		};
-	}, [sound.dataUri]);
+	}, [sound.src]);
 
 	const stop = useCallback(() => {
 		if (sourceRef.current) {
