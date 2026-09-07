@@ -21,8 +21,8 @@ const GRAVITY = 0.7;
 const DAMPING = 0.985;
 const CONSTRAINT_ITERATIONS = 8;
 const MIN_PULL_Y = -100;
-const KNOB_WIDTH = 16;
-const KNOB_HEIGHT = 24;
+const KNOB_WIDTH = 32;
+const KNOB_HEIGHT = 32;
 const HITBOX_EXTRA_SIDE_DESKTOP = 10;
 const HITBOX_EXTRA_BOTTOM_DESKTOP = 16;
 const HITBOX_EXTRA_SIDE_MOBILE = 16;
@@ -304,10 +304,12 @@ export const Rope = () => {
 		pulledPastThresholdRef.current = false;
 	};
 
+	const path = "M 50 0 L 37 -100 L 13 -100 S 0 0 0 0";
+
 	return (
 		<div
 			ref={containerRef}
-			className="pointer-events-none absolute top-0 right-1/8 z-50 sm:right-1/8 translate-x-1/2"
+			className="pointer-events-none absolute top-0 right-1/8 z-50 sm:right-1/8 translate-x-1/2 drop-shadow-md drop-shadow-foreground/35"
 			style={{ width: CONTAINER_WIDTH, height: config.containerHeight }}
 		>
 			<svg
@@ -344,10 +346,17 @@ export const Rope = () => {
 						transform: `translate(${ANCHOR_X - config.hitboxWidth / 2}px, ${config.restLength}px)`,
 					}}
 				>
-					<div
-						className="rounded-t-full bg-primary"
-						style={{ width: KNOB_WIDTH, height: KNOB_HEIGHT }}
-					/>
+					{/* TODO: Fiks ghost-drag bilde*/}
+					<svg
+						width={KNOB_WIDTH}
+						height={KNOB_HEIGHT}
+						viewBox="0 -100 50 100"
+						preserveAspectRatio="xMidYMid meet"
+						className="text-primary"
+					>
+						<title>Lightswitch knob</title>
+						<path d={path} fill="currentColor" />
+					</svg>
 				</div>
 			</div>
 		</div>
