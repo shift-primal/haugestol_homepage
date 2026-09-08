@@ -1,4 +1,5 @@
 import { ArrowRightIcon, GithubLogoIcon } from "@phosphor-icons/react";
+import { useEffect, useState } from "react";
 import type { Img } from "vite-imagetools";
 import { Button } from "#/components/shadcn/button";
 import {
@@ -11,17 +12,13 @@ import {
 } from "#/components/shadcn/card";
 import {
 	Carousel,
+	type CarouselApi,
 	CarouselContent,
 	CarouselItem,
 	CarouselNext,
 	CarouselPrevious,
 } from "#/components/shadcn/carousel";
-import {
-	Dialog,
-	DialogClose,
-	DialogContent,
-	DialogTrigger,
-} from "#/components/shadcn/dialog";
+import { Dialog, DialogContent } from "#/components/shadcn/dialog";
 import {
 	HoverCard,
 	HoverCardContent,
@@ -30,13 +27,15 @@ import {
 import { useMediaQuery } from "#/hooks/useMediaQuery";
 import type { Project } from "#/lib/config";
 
-interface DialogProps {
-	id: string;
+const ProjectImage = ({
+	img,
+	title,
+	className = "relative z-20 aspect-video w-full object-cover",
+}: {
 	img: Img;
 	title: string;
-}
-
-const ProjectImage = ({ img, title }: Omit<DialogProps, "id">) => (
+	className?: string;
+}) => (
 	<img
 		src={img.src}
 		srcSet={img.srcset}
@@ -45,41 +44,8 @@ const ProjectImage = ({ img, title }: Omit<DialogProps, "id">) => (
 		height={img.h}
 		alt={`${title} preview`}
 		loading="lazy"
-		className="relative z-20 aspect-video w-full object-cover"
+		className={className}
 	/>
-);
-
-const ProjectDialog = ({ img, title }: DialogProps) => (
-	<Dialog>
-		<DialogTrigger className="block w-full cursor-zoom-in">
-			<img
-				src={img.src}
-				srcSet={img.srcset}
-				sizes="(min-width: 1024px) 400px, 90vw"
-				width={img.w}
-				height={img.h}
-				alt={`${title} preview`}
-				loading="lazy"
-				className="relative z-20 aspect-video w-full object-cover"
-			/>
-		</DialogTrigger>
-		<DialogContent className="fixed inset-0 top-0 left-0 h-screen w-screen max-w-none translate-x-0 translate-y-0 border-none bg-transparent p-0 ring-0 sm:max-w-none">
-			<DialogClose className="flex h-full w-full appearance-none items-center justify-center border-0 bg-transparent p-4 outline-none cursor-zoom-out">
-				{/* biome-ignore lint/a11y/useKeyWithClickEvents: only stops the close-click from bubbling; Escape/close button still close the dialog for keyboard users */}
-				<img
-					src={img.src}
-					srcSet={img.srcset}
-					sizes="100vw"
-					width={img.w}
-					height={img.h}
-					alt={`${title} preview`}
-					loading="lazy"
-					onClick={(event) => event.stopPropagation()}
-					className="max-h-full max-w-full cursor-default object-contain"
-				/>
-			</DialogClose>
-		</DialogContent>
-	</Dialog>
 );
 
 export const ProjectCard = ({
@@ -90,16 +56,40 @@ export const ProjectCard = ({
 	images,
 }: Project) => {
 	const isDesktop = useMediaQuery("(min-width: 1024px)");
+	const imageEntries = Object.entries(images);
+
+	const [lightboxOpen, setLightboxOpen] = useState(false);
+	const [startIndex, setStartIndex] = useState(0);
+	const [lightboxApi, setLightboxApi] = useState<CarouselApi>();
+
+	// Keeps the lightbox in sync with whichever thumbnail was clicked, even if
+	// the dialog stays mounted between opens.
+	useEffect(() => {
+		if (lightboxOpen && lightboxApi) {
+			lightboxApi.scrollTo(startIndex, true);
+		}
+	}, [lightboxOpen, lightboxApi, startIndex]);
+
+	const openLightbox = (index: number) => {
+		setStartIndex(index);
+		setLightboxOpen(true);
+	};
 
 	return (
 		<Card className="w-full pt-0">
 			<Carousel>
 				<CarouselContent>
-					{Object.entries(images).map(([id, img]) => (
+					{imageEntries.map(([id, img], index) => (
 						<CarouselItem key={id}>
 							<div className="p-4 md:p-2">
 								{isDesktop ? (
-									<ProjectDialog id={id} img={img} title={title} />
+									<button
+										type="button"
+										className="block w-full cursor-zoom-in"
+										onClick={() => openLightbox(index)}
+									>
+										<ProjectImage img={img} title={title} />
+									</button>
 								) : (
 									<ProjectImage img={img} title={title} />
 								)}
@@ -110,6 +100,44 @@ export const ProjectCard = ({
 				<CarouselPrevious variant="secondary" className="left-4 opacity-65" />
 				<CarouselNext variant="secondary" className="right-4 opacity-65" />
 			</Carousel>
+
+			{isDesktop && (
+				<Dialog open={lightboxOpen} onOpenChange={setLightboxOpen}>
+					<DialogContent className="fixed inset-0 top-0 left-0 h-screen w-screen max-w-none translate-x-0 translate-y-0 border-none bg-transparent p-0 ring-0 sm:max-w-none">
+						{/* biome-ignore lint/a11y/useKeyWithClickEvents: only closes the dialog on background click; Escape/close button still close it for keyboard users */}
+						{/* biome-ignore lint/a11y/noStaticElementInteractions: same as above */}
+						<div
+							className="flex h-full w-full cursor-zoom-out items-center justify-center p-4"
+							onClick={() => setLightboxOpen(false)}
+						>
+							<Carousel
+								setApi={setLightboxApi}
+								opts={{ startIndex, loop: true }}
+								className="w-full max-w-4xl cursor-default"
+								onClick={(event) => event.stopPropagation()}
+							>
+								<CarouselContent>
+									{imageEntries.map(([id, img]) => (
+										<CarouselItem
+											key={id}
+											className="flex items-center justify-center"
+										>
+											<ProjectImage
+												img={img}
+												title={title}
+												className="max-h-[85vh] max-w-full object-contain"
+											/>
+										</CarouselItem>
+									))}
+								</CarouselContent>
+								<CarouselPrevious variant="secondary" className="opacity-65" />
+								<CarouselNext variant="secondary" className="opacity-65" />
+							</Carousel>
+						</div>
+					</DialogContent>
+				</Dialog>
+			)}
+
 			<CardHeader>
 				<CardAction>
 					<Button

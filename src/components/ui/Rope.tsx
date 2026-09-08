@@ -21,11 +21,11 @@ const GRAVITY = 0.7;
 const DAMPING = 0.985;
 const CONSTRAINT_ITERATIONS = 8;
 const MIN_PULL_Y = -100;
-const KNOB_WIDTH = 32;
+const KNOB_WIDTH = 24;
 const KNOB_HEIGHT = 32;
 const HITBOX_EXTRA_SIDE_DESKTOP = 10;
-const HITBOX_EXTRA_BOTTOM_DESKTOP = 16;
-const HITBOX_EXTRA_SIDE_MOBILE = 16;
+const HITBOX_EXTRA_BOTTOM_DESKTOP = 10;
+const HITBOX_EXTRA_SIDE_MOBILE = 24;
 const HITBOX_EXTRA_BOTTOM_MOBILE = 24;
 
 const REFERENCE_FRAME_MS = 1000 / 60;
@@ -304,7 +304,7 @@ export const Rope = () => {
 		pulledPastThresholdRef.current = false;
 	};
 
-	const path = "M 50 0 L 37 -100 L 13 -100 S 0 0 0 0";
+	const path = "M 100 0 L 70 -150 L 30 -150 S 0 0 0 0";
 
 	return (
 		<div
@@ -339,20 +339,22 @@ export const Rope = () => {
 					onPointerMove={handlePointerMove}
 					onPointerUp={handlePointerUp}
 					onPointerCancel={handlePointerUp}
-					className="pointer-events-auto absolute top-0 left-0 origin-top touch-none cursor-grab outline-none active:cursor-grabbing focus-visible:ring-1 focus-visible:ring-ring/50 flex justify-center items-start"
+					onDragStart={(event) => event.preventDefault()}
+					draggable={false}
+					className="pointer-events-auto absolute top-0 left-0 origin-top touch-none cursor-grab outline-none active:cursor-grabbing focus-visible:ring-1 focus-visible:ring-ring/50 flex justify-center items-start select-none [-webkit-user-drag:none]"
 					style={{
 						width: config.hitboxWidth,
 						height: config.hitboxHeight,
 						transform: `translate(${ANCHOR_X - config.hitboxWidth / 2}px, ${config.restLength}px)`,
 					}}
 				>
-					{/* TODO: Fiks ghost-drag bilde*/}
 					<svg
 						width={KNOB_WIDTH}
 						height={KNOB_HEIGHT}
-						viewBox="0 -100 50 100"
+						viewBox="0 -150 100 150"
 						preserveAspectRatio="xMidYMid meet"
-						className="text-primary"
+						className="text-primary select-none [-webkit-user-drag:none]"
+						onDragStart={(event) => event.preventDefault()}
 					>
 						<title>Lightswitch knob</title>
 						<path d={path} fill="currentColor" />

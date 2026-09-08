@@ -22,7 +22,7 @@ export const TECHNOLOGIES_SHOWCASE = [
 // About
 
 export const BIO =
-	"Short bio goes here — background, what you focus on, what you're looking for.";
+	"Fullstack-utvikler med frontend-fokus, under utdanning ved GET Academy. Brenner for moderne webutvikling med sterk interesse for grensesnitt, brukeropplevelse og robust kodearkitektur. Selvstendig og lærevillig — går raskt fra konsept til implementasjon, noe som gjenspeiles i at jeg har publisert egne verktøy som open source og selv drifter flere prosjekter helt frem til produksjon.";
 
 // Projects
 
