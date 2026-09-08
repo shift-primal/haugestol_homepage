@@ -1,9 +1,9 @@
 import { TypingAnimation } from "#/components/shadcn/typing-animation";
 import { WordRotate } from "#/components/shadcn/word-rotate";
-import { NAME, TECHNOLOGIES_SHOWCASE } from "#/lib/config";
+import { HERO, SITE } from "#/lib/content";
 import { cn } from "#/lib/shadcn.utils";
 
-const NAME_WITH_LINE_BREAK = NAME.replace(" ", "\n");
+const NAME_WITH_LINE_BREAK = SITE.name.replace(" ", "\n");
 
 const HEADING_CLASSNAME =
 	"whitespace-pre-line text-5xl font-bold tracking-tight sm:whitespace-nowrap md:text-6xl lg:text-7xl";
@@ -22,7 +22,7 @@ export const HeroIntro = () => (
 			</TypingAnimation>
 		</div>
 		<WordRotate
-			words={TECHNOLOGIES_SHOWCASE}
+			words={HERO.technologies}
 			className="text-xl tracking-tighter sm:text-2xl md:text-3xl lg:text-4xl"
 		/>
 	</div>

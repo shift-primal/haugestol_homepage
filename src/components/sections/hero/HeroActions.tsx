@@ -1,6 +1,10 @@
-import { EnvelopeIcon, GithubLogoIcon } from "@phosphor-icons/react";
+import {
+	EnvelopeIcon,
+	GithubLogoIcon,
+	LinkedinLogoIcon,
+} from "@phosphor-icons/react";
 import { Button } from "#/components/shadcn/button";
-import { GITHUB_LINK } from "#/lib/config";
+import { SITE } from "#/lib/content";
 
 const scrollToSection = (id: string) =>
 	document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -14,8 +18,19 @@ export const HeroActions = () => (
 			aria-label="GitHub"
 			nativeButton={false}
 			render={(props) => (
-				<a href={GITHUB_LINK} target="_blank" rel="noreferrer" {...props}>
+				<a href={SITE.github} target="_blank" rel="noreferrer" {...props}>
 					<GithubLogoIcon />
+				</a>
+			)}
+		/>
+		<Button
+			variant="outline"
+			size="icon-lg"
+			aria-label="LinkedIn"
+			nativeButton={false}
+			render={(props) => (
+				<a href={SITE.linkedin} target="_blank" rel="noreferrer" {...props}>
+					<LinkedinLogoIcon />
 				</a>
 			)}
 		/>

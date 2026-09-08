@@ -25,7 +25,7 @@ import {
 	HoverCardTrigger,
 } from "#/components/shadcn/hover-card";
 import { useMediaQuery } from "#/hooks/useMediaQuery";
-import type { Project } from "#/lib/config";
+import type { Project } from "#/lib/content";
 
 const ProjectImage = ({
 	img,
@@ -101,37 +101,29 @@ export const ProjectCard = ({
 
 			{isDesktop && (
 				<Dialog open={lightboxOpen} onOpenChange={setLightboxOpen}>
-					<DialogContent className="fixed inset-0 top-0 left-0 h-screen w-screen max-w-none translate-x-0 translate-y-0 border-none bg-transparent p-0 ring-0 sm:max-w-none">
-						{/* biome-ignore lint/a11y/useKeyWithClickEvents: only closes the dialog on background click; Escape/close button still close it for keyboard users */}
-						{/* biome-ignore lint/a11y/noStaticElementInteractions: same as above */}
-						<div
-							className="flex h-full w-full cursor-zoom-out items-center justify-center p-4"
-							onClick={() => setLightboxOpen(false)}
+					<DialogContent className="max-w-7xl border-none bg-transparent ring-0 sm:max-w-7xl">
+						<Carousel
+							setApi={setLightboxApi}
+							opts={{ startIndex, loop: true }}
+							className="w-full max-w-7xl cursor-default"
 						>
-							<Carousel
-								setApi={setLightboxApi}
-								opts={{ startIndex, loop: true }}
-								className="w-full max-w-4xl cursor-default"
-								onClick={(event) => event.stopPropagation()}
-							>
-								<CarouselContent>
-									{imageEntries.map(([id, img]) => (
-										<CarouselItem
-											key={id}
-											className="flex items-center justify-center"
-										>
-											<ProjectImage
-												img={img}
-												title={title}
-												className="max-h-[85vh] max-w-full object-contain"
-											/>
-										</CarouselItem>
-									))}
-								</CarouselContent>
-								<CarouselPrevious variant="secondary" className="opacity-65" />
-								<CarouselNext variant="secondary" className="opacity-65" />
-							</Carousel>
-						</div>
+							<CarouselContent>
+								{imageEntries.map(([id, img]) => (
+									<CarouselItem
+										key={id}
+										className="flex items-center justify-center"
+									>
+										<ProjectImage
+											img={img}
+											title={title}
+											className="max-h-[85vh] max-w-full object-contain"
+										/>
+									</CarouselItem>
+								))}
+							</CarouselContent>
+							<CarouselPrevious variant="secondary" className="opacity-65" />
+							<CarouselNext variant="secondary" className="opacity-65" />
+						</Carousel>
 					</DialogContent>
 				</Dialog>
 			)}
@@ -140,6 +132,7 @@ export const ProjectCard = ({
 				<CardAction>
 					<Button
 						variant="outline"
+						aria-label={`${title} on GitHub`}
 						nativeButton={false}
 						render={(props) => (
 							<a {...props} href={githubHref} rel="noopener" target="_blank">

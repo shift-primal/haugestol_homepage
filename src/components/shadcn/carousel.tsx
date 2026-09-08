@@ -191,6 +191,7 @@ function CarouselPrevious({
 				className,
 			)}
 			disabled={!canScrollPrev}
+			suppressHydrationWarning
 			onClick={scrollPrev}
 			{...props}
 		>
@@ -221,6 +222,7 @@ function CarouselNext({
 				className,
 			)}
 			disabled={!canScrollNext}
+			suppressHydrationWarning
 			onClick={scrollNext}
 			{...props}
 		>
