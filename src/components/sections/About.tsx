@@ -6,7 +6,7 @@ export const About = () => {
 	return (
 		<SectionContainer sectionName="about">
 			<div className="flex flex-col gap-8">
-				<SectionHeading text="About" />
+				<SectionHeading text="Om meg" />
 				<p className="max-w-xl text-muted-foreground leading-relaxed pointer-events-auto">
 					{BIO}
 				</p>

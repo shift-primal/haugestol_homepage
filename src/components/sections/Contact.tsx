@@ -14,22 +14,22 @@ export const Contact = () => {
 	return (
 		<SectionContainer sectionName="contact">
 			<div className="flex flex-col gap-8">
-				<SectionHeading text="Contact" />
+				<SectionHeading text="Ta kontakt!" />
 				<form
 					onSubmit={handleSubmit}
 					className="w-full max-w-md pointer-events-auto"
 				>
 					<FieldGroup>
 						<Field>
-							<FieldLabel htmlFor="contact-name">Name</FieldLabel>
+							<FieldLabel htmlFor="contact-name">Navn</FieldLabel>
 							<Input id="contact-name" name="name" required />
 						</Field>
 						<Field>
-							<FieldLabel htmlFor="contact-email">Email</FieldLabel>
+							<FieldLabel htmlFor="contact-email">Epost</FieldLabel>
 							<Input id="contact-email" name="email" type="email" required />
 						</Field>
 						<Field>
-							<FieldLabel htmlFor="contact-message">Message</FieldLabel>
+							<FieldLabel htmlFor="contact-message">Melding</FieldLabel>
 							<Textarea id="contact-message" name="message" rows={5} required />
 						</Field>
 						<Button type="submit">Send</Button>

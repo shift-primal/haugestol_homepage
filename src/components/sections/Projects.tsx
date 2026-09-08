@@ -6,7 +6,7 @@ import { PROJECTS } from "#/lib/config";
 export const Projects = () => {
 	return (
 		<SectionContainer sectionName="projects">
-			<SectionHeading text="Projects" />
+			<SectionHeading text="Prosjekter" />
 			<div className="mt-10 grid grid-cols-1 gap-6 sm:mt-12 md:grid-cols-2 md:gap-8 xl:grid-cols-3 ">
 				{PROJECTS.map((project) => (
 					<ProjectCard key={project.title} {...project} />

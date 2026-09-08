@@ -9,7 +9,7 @@ export const GITHUB_LINK = "https://github.com/shift-primal";
 export const EMAIL = "kasper@haugestol.com";
 
 export const TAGLINE =
-	"Building reliable, cloud-native systems — from CI/CD pipelines to full-stack apps.";
+	"Bygger grensesnitt folk faktisk liker å bruke — fra idé til produksjon.";
 
 export const TECHNOLOGIES_SHOWCASE = [
 	"Full-Stack",
@@ -22,7 +22,7 @@ export const TECHNOLOGIES_SHOWCASE = [
 // About
 
 export const BIO =
-	"Fullstack-utvikler med frontend-fokus, under utdanning ved GET Academy. Brenner for moderne webutvikling med sterk interesse for grensesnitt, brukeropplevelse og robust kodearkitektur. Selvstendig og lærevillig — går raskt fra konsept til implementasjon, noe som gjenspeiles i at jeg har publisert egne verktøy som open source og selv drifter flere prosjekter helt frem til produksjon.";
+	"Fullstack-utvikler med frontend-fokus, under utdanning ved GET Academy. Jeg bygger grensesnitt jeg selv ville likt å bruke, og bryr meg like mye om hvordan koden er strukturert under panseret. Går raskt fra idé til produksjon — flere av verktøyene mine er open source, og jeg drifter selv prosjektene mine helt ut i den andre enden.";
 
 // Projects
 
@@ -67,7 +67,7 @@ export const PROJECTS: Project[] = [
 		liveHref: "https://pokemon.haugestol.com",
 		githubHref: "https://github.com/shift-primal/pdex_26",
 		description:
-			"Full National Pokédex on PokéAPI — virtualized search, evolution chains, per-form detail pages and advanced filtering.",
+			"Full Pokédex bygget på PokéAPI — virtualized search, evolution chains, per-form details og avansert filtrering.",
 		images: pokemonScreenshots,
 	},
 	{
@@ -75,7 +75,7 @@ export const PROJECTS: Project[] = [
 		liveHref: "https://quiz.haugestol.com",
 		githubHref: "https://github.com/shift-primal/bfq",
 		description:
-			"A personal trivia quiz — how well do you know Kasper? Dynamically scored, store-based state, with a live leaderboard.",
+			"Personlig trivia quiz — hvor godt kjenner du Kasper? Dynamisk score, store-based state, med live leaderboard.",
 		images: quizScreenshots,
 	},
 	{
@@ -83,7 +83,7 @@ export const PROJECTS: Project[] = [
 		githubHref: "https://github.com/shift-primal/groovehaus",
 		// liveHref: "https://example.com", - Not live
 		description:
-			"Marketplace for vinyl, gear, and instruments — cart, auth, and Stripe checkout.",
+			"Et konsept for en nettbutikk for vinyl, musikkutstyr, og instrumenter — handlevogn, auth, og Stripe checkout.",
 		images: groovehausScreenshots,
 	},
 ];

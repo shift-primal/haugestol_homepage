@@ -62,8 +62,6 @@ export const ProjectCard = ({
 	const [startIndex, setStartIndex] = useState(0);
 	const [lightboxApi, setLightboxApi] = useState<CarouselApi>();
 
-	// Keeps the lightbox in sync with whichever thumbnail was clicked, even if
-	// the dialog stays mounted between opens.
 	useEffect(() => {
 		if (lightboxOpen && lightboxApi) {
 			lightboxApi.scrollTo(startIndex, true);
