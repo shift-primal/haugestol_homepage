@@ -12,10 +12,12 @@ const Home = () => {
 		<PageContainer>
 			<GridBackground />
 			<Rope />
-			<Hero />
-			<About />
-			<Projects />
-			<Contact />
+			<div className="mt-0 lg:mt-20">
+				<Hero />
+				<About />
+				<Projects />
+				<Contact />
+			</div>
 		</PageContainer>
 	);
 };

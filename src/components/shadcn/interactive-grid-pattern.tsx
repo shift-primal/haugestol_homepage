@@ -31,7 +31,6 @@ export function InteractiveGridPattern({
 	squares = [24, 24],
 	className,
 	squaresClassName,
-	...props
 }: InteractiveGridPatternProps) {
 	const [horizontal, vertical] = squares;
 
@@ -52,7 +51,6 @@ export function InteractiveGridPattern({
 				"absolute border-gray-400/30 select-none pointer-events-none sm:pointer-events-auto",
 				className,
 			)}
-			{...props}
 		>
 			{gridRects.map((rect) => (
 				<rect
@@ -63,7 +61,6 @@ export function InteractiveGridPattern({
 					height={height}
 					className={cn(
 						"fill-transparent stroke-gray-400/30 transition-[fill] duration-50 ease-in-out",
-						// 2. Only allow hover styles on desktop viewports using CSS media features
 						"lg:hover:fill-gray-600/10 lg:hover:dark:fill-gray-300/10 lg:not-[&:hover]:duration-1000",
 						squaresClassName,
 					)}
