@@ -304,12 +304,21 @@ export const Rope = () => {
 		pulledPastThresholdRef.current = false;
 	};
 
-	const path = "M 100 0 L 70 -150 L 30 -150 S 0 0 0 0";
+	const path = `M 97.65 -11.77
+L 72.94 -135.29
+Q 70 -150 55 -150
+L 45 -150
+Q 30 -150 27.06 -135.29
+L 2.35 -11.77
+Q 0 0 12 0
+L 88 0
+Q 100 0 97.65 -11.77
+Z`;
 
 	return (
 		<div
 			ref={containerRef}
-			className="pointer-events-none absolute top-0 right-1/8 z-50 sm:right-1/8 translate-x-1/2 drop-shadow-md drop-shadow-foreground/35"
+			className="pointer-events-none absolute top-0 right-1/8 z-50 sm:right-1/8 translate-x-1/2 drop-shadow-lg drop-shadow-foreground/25"
 			style={{ width: CONTAINER_WIDTH, height: config.containerHeight }}
 		>
 			<svg

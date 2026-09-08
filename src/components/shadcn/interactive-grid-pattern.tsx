@@ -1,71 +1,67 @@
-import type React from "react";
-import { useMemo } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "#/lib/shadcn.utils";
 
-/**
- * InteractiveGridPattern is a component that renders a grid pattern with interactive squares.
- *
- * @param width - The width of each square.
- * @param height - The height of each square.
- * @param squares - The number of squares in the grid. The first element is the number of horizontal squares, and the second element is the number of vertical squares.
- * @param className - The class name of the grid.
- * @param squaresClassName - The class name of the squares.
- */
-interface InteractiveGridPatternProps extends React.SVGProps<SVGSVGElement> {
-	width?: number;
-	height?: number;
-	squares?: [number, number]; // [horizontal, vertical]
+interface InteractiveGridPatternProps {
+	cellWidth?: number;
+	cellHeight?: number;
 	className?: string;
 	squaresClassName?: string;
 }
 
-/**
- * The InteractiveGridPattern component.
- *
- * @see InteractiveGridPatternProps for the props interface.
- * @returns A React component.
- */
 export function InteractiveGridPattern({
-	width = 40,
-	height = 40,
-	squares = [24, 24],
+	cellWidth = 40,
+	cellHeight = 40,
 	className,
 	squaresClassName,
 }: InteractiveGridPatternProps) {
-	const [horizontal, vertical] = squares;
+	const containerRef = useRef<HTMLDivElement>(null);
+	const [size, setSize] = useState({ width: 0, height: 0 });
 
-	const gridRects = useMemo(() => {
-		return Array.from({ length: horizontal * vertical }).map((_, index) => ({
-			id: index,
-			x: (index % horizontal) * width,
-			y: Math.floor(index / horizontal) * height,
-		}));
-	}, [horizontal, vertical, width, height]);
+	useEffect(() => {
+		const container = containerRef.current;
+		if (!container) return;
+
+		const observer = new ResizeObserver(([entry]) => {
+			if (!entry) return;
+			const { width, height } = entry.contentRect;
+			setSize({ width, height });
+		});
+		observer.observe(container);
+		return () => observer.disconnect();
+	}, []);
+
+	const columns = Math.ceil(size.width / cellWidth) + 1;
+	const rows = Math.ceil(size.height / cellHeight) + 1;
 
 	return (
-		// biome-ignore lint/a11y/noSvgWithoutTitle: <no need for title>
-		<svg
-			width={width * horizontal}
-			height={height * vertical}
-			className={cn(
-				"absolute border-gray-400/30 select-none pointer-events-none sm:pointer-events-auto",
-				className,
+		<div ref={containerRef} className={cn("h-full w-full", className)}>
+			{size.width > 0 && size.height > 0 && (
+				<svg
+					aria-hidden
+					width={columns * cellWidth}
+					height={rows * cellHeight}
+					className="border-gray-400/30 select-none pointer-events-none sm:pointer-events-auto"
+				>
+					{Array.from({ length: columns * rows }, (_, index) => {
+						const x = (index % columns) * cellWidth;
+						const y = Math.floor(index / columns) * cellHeight;
+						return (
+							<rect
+								key={`${x}-${y}`}
+								x={x}
+								y={y}
+								width={cellWidth}
+								height={cellHeight}
+								className={cn(
+									"fill-transparent stroke-gray-400/30 transition-[fill] duration-50 ease-in-out",
+									"lg:hover:fill-gray-600/10 lg:hover:dark:fill-gray-300/10 lg:not-[&:hover]:duration-1000",
+									squaresClassName,
+								)}
+							/>
+						);
+					})}
+				</svg>
 			)}
-		>
-			{gridRects.map((rect) => (
-				<rect
-					key={rect.id}
-					x={rect.x}
-					y={rect.y}
-					width={width}
-					height={height}
-					className={cn(
-						"fill-transparent stroke-gray-400/30 transition-[fill] duration-50 ease-in-out",
-						"lg:hover:fill-gray-600/10 lg:hover:dark:fill-gray-300/10 lg:not-[&:hover]:duration-1000",
-						squaresClassName,
-					)}
-				/>
-			))}
-		</svg>
+		</div>
 	);
 }
