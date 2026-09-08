@@ -24,6 +24,11 @@ import {
 	HoverCardContent,
 	HoverCardTrigger,
 } from "#/components/shadcn/hover-card";
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "#/components/shadcn/popover";
 import { useMediaQuery } from "#/hooks/useMediaQuery";
 import type { Project } from "#/lib/content";
 
@@ -145,37 +150,71 @@ export const ProjectCard = ({
 				<CardDescription>{description}</CardDescription>
 			</CardHeader>
 			<CardContent>
-				<HoverCard>
-					<HoverCardTrigger
-						render={({ ref, ...triggerProps }) => (
-							<Button
-								disabled={!liveHref}
-								variant="outline"
-								className="w-full"
-								nativeButton={false}
-								render={(buttonProps) => (
-									<a
-										{...buttonProps}
-										{...triggerProps}
-										ref={ref}
-										href={liveHref}
-										rel="noopener"
-										target="_blank"
-									>
-										<span>Se live demo!</span>
-										<ArrowRightIcon />
-									</a>
-								)}
-							/>
-						)}
-					/>
+				{isDesktop ? (
+					<HoverCard>
+						<HoverCardTrigger
+							render={({ ref, ...triggerProps }) => (
+								<Button
+									disabled={!liveHref}
+									variant="outline"
+									className="w-full"
+									nativeButton={false}
+									render={(buttonProps) => (
+										<a
+											{...buttonProps}
+											{...triggerProps}
+											ref={ref}
+											href={liveHref}
+											rel="noopener"
+											target="_blank"
+										>
+											<span>Se live demo!</span>
+											<ArrowRightIcon />
+										</a>
+									)}
+								/>
+							)}
+						/>
 
-					{!liveHref && (
-						<HoverCardContent className="bg-destructive/75">
-							Project has not been deployed yet!
-						</HoverCardContent>
-					)}
-				</HoverCard>
+						{!liveHref && (
+							<HoverCardContent className="bg-destructive/75">
+								Project has not been deployed yet!
+							</HoverCardContent>
+						)}
+					</HoverCard>
+				) : (
+					<Popover>
+						<PopoverTrigger
+							render={({ ref, ...triggerProps }) => (
+								<Button
+									disabled={!liveHref}
+									variant="outline"
+									className="w-full"
+									nativeButton={false}
+									render={(buttonProps) => (
+										<a
+											{...buttonProps}
+											{...triggerProps}
+											ref={ref}
+											href={liveHref}
+											rel="noopener"
+											target="_blank"
+										>
+											<span>Se live demo!</span>
+											<ArrowRightIcon />
+										</a>
+									)}
+								/>
+							)}
+						/>
+
+						{!liveHref && (
+							<PopoverContent className="w-64 bg-destructive/75 text-xs/relaxed">
+								Project has not been deployed yet!
+							</PopoverContent>
+						)}
+					</Popover>
+				)}
 			</CardContent>
 		</Card>
 	);

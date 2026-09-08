@@ -10,16 +10,16 @@ export const SectionHeading = ({
 	kicker?: string;
 	className?: string;
 }) => (
-	<div className="pointer-events-auto">
+	<div>
 		{kicker && (
-			<p className="mb-2 font-mono text-xs tracking-widest text-muted-foreground">
+			<p className="mb-2 font-mono text-xs tracking-widest text-muted-foreground w-fit">
 				{kicker}
 			</p>
 		)}
 		<KineticText
 			as="h2"
 			text={text}
-			className={cn("text-3xl sm:text-4xl lg:text-5xl", className)}
+			className={cn("text-3xl sm:text-4xl lg:text-5xl w-fit", className)}
 		/>
 	</div>
 );

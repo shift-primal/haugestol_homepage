@@ -12,7 +12,7 @@ const Home = () => {
 		<PageContainer>
 			<GridBackground />
 			<Rope />
-			<div className="mt-0 lg:mt-20">
+			<div className="mt-10 lg:mt-20">
 				<Hero />
 				<About />
 				<Projects />
