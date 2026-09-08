@@ -22,10 +22,12 @@ interface AboutContent {
 
 export interface Project {
 	title: string;
+	badge?: string;
 	liveHref?: string;
 	githubHref?: string;
 	description: string;
 	images: Record<string, Img>;
+	ctaText?: string;
 }
 
 // ============================================================================
@@ -68,8 +70,8 @@ export const ABOUT: AboutContent = {
 // Projects
 // ============================================================================
 
-const pokemonScreenshots = import.meta.glob<Img>(
-	"/src/assets/screenshots/projects/pokemon/*.png",
+const projectScreenshots = import.meta.glob<Img>(
+	"/src/assets/screenshots/projects/*/*.png",
 	{
 		eager: true,
 		import: "default",
@@ -77,23 +79,12 @@ const pokemonScreenshots = import.meta.glob<Img>(
 	},
 );
 
-const quizScreenshots = import.meta.glob<Img>(
-	"/src/assets/screenshots/projects/quiz/*.png",
-	{
-		eager: true,
-		import: "default",
-		query: "?w=480;800;1600&format=webp&as=img",
-	},
-);
-
-const groovehausScreenshots = import.meta.glob<Img>(
-	"/src/assets/screenshots/projects/groovehaus/*.png",
-	{
-		eager: true,
-		import: "default",
-		query: "?w=480;800;1600&format=webp&as=img",
-	},
-);
+const screenshotsFor = (project: string): Record<string, Img> =>
+	Object.fromEntries(
+		Object.entries(projectScreenshots).filter(([path]) =>
+			path.startsWith(`/src/assets/screenshots/projects/${project}/`),
+		),
+	);
 
 export const PROJECTS: Project[] = [
 	{
@@ -102,7 +93,7 @@ export const PROJECTS: Project[] = [
 		githubHref: "https://github.com/shift-primal/pdex_26",
 		description:
 			"Full Pokédex bygget på PokéAPI — virtualized search, evolution chains, per-form details og avansert filtrering.",
-		images: pokemonScreenshots,
+		images: screenshotsFor("pokemon"),
 	},
 	{
 		title: "BFQ",
@@ -110,7 +101,7 @@ export const PROJECTS: Project[] = [
 		githubHref: "https://github.com/shift-primal/bfq",
 		description:
 			"Personlig trivia quiz — hvor godt kjenner du Kasper? Dynamisk score, store-based state, med live leaderboard.",
-		images: quizScreenshots,
+		images: screenshotsFor("quiz"),
 	},
 	{
 		title: "Groovehaus",
@@ -118,6 +109,16 @@ export const PROJECTS: Project[] = [
 		// liveHref: "https://example.com", - Not live
 		description:
 			"Et konsept for en nettbutikk for vinyl, musikkutstyr, og instrumenter — handlevogn, auth, og Stripe checkout.",
-		images: groovehausScreenshots,
+		images: screenshotsFor("groovehaus"),
+		ctaText: "Kommer snart!",
+	},
+	{
+		title: "txcategorizer",
+		githubHref: "https://github.com/shift-primal/txcategorizer",
+		liveHref: "https://www.npmjs.com/package/txcategorizer",
+		description:
+			"Parser og kategoriserer banktransaksjoner til strukturerte og fully typed data. CSV in, transaksjoner ut. Kommer snart: demo app",
+		images: screenshotsFor("txcategorizer"),
+		ctaText: "Se på npmjs.com!",
 	},
 ];

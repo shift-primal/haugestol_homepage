@@ -1,10 +1,12 @@
-import { ArrowRightIcon, GithubLogoIcon } from "@phosphor-icons/react";
+import { GithubLogoIcon } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
-import type { Img } from "vite-imagetools";
+import { LinkToDemoButton } from "#/components/sections/projects/LinkToDemoButton";
+import { ProjectImage } from "#/components/sections/projects/ProjectImage";
+import { ProjectLightbox } from "#/components/sections/projects/ProjectLightbox";
+import { Badge } from "#/components/shadcn/badge";
 import { Button } from "#/components/shadcn/button";
 import {
 	Card,
-	CardAction,
 	CardContent,
 	CardDescription,
 	CardHeader,
@@ -18,47 +20,17 @@ import {
 	CarouselNext,
 	CarouselPrevious,
 } from "#/components/shadcn/carousel";
-import { Dialog, DialogContent } from "#/components/shadcn/dialog";
-import {
-	HoverCard,
-	HoverCardContent,
-	HoverCardTrigger,
-} from "#/components/shadcn/hover-card";
-import {
-	Popover,
-	PopoverContent,
-	PopoverTrigger,
-} from "#/components/shadcn/popover";
 import { useMediaQuery } from "#/hooks/useMediaQuery";
 import type { Project } from "#/lib/content";
 
-const ProjectImage = ({
-	img,
-	title,
-	className = "relative z-20 aspect-video w-full object-cover",
-}: {
-	img: Img;
-	title: string;
-	className?: string;
-}) => (
-	<img
-		src={img.src}
-		srcSet={img.srcset}
-		sizes="90vw"
-		width={img.w}
-		height={img.h}
-		alt={`${title} preview`}
-		loading="lazy"
-		className={className}
-	/>
-);
-
 export const ProjectCard = ({
 	title,
+	badge,
 	liveHref,
 	githubHref,
 	description,
 	images,
+	ctaText,
 }: Project) => {
 	const isDesktop = useMediaQuery("(min-width: 1024px)");
 	const imageEntries = Object.entries(images);
@@ -79,7 +51,7 @@ export const ProjectCard = ({
 	};
 
 	return (
-		<Card className="w-full pt-0">
+		<Card className="h-full w-full">
 			<Carousel>
 				<CarouselContent>
 					{imageEntries.map(([id, img], index) => (
@@ -105,38 +77,28 @@ export const ProjectCard = ({
 			</Carousel>
 
 			{isDesktop && (
-				<Dialog open={lightboxOpen} onOpenChange={setLightboxOpen}>
-					<DialogContent className="max-w-7xl border-none bg-transparent ring-0 sm:max-w-7xl">
-						<Carousel
-							setApi={setLightboxApi}
-							opts={{ startIndex, loop: true }}
-							className="w-full max-w-7xl cursor-default"
-						>
-							<CarouselContent>
-								{imageEntries.map(([id, img]) => (
-									<CarouselItem
-										key={id}
-										className="flex items-center justify-center"
-									>
-										<ProjectImage
-											img={img}
-											title={title}
-											className="max-h-[85vh] max-w-full object-contain"
-										/>
-									</CarouselItem>
-								))}
-							</CarouselContent>
-							<CarouselPrevious variant="secondary" className="opacity-65" />
-							<CarouselNext variant="secondary" className="opacity-65" />
-						</Carousel>
-					</DialogContent>
-				</Dialog>
+				<ProjectLightbox
+					title={title}
+					imageEntries={imageEntries}
+					open={lightboxOpen}
+					onOpenChange={setLightboxOpen}
+					startIndex={startIndex}
+					setApi={setLightboxApi}
+				/>
 			)}
 
 			<CardHeader>
-				<CardAction>
+				<div className="flex w-full items-center justify-between mb-2">
+					<CardTitle>{title}</CardTitle>
+
+					{badge && (
+						<Badge variant="outline" className="inline">
+							{badge}
+						</Badge>
+					)}
 					<Button
 						variant="outline"
+						size="icon-sm"
 						aria-label={`${title} on GitHub`}
 						nativeButton={false}
 						render={(props) => (
@@ -145,76 +107,13 @@ export const ProjectCard = ({
 							</a>
 						)}
 					/>
-				</CardAction>
-				<CardTitle>{title}</CardTitle>
+				</div>
+
 				<CardDescription>{description}</CardDescription>
 			</CardHeader>
-			<CardContent>
-				{isDesktop ? (
-					<HoverCard>
-						<HoverCardTrigger
-							render={({ ref, ...triggerProps }) => (
-								<Button
-									disabled={!liveHref}
-									variant="outline"
-									className="w-full"
-									nativeButton={false}
-									render={(buttonProps) => (
-										<a
-											{...buttonProps}
-											{...triggerProps}
-											ref={ref}
-											href={liveHref}
-											rel="noopener"
-											target="_blank"
-										>
-											<span>Se live demo!</span>
-											<ArrowRightIcon />
-										</a>
-									)}
-								/>
-							)}
-						/>
 
-						{!liveHref && (
-							<HoverCardContent className="bg-destructive/75">
-								Project has not been deployed yet!
-							</HoverCardContent>
-						)}
-					</HoverCard>
-				) : (
-					<Popover>
-						<PopoverTrigger
-							render={({ ref, ...triggerProps }) => (
-								<Button
-									disabled={!liveHref}
-									variant="outline"
-									className="w-full"
-									nativeButton={false}
-									render={(buttonProps) => (
-										<a
-											{...buttonProps}
-											{...triggerProps}
-											ref={ref}
-											href={liveHref}
-											rel="noopener"
-											target="_blank"
-										>
-											<span>Se live demo!</span>
-											<ArrowRightIcon />
-										</a>
-									)}
-								/>
-							)}
-						/>
-
-						{!liveHref && (
-							<PopoverContent className="w-64 bg-destructive/75 text-xs/relaxed">
-								Project has not been deployed yet!
-							</PopoverContent>
-						)}
-					</Popover>
-				)}
+			<CardContent className="mt-auto">
+				<LinkToDemoButton liveHref={liveHref} ctaText={ctaText} />
 			</CardContent>
 		</Card>
 	);

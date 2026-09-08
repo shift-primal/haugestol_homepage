@@ -27,7 +27,7 @@ export const Contact = () => {
 	return (
 		<SectionContainer sectionName="contact">
 			<SectionHeading text="Ta kontakt!" kicker="// contact" />
-			<div className="flex flex-col gap-8 items-center sm:items-stretch mt-10">
+			<div className="flex flex-col gap-8 items-center md:items-stretch mt-10">
 				<form
 					onSubmit={handleSubmit}
 					className="w-full max-w-md border border-border bg-card/40 p-6 pointer-events-auto sm:max-w-2xl sm:p-8"
