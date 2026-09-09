@@ -9,18 +9,20 @@ import { LanguageSwitcher } from "#/components/ui/LanguageSwitcher";
 import { LightSwitch } from "#/components/ui/LightSwitch";
 
 const Home = () => {
-	return (
-		<PageContainer>
-			<GridBackground />
-			<LanguageSwitcher />
-			<LightSwitch />
-			<div className="mt-20 lg:mt-30">
-				<Hero />
-				<About />
-				<Projects />
-				<Contact />
-			</div>
-		</PageContainer>
-	);
+    return (
+        <PageContainer>
+            <GridBackground />
+            <LanguageSwitcher />
+            <LightSwitch />
+            <div className="mt-20 lg:mt-30">
+                <Hero />
+                <About />
+                <Projects />
+                <Contact />
+            </div>
+        </PageContainer>
+    );
 };
-export const Route = createFileRoute("/")({ component: Home });
+export const Route = createFileRoute("/")({
+    component: Home,
+});

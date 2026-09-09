@@ -9,39 +9,68 @@ import { defineConfig } from "vite";
 import { imagetools } from "vite-imagetools";
 
 const config = defineConfig({
-	resolve: { tsconfigPaths: true },
-	plugins: [
-		devtools(),
-		nitro({ rollupConfig: { external: [/^@sentry\//] } }),
-		tailwindcss(),
-		paraglideVitePlugin({
-			project: "./project.inlang",
-			outdir: "./src/paraglide",
-			outputStructure: "message-modules",
-			cookieName: "PARAGLIDE_LOCALE",
-			strategy: ["url", "cookie", "preferredLanguage", "baseLocale"],
-			urlPatterns: [
-				{
-					pattern: "/",
-					localized: [
-						["en", "/en"],
-						["no", "/"],
-					],
-				},
-				{
-					pattern: "/:path(.*)?",
-					localized: [
-						["en", "/en/:path(.*)?"],
-						["no", "/:path(.*)?"],
-					],
-				},
-			],
-		}),
-		tanstackStart(),
-		viteReact(),
-		babel({ presets: [reactCompilerPreset()] }),
-		imagetools(),
-	],
+    resolve: {
+        tsconfigPaths: true,
+    },
+    plugins: [
+        devtools(),
+        nitro({
+            rollupConfig: {
+                external: [
+                    /^@sentry\//,
+                ],
+            },
+        }),
+        tailwindcss(),
+        paraglideVitePlugin({
+            project: "./project.inlang",
+            outdir: "./src/paraglide",
+            outputStructure: "message-modules",
+            cookieName: "PARAGLIDE_LOCALE",
+            strategy: [
+                "url",
+                "cookie",
+                "preferredLanguage",
+                "baseLocale",
+            ],
+            urlPatterns: [
+                {
+                    pattern: "/",
+                    localized: [
+                        [
+                            "en",
+                            "/en",
+                        ],
+                        [
+                            "no",
+                            "/",
+                        ],
+                    ],
+                },
+                {
+                    pattern: "/:path(.*)?",
+                    localized: [
+                        [
+                            "en",
+                            "/en/:path(.*)?",
+                        ],
+                        [
+                            "no",
+                            "/:path(.*)?",
+                        ],
+                    ],
+                },
+            ],
+        }),
+        tanstackStart(),
+        viteReact(),
+        babel({
+            presets: [
+                reactCompilerPreset(),
+            ],
+        }),
+        imagetools(),
+    ],
 });
 
 export default config;

@@ -5,17 +5,20 @@ import { PROJECTS } from "#/lib/content";
 import { m } from "#/paraglide/messages";
 
 export const Projects = () => {
-	return (
-		<SectionContainer sectionName="projects">
-			<SectionHeading
-				text={m.projects_heading()}
-				kicker="// projects-showcase"
-			/>
-			<div className="mt-10 grid grid-cols-1 gap-6 sm:mt-12 md:grid-cols-2 md:gap-8 ">
-				{PROJECTS.map((project) => (
-					<ProjectCard key={project.title} {...project} />
-				))}
-			</div>
-		</SectionContainer>
-	);
+    return (
+        <SectionContainer sectionName="projects">
+            <SectionHeading
+                text={m.projects_heading()}
+                kicker="// projects-showcase"
+            />
+            <div className="mt-10 grid grid-cols-1 gap-6 sm:mt-12 md:grid-cols-2 md:gap-8 ">
+                {PROJECTS.map((project) => (
+                    <ProjectCard
+                        key={project.title}
+                        {...project}
+                    />
+                ))}
+            </div>
+        </SectionContainer>
+    );
 };

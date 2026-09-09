@@ -1,21 +1,21 @@
 export interface Point {
-	x: number;
-	y: number;
-	oldX: number;
-	oldY: number;
-	prevX: number;
-	prevY: number;
-	pinned: boolean;
+    x: number;
+    y: number;
+    oldX: number;
+    oldY: number;
+    prevX: number;
+    prevY: number;
+    pinned: boolean;
 }
 
 export interface RopeConfig {
-	numPoints: number;
-	restLength: number;
-	maxPull: number;
-	containerHeight: number;
-	stretchTrigger: number;
-	hitboxWidth: number;
-	hitboxHeight: number;
+    numPoints: number;
+    restLength: number;
+    maxPull: number;
+    containerHeight: number;
+    stretchTrigger: number;
+    hitboxWidth: number;
+    hitboxHeight: number;
 }
 
 // Layout tunables — adjust these to change how the rope looks and feels.
@@ -53,52 +53,57 @@ export const SETTLE_EPSILON = 0.02; // px of per-step movement below which a poi
 export const SETTLE_STEPS = 45; // consecutive still steps (~0.75s of sim time) before the loop parks itself
 
 function computeConfig(
-	ropeLength: number,
-	pullRatio: number,
-	hitboxExtraSide: number,
-	hitboxExtraBottom: number,
+    ropeLength: number,
+    pullRatio: number,
+    hitboxExtraSide: number,
+    hitboxExtraBottom: number
 ): RopeConfig {
-	const numPoints = Math.round(ropeLength / SEGMENT_LENGTH) + 1;
-	const restLength = SEGMENT_LENGTH * (numPoints - 1);
-	const maxPull = restLength * pullRatio;
-	const hitboxHeight = KNOB_HEIGHT + hitboxExtraBottom;
-	return {
-		numPoints,
-		restLength,
-		maxPull,
-		containerHeight: maxPull + hitboxHeight,
-		stretchTrigger: restLength * STRETCH_TRIGGER_RATIO,
-		hitboxWidth: KNOB_WIDTH + hitboxExtraSide * 2,
-		hitboxHeight,
-	};
+    const numPoints = Math.round(ropeLength / SEGMENT_LENGTH) + 1;
+    const restLength = SEGMENT_LENGTH * (numPoints - 1);
+    const maxPull = restLength * pullRatio;
+    const hitboxHeight = KNOB_HEIGHT + hitboxExtraBottom;
+    return {
+        numPoints,
+        restLength,
+        maxPull,
+        containerHeight: maxPull + hitboxHeight,
+        stretchTrigger: restLength * STRETCH_TRIGGER_RATIO,
+        hitboxWidth: KNOB_WIDTH + hitboxExtraSide * 2,
+        hitboxHeight,
+    };
 }
 
 export const DESKTOP_CONFIG = computeConfig(
-	ROPE_LENGTH_DESKTOP,
-	PULL_RATIO_DESKTOP,
-	HITBOX_EXTRA_SIDE_DESKTOP,
-	HITBOX_EXTRA_BOTTOM_DESKTOP,
+    ROPE_LENGTH_DESKTOP,
+    PULL_RATIO_DESKTOP,
+    HITBOX_EXTRA_SIDE_DESKTOP,
+    HITBOX_EXTRA_BOTTOM_DESKTOP
 );
 export const MOBILE_CONFIG = computeConfig(
-	ROPE_LENGTH_MOBILE,
-	PULL_RATIO_MOBILE,
-	HITBOX_EXTRA_SIDE_MOBILE,
-	HITBOX_EXTRA_BOTTOM_MOBILE,
+    ROPE_LENGTH_MOBILE,
+    PULL_RATIO_MOBILE,
+    HITBOX_EXTRA_SIDE_MOBILE,
+    HITBOX_EXTRA_BOTTOM_MOBILE
 );
 
 export function createPoints(numPoints: number): Point[] {
-	return Array.from({ length: numPoints }, (_, i) => {
-		const y = i * SEGMENT_LENGTH;
-		return {
-			x: ANCHOR_X,
-			y,
-			oldX: ANCHOR_X,
-			oldY: y,
-			prevX: ANCHOR_X,
-			prevY: y,
-			pinned: i === 0,
-		};
-	});
+    return Array.from(
+        {
+            length: numPoints,
+        },
+        (_, i) => {
+            const y = i * SEGMENT_LENGTH;
+            return {
+                x: ANCHOR_X,
+                y,
+                oldX: ANCHOR_X,
+                oldY: y,
+                prevX: ANCHOR_X,
+                prevY: y,
+                pinned: i === 0,
+            };
+        }
+    );
 }
 
 // A straight line from the anchor, tilted up and to one side, with every
@@ -106,86 +111,91 @@ export function createPoints(numPoints: number): Point[] {
 // at rest. Released with nothing holding it, it swings down through vertical
 // under gravity like a dropped pendulum, landing in the normal hang.
 export function createFallPoints(numPoints: number): Point[] {
-	const angle = (FALL_TILT_DEGREES * Math.PI) / 180;
-	const dirX = -Math.sin(angle);
-	const dirY = -Math.cos(angle);
-	return Array.from({ length: numPoints }, (_, i) => {
-		const x = ANCHOR_X + i * SEGMENT_LENGTH * dirX;
-		const y = i * SEGMENT_LENGTH * dirY;
-		return {
-			x,
-			y,
-			oldX: x,
-			oldY: y,
-			prevX: x,
-			prevY: y,
-			pinned: i === 0,
-		};
-	});
+    const angle = (FALL_TILT_DEGREES * Math.PI) / 180;
+    const dirX = -Math.sin(angle);
+    const dirY = -Math.cos(angle);
+    return Array.from(
+        {
+            length: numPoints,
+        },
+        (_, i) => {
+            const x = ANCHOR_X + i * SEGMENT_LENGTH * dirX;
+            const y = i * SEGMENT_LENGTH * dirY;
+            return {
+                x,
+                y,
+                oldX: x,
+                oldY: y,
+                prevX: x,
+                prevY: y,
+                pinned: i === 0,
+            };
+        }
+    );
 }
 
 export function renderX(p: Point, alpha: number) {
-	return p.prevX + (p.x - p.prevX) * alpha;
+    return p.prevX + (p.x - p.prevX) * alpha;
 }
 export function renderY(p: Point, alpha: number) {
-	return p.prevY + (p.y - p.prevY) * alpha;
+    return p.prevY + (p.y - p.prevY) * alpha;
 }
 
 export function buildPath(points: Point[], alpha: number): string {
-	let d = `M ${renderX(points[0], alpha)} ${renderY(points[0], alpha)}`;
-	for (let i = 1; i < points.length - 1; i++) {
-		const x = renderX(points[i], alpha);
-		const y = renderY(points[i], alpha);
-		const nextX = renderX(points[i + 1], alpha);
-		const nextY = renderY(points[i + 1], alpha);
-		d += ` Q ${x} ${y} ${(x + nextX) / 2} ${(y + nextY) / 2}`;
-	}
-	const last = points[points.length - 1];
-	d += ` L ${renderX(last, alpha)} ${renderY(last, alpha)}`;
-	return d;
+    let d = `M ${renderX(points[0], alpha)} ${renderY(points[0], alpha)}`;
+    for (let i = 1; i < points.length - 1; i++) {
+        const x = renderX(points[i], alpha);
+        const y = renderY(points[i], alpha);
+        const nextX = renderX(points[i + 1], alpha);
+        const nextY = renderY(points[i + 1], alpha);
+        d += ` Q ${x} ${y} ${(x + nextX) / 2} ${(y + nextY) / 2}`;
+    }
+    const last = points[points.length - 1];
+    d += ` L ${renderX(last, alpha)} ${renderY(last, alpha)}`;
+    return d;
 }
 
 // One physics tick: integrates unfixed points and relaxes segment-length
 // constraints along the chain. Mutates `points` in place; returns the
 // largest per-point movement, used by the caller to detect settling.
 export function stepSimulation(
-	points: Point[],
-	isFixed: (p: Point) => boolean,
+    points: Point[],
+    isFixed: (p: Point) => boolean
 ): number {
-	let maxMovement = 0;
+    let maxMovement = 0;
 
-	for (let i = 1; i < points.length; i++) {
-		const p = points[i];
-		if (isFixed(p)) continue;
-		const vx = (p.x - p.oldX) * DAMPING;
-		const vy = (p.y - p.oldY) * DAMPING;
-		p.oldX = p.x;
-		p.oldY = p.y;
-		p.x += vx;
-		p.y += vy + GRAVITY;
-		maxMovement = Math.max(maxMovement, Math.abs(vx), Math.abs(vy));
-	}
+    for (let i = 1; i < points.length; i++) {
+        const p = points[i];
+        if (isFixed(p)) continue;
+        const vx = (p.x - p.oldX) * DAMPING;
+        const vy = (p.y - p.oldY) * DAMPING;
+        p.oldX = p.x;
+        p.oldY = p.y;
+        p.x += vx;
+        p.y += vy + GRAVITY;
+        maxMovement = Math.max(maxMovement, Math.abs(vx), Math.abs(vy));
+    }
 
-	for (let iter = 0; iter < CONSTRAINT_ITERATIONS; iter++) {
-		for (let i = 0; i < points.length - 1; i++) {
-			const a = points[i];
-			const b = points[i + 1];
-			const dx = b.x - a.x;
-			const dy = b.y - a.y;
-			const dist = Math.hypot(dx, dy) || 0.0001;
-			const diff = (dist - SEGMENT_LENGTH) / dist;
-			const offsetX = dx * 0.5 * diff;
-			const offsetY = dy * 0.5 * diff;
-			if (!isFixed(a)) {
-				a.x += offsetX;
-				a.y += offsetY;
-			}
-			if (!isFixed(b)) {
-				b.x -= offsetX;
-				b.y -= offsetY;
-			}
-		}
-	}
+    for (let iter = 0; iter < CONSTRAINT_ITERATIONS; iter++) {
+        for (let i = 0; i < points.length - 1; i++) {
+            const a = points[i];
+            const b = points[i + 1];
+            const dx = b.x - a.x;
+            const dy = b.y - a.y;
+            const dist = Math.hypot(dx, dy) || 0.0001;
+            const diff = (dist - SEGMENT_LENGTH) / dist;
+            const offsetX = dx * 0.5 * diff;
+            const offsetY = dy * 0.5 * diff;
+            if (!isFixed(a)) {
+                a.x += offsetX;
+                a.y += offsetY;
+            }
+            if (!isFixed(b)) {
+                b.x -= offsetX;
+                b.y -= offsetY;
+            }
+        }
+    }
 
-	return maxMovement;
+    return maxMovement;
 }
