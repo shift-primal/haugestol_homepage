@@ -14,7 +14,7 @@ const Home = () => {
 			<GridBackground />
 			<LanguageSwitcher />
 			<LightSwitch />
-			<div className="mt-10 lg:mt-20">
+			<div className="mt-20 lg:mt-30">
 				<Hero />
 				<About />
 				<Projects />

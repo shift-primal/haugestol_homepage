@@ -1,5 +1,6 @@
 import {
 	ArrowRightIcon,
+	DiscordLogoIcon,
 	EnvelopeIcon,
 	GithubLogoIcon,
 	LinkedinLogoIcon,
@@ -16,6 +17,7 @@ import { m } from "#/paraglide/messages";
 const CONTACT_LINKS = [
 	{ label: "GitHub", href: SITE.github, icon: GithubLogoIcon },
 	{ label: "LinkedIn", href: SITE.linkedin, icon: LinkedinLogoIcon },
+	{ label: "Discord", href: SITE.discord, icon: DiscordLogoIcon },
 	{ label: SITE.email, href: `mailto:${SITE.email}`, icon: EnvelopeIcon },
 ];
 
@@ -28,10 +30,10 @@ export const Contact = () => {
 	return (
 		<SectionContainer sectionName="contact">
 			<SectionHeading text={m.contact_heading()} kicker="// contact" />
-			<div className="flex flex-col gap-8 items-center mt-10">
+			<div className="flex flex-col gap-8 items-center mt-10 lg:flex-row lg:items-stretch">
 				<form
 					onSubmit={handleSubmit}
-					className="w-full max-w-md border border-border bg-card/40 p-6 pointer-events-auto sm:max-w-2xl sm:p-8 backdrop-blur-md"
+					className="w-full max-w-md border border-border bg-card/40 p-6 pointer-events-auto sm:max-w-full sm:p-8 backdrop-blur-md lg:flex-2"
 				>
 					<FieldGroup className="gap-6">
 						<div className="flex flex-col gap-5 sm:flex-row sm:gap-6">
@@ -88,25 +90,23 @@ export const Contact = () => {
 								/>
 							</Field>
 						</div>
-						<Button
-							type="submit"
-							className="w-full sm:w-auto sm:self-center sm:px-16"
-						>
+						<Button type="submit" className="w-full sm:w-auto">
 							<span>{m.contact_form_submit()}</span>
 							<ArrowRightIcon />
 						</Button>
 					</FieldGroup>
 				</form>
 
-				<div className="flex w-full max-w-md items-center gap-4 pointer-events-auto sm:max-w-2xl">
-					<span className="h-px flex-1 bg-border" />
+				<div className="flex w-full max-w-md items-center gap-4 pointer-events-auto sm:max-w-full lg:w-auto lg:flex-col lg:self-stretch">
+					<span className="h-px flex-1 bg-border lg:h-auto lg:w-px" />
 					<span className="font-mono text-xs tracking-widest text-muted-foreground">
 						{m.contact_or_divider()}
 					</span>
-					<span className="h-px flex-1 bg-border" />
+					<span className="h-px flex-1 bg-border lg:h-auto lg:w-px" />
 				</div>
 
-				<div className="flex w-full max-w-md flex-col gap-2 pointer-events-auto sm:max-w-2xl">
+				<div className="flex w-full max-w-md flex-col gap-2 pointer-events-auto lg:w-auto lg:flex-1 p-6 sm:max-w-full sm:p-8 backdrop-blur-md border border-border">
+					<span className="mb-4">Links</span>
 					{CONTACT_LINKS.map(({ label, href, icon: Icon }) => (
 						<a
 							key={label}
