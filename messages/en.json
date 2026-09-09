@@ -10,6 +10,8 @@
 	"about_heading": "About me",
 	"about_bio": "Fullstack developer training at GET Academy. Working across the whole stack — from database and backend logic to interfaces and user experience. With an emphasis on clean, well thought-out code, I move quickly from idea to production, and run my own projects all the way into production.",
 
+	"skills_heading": "Skills / Tools",
+
 	"projects_heading": "Projects",
 	"project_github_aria": "{title} on GitHub",
 	"project_demo_cta_default": "See live demo!",

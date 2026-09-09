@@ -5,6 +5,7 @@ import { About } from "#/components/sections/About";
 import { Contact } from "#/components/sections/Contact";
 import { Hero } from "#/components/sections/Hero";
 import { Projects } from "#/components/sections/Projects";
+import { Skills } from "#/components/sections/Skills";
 import { LanguageSwitcher } from "#/components/ui/LanguageSwitcher";
 import { LightSwitch } from "#/components/ui/LightSwitch";
 
@@ -17,6 +18,7 @@ const Home = () => {
             <div className="mt-24 mb-12 lg:mt-32">
                 <Hero />
                 <About />
+                <Skills />
                 <Projects />
                 <Contact />
             </div>

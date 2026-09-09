@@ -3,9 +3,43 @@ import {
     GearIcon,
     type Icon,
     LaptopIcon,
-    QuestionMarkIcon,
     ToolboxIcon,
 } from "@phosphor-icons/react";
+import type { IconType } from "react-icons";
+import { PiAtom } from "react-icons/pi";
+import {
+    SiClaude,
+    SiCoolify,
+    SiCss,
+    SiDiagramsdotnet,
+    SiDocker,
+    SiDotnet,
+    SiDrizzle,
+    SiExpress,
+    SiFigma,
+    SiGit,
+    SiGithub,
+    SiGnubash,
+    SiHtml5,
+    SiJavascript,
+    SiLinux,
+    SiNeon,
+    SiNeovim,
+    SiNextdotjs,
+    SiNodedotjs,
+    SiNpm,
+    SiPnpm,
+    SiPostgresql,
+    SiPython,
+    SiReact,
+    SiSharp,
+    SiSqlite,
+    SiSupabase,
+    SiTailwindcss,
+    SiTanstack,
+    SiTypescript,
+    SiZod,
+} from "react-icons/si";
 import type { Img } from "vite-imagetools";
 import { m } from "#/paraglide/messages";
 
@@ -30,7 +64,9 @@ type SkillCategory = "frontend" | "backend" | "database" | "development";
 
 export interface Skill {
     title: string;
-    icon: Icon;
+    icon: IconType;
+    /** Omit for marks that flip black/white by background; falls back to theme text color. */
+    color?: string;
 }
 
 export interface SkillGroup {
@@ -39,9 +75,12 @@ export interface SkillGroup {
     skills: Skill[];
 }
 
+export interface SkillsContent {
+    skills: SkillGroup[];
+}
+
 interface AboutContent {
     bio: string;
-    skills: SkillGroup[];
 }
 
 export interface Project {
@@ -83,11 +122,10 @@ export const HERO: HeroContent = {
 };
 
 // ============================================================================
-// About
+// Skills
 // ============================================================================
 
-export const ABOUT: AboutContent = {
-    bio: m.about_bio(),
+export const SKILLS: SkillsContent = {
     skills: [
         {
             category: "frontend",
@@ -95,27 +133,50 @@ export const ABOUT: AboutContent = {
             skills: [
                 {
                     title: "React",
-                    icon: QuestionMarkIcon,
+                    icon: SiReact,
+                    color: "#61DAFB",
                 },
                 {
                     title: "TanStack",
-                    icon: QuestionMarkIcon,
+                    icon: SiTanstack,
                 },
                 {
                     title: "TypeScript",
-                    icon: QuestionMarkIcon,
+                    icon: SiTypescript,
+                    color: "#3178C6",
+                },
+                {
+                    title: "JavaScript",
+                    icon: SiJavascript,
+                    color: "#F7DF1E",
+                },
+                {
+                    title: "HTML5",
+                    icon: SiHtml5,
+                    color: "#E34F26",
+                },
+                {
+                    title: "CSS",
+                    icon: SiCss,
+                    color: "#663399",
                 },
                 {
                     title: "Tailwind",
-                    icon: QuestionMarkIcon,
+                    icon: SiTailwindcss,
+                    color: "#06B6D4",
                 },
                 {
                     title: "Zustand",
-                    icon: QuestionMarkIcon,
+                    icon: PiAtom,
                 },
                 {
                     title: "Next.js",
-                    icon: QuestionMarkIcon,
+                    icon: SiNextdotjs,
+                },
+                {
+                    title: "Zod",
+                    icon: SiZod,
+                    color: "#408AFF",
                 },
             ],
         },
@@ -125,23 +186,31 @@ export const ABOUT: AboutContent = {
             skills: [
                 {
                     title: "TanStack Start",
-                    icon: QuestionMarkIcon,
+                    icon: SiTanstack,
                 },
                 {
                     title: "Node.js",
-                    icon: QuestionMarkIcon,
+                    icon: SiNodedotjs,
+                    color: "#5FA04E",
                 },
                 {
                     title: "C#",
-                    icon: QuestionMarkIcon,
+                    icon: SiSharp,
+                    color: "#99CC00",
                 },
                 {
                     title: "ASP.NET",
-                    icon: QuestionMarkIcon,
+                    icon: SiDotnet,
+                    color: "#512BD4",
                 },
                 {
-                    title: "Drizzle",
-                    icon: QuestionMarkIcon,
+                    title: "Drizzle ORM",
+                    icon: SiDrizzle,
+                    color: "#C5F74F",
+                },
+                {
+                    title: "Express",
+                    icon: SiExpress,
                 },
             ],
         },
@@ -151,15 +220,23 @@ export const ABOUT: AboutContent = {
             skills: [
                 {
                     title: "PostgreSQL",
-                    icon: QuestionMarkIcon,
+                    icon: SiPostgresql,
+                    color: "#4169E1",
                 },
                 {
                     title: "Neon",
-                    icon: QuestionMarkIcon,
+                    icon: SiNeon,
+                    color: "#34D59A",
                 },
                 {
                     title: "SQLite",
-                    icon: QuestionMarkIcon,
+                    icon: SiSqlite,
+                    color: "#003B57",
+                },
+                {
+                    title: "Supabase",
+                    icon: SiSupabase,
+                    color: "#3FCF8E",
                 },
             ],
         },
@@ -169,31 +246,79 @@ export const ABOUT: AboutContent = {
             skills: [
                 {
                     title: "Git",
-                    icon: QuestionMarkIcon,
+                    icon: SiGit,
+                    color: "#F03C2E",
+                },
+                {
+                    title: "GitHub",
+                    icon: SiGithub,
                 },
                 {
                     title: "Neovim",
-                    icon: QuestionMarkIcon,
+                    icon: SiNeovim,
+                    color: "#57A143",
                 },
                 {
                     title: "Claude",
-                    icon: QuestionMarkIcon,
+                    icon: SiClaude,
+                    color: "#D97757",
                 },
                 {
                     title: "Linux",
-                    icon: QuestionMarkIcon,
+                    icon: SiLinux,
+                    color: "#FCC624",
                 },
                 {
                     title: "Figma",
-                    icon: QuestionMarkIcon,
+                    icon: SiFigma,
+                    color: "#F24E1E",
                 },
                 {
                     title: "Docker",
-                    icon: QuestionMarkIcon,
+                    icon: SiDocker,
+                    color: "#2496ED",
+                },
+                {
+                    title: "Bash",
+                    icon: SiGnubash,
+                    color: "#4EAA25",
+                },
+                {
+                    title: "Python",
+                    icon: SiPython,
+                    color: "#3776AB",
+                },
+                {
+                    title: "draw.io",
+                    icon: SiDiagramsdotnet,
+                    color: "#F08705",
+                },
+                {
+                    title: "npm",
+                    icon: SiNpm,
+                    color: "#CB3837",
+                },
+                {
+                    title: "pnpm",
+                    icon: SiPnpm,
+                    color: "#F69220",
+                },
+                {
+                    title: "Coolify",
+                    icon: SiCoolify,
+                    color: "#6B16ED",
                 },
             ],
         },
     ],
+};
+
+// ============================================================================
+// About
+// ============================================================================
+
+export const ABOUT: AboutContent = {
+    bio: m.about_bio(),
 };
 
 // ============================================================================

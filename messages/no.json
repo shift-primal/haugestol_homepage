@@ -10,6 +10,8 @@
 	"about_heading": "Om meg",
 	"about_bio": "Fullstack-utvikler under utdanning ved GET Academy. Arbeider med hele stacken — fra database og backend-logikk til grensesnitt og brukeropplevelser. Med vekt på ryddig, gjennomtenkt kode, beveger jeg meg raskt fra idé til produksjon, og drifter egne prosjekter helt ut i drift.",
 
+	"skills_heading": "Skills / Verktøy",
+
 	"projects_heading": "Prosjekter",
 	"project_github_aria": "{title} på GitHub",
 	"project_not_live_notice": "Prosjektet er ikke live enda.",
