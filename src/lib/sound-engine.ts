@@ -8,6 +8,16 @@ export function getAudioContext(): AudioContext {
 	return audioContext;
 }
 
+// iOS only unlocks an AudioContext when resume() runs synchronously inside a
+// discrete tap (click/touchend), not a drag. Call this directly from such a
+// handler so later drag-triggered playback (already-running context) works.
+export function unlockAudioContext(): void {
+	const ctx = getAudioContext();
+	if (ctx.state === "suspended") {
+		void ctx.resume();
+	}
+}
+
 // `fetch` handles both data: URIs and plain asset URLs identically, so this
 // works whether `src` is a hand-written base64 data URI or a real file
 // pulled in via `import x from "./foo.mp3"`.

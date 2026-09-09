@@ -1,4 +1,5 @@
 import type { Img } from "vite-imagetools";
+import { m } from "#/paraglide/messages";
 
 // ============================================================================
 // Types
@@ -27,7 +28,7 @@ export interface Project {
 	githubHref?: string;
 	description: string;
 	images: Record<string, Img>;
-	ctaText?: string;
+	ctaText: string;
 }
 
 // ============================================================================
@@ -46,8 +47,7 @@ export const SITE: SiteConfig = {
 // ============================================================================
 
 export const HERO: HeroContent = {
-	tagline:
-		"Fullstack-utvikler med fokus på solid struktur og gode brukeropplevelser.",
+	tagline: m.hero_tagline(),
 	technologies: [
 		"Full-Stack",
 		"TypeScript",
@@ -63,7 +63,7 @@ export const HERO: HeroContent = {
 // ============================================================================
 
 export const ABOUT: AboutContent = {
-	bio: "Fullstack-utvikler under utdanning ved GET Academy. Arbeider med hele stacken — fra database og backend-logikk til grensesnitt og brukeropplevelser. Med vekt på ryddig, gjennomtenkt kode, beveger jeg meg raskt fra idé til produksjon, og drifter egne prosjekter helt ut i drift.",
+	bio: m.about_bio(),
 };
 
 // ============================================================================
@@ -91,34 +91,32 @@ export const PROJECTS: Project[] = [
 		title: "Pokédex",
 		liveHref: "https://pokemon.haugestol.com",
 		githubHref: "https://github.com/shift-primal/pdex_26",
-		description:
-			"Full Pokédex bygget på PokéAPI — virtualized search, evolution chains, per-form details og avansert filtrering.",
+		description: m.project_pokedex_description(),
 		images: screenshotsFor("pokemon"),
+		ctaText: m.project_pokedex_cta(),
 	},
 	{
 		title: "BFQ",
 		liveHref: "https://quiz.haugestol.com",
 		githubHref: "https://github.com/shift-primal/bfq",
-		description:
-			"Personlig trivia quiz — hvor godt kjenner du Kasper? Dynamisk score, store-based state, med live leaderboard.",
+		description: m.project_bfq_description(),
 		images: screenshotsFor("quiz"),
+		ctaText: m.project_bfq_cta(),
 	},
 	{
 		title: "Groovehaus",
 		githubHref: "https://github.com/shift-primal/groovehaus",
 		// liveHref: "https://example.com", - Not live
-		description:
-			"Et konsept for en nettbutikk for vinyl, musikkutstyr, og instrumenter — handlevogn, auth, og Stripe checkout.",
+		description: m.project_groovehaus_description(),
 		images: screenshotsFor("groovehaus"),
-		ctaText: "Kommer snart!",
+		ctaText: m.project_groovehaus_cta(),
 	},
 	{
 		title: "txcategorizer",
 		githubHref: "https://github.com/shift-primal/txcategorizer",
 		liveHref: "https://www.npmjs.com/package/txcategorizer",
-		description:
-			"Parser og kategoriserer banktransaksjoner til strukturerte og fully typed data. CSV in, transaksjoner ut. Kommer snart: demo app",
+		description: m.project_txcategorizer_description(),
 		images: screenshotsFor("txcategorizer"),
-		ctaText: "Se på npmjs.com!",
+		ctaText: m.project_txcategorizer_cta(),
 	},
 ];

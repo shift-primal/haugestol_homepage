@@ -5,13 +5,15 @@ import { About } from "#/components/sections/About";
 import { Contact } from "#/components/sections/Contact";
 import { Hero } from "#/components/sections/Hero";
 import { Projects } from "#/components/sections/Projects";
-import { Rope } from "#/components/ui/Rope";
+import { LanguageSwitcher } from "#/components/ui/LanguageSwitcher";
+import { LightSwitch } from "#/components/ui/LightSwitch";
 
 const Home = () => {
 	return (
 		<PageContainer>
 			<GridBackground />
-			<Rope />
+			<LanguageSwitcher />
+			<LightSwitch />
 			<div className="mt-10 lg:mt-20">
 				<Hero />
 				<About />

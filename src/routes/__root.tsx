@@ -3,11 +3,20 @@ import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 // import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { ThemeProvider } from "next-themes";
 import { Filter } from "#/components/layout/Filter";
+import { m } from "#/paraglide/messages";
+import {
+	baseLocale,
+	getLocale,
+	locales,
+	localizeHref,
+} from "#/paraglide/runtime";
 import appCss from "../styles.css?url";
+
+const SITE_ORIGIN = "https://haugestol.com";
 
 const RootDocument = ({ children }: { children: React.ReactNode }) => {
 	return (
-		<html lang="no" suppressHydrationWarning>
+		<html lang={getLocale()} suppressHydrationWarning>
 			<head>
 				<HeadContent />
 			</head>
@@ -45,11 +54,29 @@ export const Route = createRootRoute({
 			{
 				title: "Haugestol",
 			},
+			{
+				name: "description",
+				content: m.meta_description(),
+			},
 		],
 		links: [
 			{
 				rel: "stylesheet",
 				href: appCss,
+			},
+			{
+				rel: "canonical",
+				href: `${SITE_ORIGIN}${localizeHref("/")}`,
+			},
+			...locales.map((locale) => ({
+				rel: "alternate",
+				hrefLang: locale,
+				href: `${SITE_ORIGIN}${localizeHref("/", { locale })}`,
+			})),
+			{
+				rel: "alternate",
+				hrefLang: "x-default",
+				href: `${SITE_ORIGIN}${localizeHref("/", { locale: baseLocale })}`,
 			},
 		],
 	}),

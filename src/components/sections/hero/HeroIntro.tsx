@@ -1,5 +1,6 @@
 import { TypingAnimation } from "#/components/shadcn/typing-animation";
 import { WordRotate } from "#/components/shadcn/word-rotate";
+import { Kicker } from "#/components/ui/Kicker";
 import { HERO, SITE } from "#/lib/content";
 import { cn } from "#/lib/shadcn.utils";
 
@@ -10,6 +11,7 @@ const HEADING_CLASSNAME =
 
 export const HeroIntro = () => (
 	<div>
+		<Kicker text="// hello-world" />
 		<div className="relative min-w-fit pointer-events-auto">
 			<span
 				aria-hidden

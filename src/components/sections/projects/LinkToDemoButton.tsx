@@ -5,13 +5,14 @@ import {
 	PopoverContent,
 	PopoverTrigger,
 } from "#/components/shadcn/popover";
+import { m } from "#/paraglide/messages";
 
 export const LinkToDemoButton = ({
 	liveHref,
-	ctaText = "Se live demo!",
+	ctaText,
 }: {
 	liveHref?: string;
-	ctaText?: string;
+	ctaText: string;
 }) => (
 	<Popover>
 		<PopoverTrigger
@@ -41,7 +42,7 @@ export const LinkToDemoButton = ({
 
 		{!liveHref && (
 			<PopoverContent className="w-64 bg-destructive/75 text-xs/relaxed">
-				Prosjektet er ikke live enda.
+				{m.project_not_live_notice()}
 			</PopoverContent>
 		)}
 	</Popover>

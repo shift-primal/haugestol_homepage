@@ -5,13 +5,16 @@ import {
 } from "@phosphor-icons/react";
 import { Button } from "#/components/shadcn/button";
 import { SITE } from "#/lib/content";
+import { m } from "#/paraglide/messages";
 
 const scrollToSection = (id: string) =>
 	document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
 export const HeroActions = () => (
 	<div className="flex flex-wrap items-center gap-3 pointer-events-auto">
-		<Button onClick={() => scrollToSection("projects")}>Se prosjekter</Button>
+		<Button onClick={() => scrollToSection("projects")}>
+			{m.hero_projects_button()}
+		</Button>
 		<Button
 			variant="outline"
 			size="icon-lg"
@@ -37,7 +40,7 @@ export const HeroActions = () => (
 		<Button
 			variant="outline"
 			size="icon-lg"
-			aria-label="Contact section"
+			aria-label={m.hero_contact_aria()}
 			onClick={() => scrollToSection("contact")}
 		>
 			<EnvelopeIcon />

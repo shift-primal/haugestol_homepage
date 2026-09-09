@@ -1,0 +1,35 @@
+{
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+
+	"meta_description": "Kasper Haugestøl — fullstack developer focused on solid structure and great user experiences. View projects and get in touch.",
+
+	"hero_tagline": "Fullstack developer focused on solid structure and great user experiences.",
+	"hero_projects_button": "View projects",
+	"hero_contact_aria": "Contact section",
+
+	"about_heading": "About me",
+	"about_bio": "Fullstack developer training at GET Academy. Working across the whole stack — from database and backend logic to interfaces and user experience. With an emphasis on clean, well thought-out code, I move quickly from idea to production, and run my own projects all the way into production.",
+
+	"projects_heading": "Projects",
+	"project_github_aria": "{title} on GitHub",
+	"project_demo_cta_default": "See live demo!",
+	"project_not_live_notice": "This project isn't live yet.",
+
+	"project_pokedex_description": "Full Pokédex built on PokéAPI — virtualized search, evolution chains, per-form details, and advanced filtering.",
+	"project_pokedex_cta": "Check the project live!",
+	"project_bfq_description": "A personal trivia quiz — how well do you know Kasper? Dynamic scoring, store-based state, with a live leaderboard.",
+	"project_bfq_cta": "Check the project live!",
+	"project_groovehaus_description": "A concept for a vinyl, music gear, and instrument store — cart, auth, and Stripe checkout.",
+	"project_groovehaus_cta": "Coming soon!",
+	"project_txcategorizer_description": "Parses and categorizes bank transactions into structured, fully typed data. CSV in, transactions out. Coming soon: demo app",
+	"project_txcategorizer_cta": "See it on npmjs.com!",
+
+	"contact_heading": "Get in touch!",
+	"contact_form_name_label": "Name",
+	"contact_form_email_label": "Email",
+	"contact_form_phone_label": "Phone",
+	"contact_form_phone_optional": "optional",
+	"contact_form_message_label": "Message",
+	"contact_form_submit": "Send",
+	"contact_or_divider": "or"
+}

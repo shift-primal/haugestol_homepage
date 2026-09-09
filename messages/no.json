@@ -1,0 +1,34 @@
+{
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+
+	"meta_description": "Kasper Haugestøl — fullstack-utvikler med fokus på solid struktur og gode brukeropplevelser. Se prosjekter og ta kontakt.",
+
+	"hero_tagline": "Fullstack-utvikler med fokus på solid struktur og gode brukeropplevelser.",
+	"hero_projects_button": "Se prosjekter",
+	"hero_contact_aria": "Kontaktseksjon",
+
+	"about_heading": "Om meg",
+	"about_bio": "Fullstack-utvikler under utdanning ved GET Academy. Arbeider med hele stacken — fra database og backend-logikk til grensesnitt og brukeropplevelser. Med vekt på ryddig, gjennomtenkt kode, beveger jeg meg raskt fra idé til produksjon, og drifter egne prosjekter helt ut i drift.",
+
+	"projects_heading": "Prosjekter",
+	"project_github_aria": "{title} på GitHub",
+	"project_not_live_notice": "Prosjektet er ikke live enda.",
+
+	"project_pokedex_description": "Full Pokédex bygget på PokéAPI — virtualized search, evolution chains, per-form details og avansert filtrering.",
+	"project_pokedex_cta": "Se prosjektet live!",
+	"project_bfq_description": "Personlig trivia quiz — hvor godt kjenner du Kasper? Dynamisk score, store-based state, med live leaderboard.",
+	"project_bfq_cta": "Se prosjektet live!",
+	"project_groovehaus_description": "Et konsept for en nettbutikk for vinyl, musikkutstyr, og instrumenter — handlevogn, auth, og Stripe checkout.",
+	"project_groovehaus_cta": "Kommer snart!",
+	"project_txcategorizer_description": "Parser og kategoriserer banktransaksjoner til strukturerte og fully typed data. CSV in, transaksjoner ut. Kommer snart: demo app",
+	"project_txcategorizer_cta": "Se på npmjs.com!",
+
+	"contact_heading": "Ta kontakt!",
+	"contact_form_name_label": "Navn",
+	"contact_form_email_label": "Epost",
+	"contact_form_phone_label": "Telefon",
+	"contact_form_phone_optional": "valgfritt",
+	"contact_form_message_label": "Melding",
+	"contact_form_submit": "Send",
+	"contact_or_divider": "eller"
+}

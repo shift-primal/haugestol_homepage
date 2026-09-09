@@ -1,4 +1,5 @@
 import { KineticText } from "#/components/shadcn/kinetic-text";
+import { Kicker } from "#/components/ui/Kicker";
 import { cn } from "#/lib/shadcn.utils";
 
 export const SectionHeading = ({
@@ -11,11 +12,7 @@ export const SectionHeading = ({
 	className?: string;
 }) => (
 	<div>
-		{kicker && (
-			<p className="mb-2 font-mono text-xs tracking-widest text-muted-foreground w-fit">
-				{kicker}
-			</p>
-		)}
+		{kicker && <Kicker text={kicker} />}
 		<KineticText
 			as="h2"
 			text={text}

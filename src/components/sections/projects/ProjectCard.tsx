@@ -22,6 +22,7 @@ import {
 } from "#/components/shadcn/carousel";
 import { useMediaQuery } from "#/hooks/useMediaQuery";
 import type { Project } from "#/lib/content";
+import { m } from "#/paraglide/messages";
 
 export const ProjectCard = ({
 	title,
@@ -51,7 +52,7 @@ export const ProjectCard = ({
 	};
 
 	return (
-		<Card className="h-full w-full">
+		<Card className="h-full w-full bg-transparent backdrop-blur-lg">
 			<Carousel>
 				<CarouselContent>
 					{imageEntries.map(([id, img], index) => (
@@ -88,7 +89,7 @@ export const ProjectCard = ({
 			)}
 
 			<CardHeader>
-				<div className="flex w-full items-center justify-between mb-2">
+				<div className="flex w-full items-center justify-between mb-4">
 					<CardTitle>{title}</CardTitle>
 
 					{badge && (
@@ -99,7 +100,7 @@ export const ProjectCard = ({
 					<Button
 						variant="outline"
 						size="icon-sm"
-						aria-label={`${title} on GitHub`}
+						aria-label={m.project_github_aria({ title })}
 						nativeButton={false}
 						render={(props) => (
 							<a {...props} href={githubHref} rel="noopener" target="_blank">
