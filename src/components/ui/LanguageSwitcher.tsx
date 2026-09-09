@@ -1,26 +1,24 @@
-import { Label } from "#/components/shadcn/label";
-import { Switch } from "#/components/shadcn/switch";
-import { getLocale, locales, setLocale } from "#/paraglide/runtime";
-
-const LOCALE_LABELS: Record<(typeof locales)[number], string> = {
-    no: "NO",
-    en: "EN",
-};
+import { NO, US } from "country-flag-icons/react/3x2";
+import { Button } from "#/components/shadcn/button";
+import { getLocale, setLocale } from "#/paraglide/runtime";
 
 export const LanguageSwitcher = () => {
-    const activeLocale = getLocale();
+    const currentLocale = getLocale();
+    const nextLocale = currentLocale === "no" ? "en" : "no";
+    const CurrentFlag = currentLocale === "no" ? NO : US;
 
     return (
-        <div className="pointer-events-auto absolute top-10 left-1/8 z-50 flex -translate-x-1/2 items-center gap-2 rounded-full bg-foreground/10 p-1 px-3 font-mono text-xs text-foreground/60">
-            <Label htmlFor="locale-switch">{LOCALE_LABELS[locales[0]]}</Label>
-            <Switch
-                id="locale-switch"
-                checked={activeLocale === locales[1]}
-                onCheckedChange={(checked) =>
-                    setLocale(checked ? locales[1] : locales[0])
-                }
-            />
-            <Label htmlFor="locale-switch">{LOCALE_LABELS[locales[1]]}</Label>
-        </div>
+        <Button
+            type="button"
+            onClick={() => setLocale(nextLocale)}
+            aria-label={
+                nextLocale === "no"
+                    ? "Switch language to Norwegian"
+                    : "Switch language to English"
+            }
+            className="pointer-events-auto absolute top-10 left-1/4 z-50 flex h-8 w-8 -translate-x-1/2 items-center justify-center rounded-full bg-foreground/10 text-foreground/60 outline-none transition-colors hover:bg-foreground/20 hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring/50"
+        >
+            <CurrentFlag className="size-3 rounded-[1px]" />
+        </Button>
     );
 };

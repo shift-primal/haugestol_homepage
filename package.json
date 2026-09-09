@@ -26,6 +26,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cn": "^0.2.4",
+    "country-flag-icons": "^1.6.20",
     "embla-carousel-react": "^8.6.0",
     "lucide-react": "^1.39.0",
     "motion": "^13.1.1",

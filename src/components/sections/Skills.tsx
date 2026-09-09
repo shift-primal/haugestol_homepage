@@ -27,7 +27,7 @@ const SkillCategory = ({ group }: { group: SkillGroup }) => {
                         <Badge
                             key={skill.title}
                             variant="outline"
-                            className="gap-1.5 hover:scale-105 duration-300 select-none hover:border-foreground/25"
+                            className="gap-1.5 hover:scale-105 transition-transform duration-300 select-none hover:border-foreground/25"
                         >
                             <SkillIcon
                                 className="size-3"

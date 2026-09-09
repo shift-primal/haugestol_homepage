@@ -64,7 +64,7 @@ export const Rope = () => {
     return (
         <div
             ref={containerRef}
-            className="pointer-events-none absolute top-0 right-1/8 z-50 sm:right-1/8 translate-x-1/2 drop-shadow-lg drop-shadow-foreground/25"
+            className="pointer-events-none absolute top-0 right-1/4 z-50 translate-x-1/2 drop-shadow-lg drop-shadow-foreground/25"
             style={{
                 width: CONTAINER_WIDTH,
                 height: config.containerHeight,
