@@ -55,6 +55,8 @@ interface TypingAnimationProps extends Omit<MotionProps, "children"> {
 	showCursor?: boolean;
 	blinkCursor?: boolean;
 	cursorStyle?: "line" | "block" | "underscore";
+	/** Skip the type-out and render the final text immediately. */
+	instant?: boolean;
 }
 
 export function TypingAnimation({
@@ -72,6 +74,7 @@ export function TypingAnimation({
 	showCursor = true,
 	blinkCursor = true,
 	cursorStyle = "line",
+	instant = false,
 	...props
 }: TypingAnimationProps) {
 	const MotionComponent = motionElements[
@@ -100,16 +103,20 @@ export function TypingAnimation({
 	const shouldStart = startOnView ? isInView : true;
 
 	useEffect(() => {
+		if (instant) {
+			setDisplayedText(wordsToAnimate[0] ?? "");
+			return;
+		}
 		setDisplayedText("");
 		setCurrentWordIndex(0);
 		setCurrentCharIndex(0);
 		setPhase("typing");
-	}, []);
+	}, [instant, wordsToAnimate]);
 
 	useEffect(() => {
 		let timeout: ReturnType<typeof setTimeout> | null = null;
 
-		if (shouldStart && wordsToAnimate.length > 0) {
+		if (!instant && shouldStart && wordsToAnimate.length > 0) {
 			const timeoutDelay =
 				delay > 0 && displayedText === ""
 					? delay
@@ -167,6 +174,7 @@ export function TypingAnimation({
 			}
 		};
 	}, [
+		instant,
 		shouldStart,
 		phase,
 		currentCharIndex,

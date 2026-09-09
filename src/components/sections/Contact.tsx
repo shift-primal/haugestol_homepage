@@ -84,7 +84,7 @@ export const Contact = () => {
 									name="message"
 									rows={8}
 									required
-									className="flex-1"
+									className="flex-1 resize-none"
 								/>
 							</Field>
 						</div>
