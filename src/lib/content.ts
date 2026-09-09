@@ -1,3 +1,11 @@
+import {
+    DatabaseIcon,
+    GearIcon,
+    type Icon,
+    LaptopIcon,
+    QuestionMarkIcon,
+    ToolboxIcon,
+} from "@phosphor-icons/react";
 import type { Img } from "vite-imagetools";
 import { m } from "#/paraglide/messages";
 
@@ -18,8 +26,22 @@ interface HeroContent {
     technologies: string[];
 }
 
+type SkillCategory = "frontend" | "backend" | "database" | "development";
+
+export interface Skill {
+    title: string;
+    icon: Icon;
+}
+
+export interface SkillGroup {
+    category: SkillCategory;
+    icon: Icon;
+    skills: Skill[];
+}
+
 interface AboutContent {
     bio: string;
+    skills: SkillGroup[];
 }
 
 export interface Project {
@@ -66,6 +88,112 @@ export const HERO: HeroContent = {
 
 export const ABOUT: AboutContent = {
     bio: m.about_bio(),
+    skills: [
+        {
+            category: "frontend",
+            icon: LaptopIcon,
+            skills: [
+                {
+                    title: "React",
+                    icon: QuestionMarkIcon,
+                },
+                {
+                    title: "TanStack",
+                    icon: QuestionMarkIcon,
+                },
+                {
+                    title: "TypeScript",
+                    icon: QuestionMarkIcon,
+                },
+                {
+                    title: "Tailwind",
+                    icon: QuestionMarkIcon,
+                },
+                {
+                    title: "Zustand",
+                    icon: QuestionMarkIcon,
+                },
+                {
+                    title: "Next.js",
+                    icon: QuestionMarkIcon,
+                },
+            ],
+        },
+        {
+            category: "backend",
+            icon: GearIcon,
+            skills: [
+                {
+                    title: "TanStack Start",
+                    icon: QuestionMarkIcon,
+                },
+                {
+                    title: "Node.js",
+                    icon: QuestionMarkIcon,
+                },
+                {
+                    title: "C#",
+                    icon: QuestionMarkIcon,
+                },
+                {
+                    title: "ASP.NET",
+                    icon: QuestionMarkIcon,
+                },
+                {
+                    title: "Drizzle",
+                    icon: QuestionMarkIcon,
+                },
+            ],
+        },
+        {
+            category: "database",
+            icon: DatabaseIcon,
+            skills: [
+                {
+                    title: "PostgreSQL",
+                    icon: QuestionMarkIcon,
+                },
+                {
+                    title: "Neon",
+                    icon: QuestionMarkIcon,
+                },
+                {
+                    title: "SQLite",
+                    icon: QuestionMarkIcon,
+                },
+            ],
+        },
+        {
+            category: "development",
+            icon: ToolboxIcon,
+            skills: [
+                {
+                    title: "Git",
+                    icon: QuestionMarkIcon,
+                },
+                {
+                    title: "Neovim",
+                    icon: QuestionMarkIcon,
+                },
+                {
+                    title: "Claude",
+                    icon: QuestionMarkIcon,
+                },
+                {
+                    title: "Linux",
+                    icon: QuestionMarkIcon,
+                },
+                {
+                    title: "Figma",
+                    icon: QuestionMarkIcon,
+                },
+                {
+                    title: "Docker",
+                    icon: QuestionMarkIcon,
+                },
+            ],
+        },
+    ],
 };
 
 // ============================================================================

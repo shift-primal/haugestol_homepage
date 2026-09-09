@@ -45,10 +45,12 @@ export const HeroIntro = () => {
                     {NAME_WITH_LINE_BREAK}
                 </TypingAnimation>
             </div>
-            <WordRotate
-                words={HERO.technologies}
-                className="text-xl tracking-tighter sm:text-2xl md:text-3xl lg:text-4xl"
-            />
+            <div className="min-h-10">
+                <WordRotate
+                    words={HERO.technologies}
+                    className="text-xl tracking-tighter sm:text-2xl md:text-3xl lg:text-4xl"
+                />
+            </div>
         </div>
     );
 };

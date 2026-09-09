@@ -56,7 +56,7 @@ export const ProjectCard = ({
     };
 
     return (
-        <Card className="h-full w-full bg-transparent backdrop-blur-lg">
+        <Card className="h-full w-full bg-transparent backdrop-blur-lg hover:scale-102  hover:ring-foreground/25 duration-300">
             <Carousel>
                 <CarouselContent>
                     {imageEntries.map(([id, img], index) => (
