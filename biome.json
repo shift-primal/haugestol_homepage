@@ -38,13 +38,6 @@
         "enabled": true,
         "rules": {
             "preset": "recommended"
-        },
-        "domains": {
-            "react": "recommended",
-            "test": "recommended",
-            "solid": "none",
-            "next": "none",
-            "project": "recommended"
         }
     },
     "javascript": {

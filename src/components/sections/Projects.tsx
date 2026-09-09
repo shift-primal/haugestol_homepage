@@ -11,7 +11,7 @@ export const Projects = () => {
                 text={m.projects_heading()}
                 kicker="// projects-showcase"
             />
-            <div className="mt-10 grid grid-cols-1 gap-6 sm:mt-12 md:grid-cols-2 md:gap-8 ">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
                 {PROJECTS.map((project) => (
                     <ProjectCard
                         key={project.title}

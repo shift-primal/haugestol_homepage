@@ -11,7 +11,7 @@ export const SectionHeading = ({
     kicker?: string;
     className?: string;
 }) => (
-    <div>
+    <div className="mb-10 sm:mb-12">
         {kicker && <Kicker text={kicker} />}
         <KineticText
             as="h2"
