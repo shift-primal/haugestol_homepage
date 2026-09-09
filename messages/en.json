@@ -14,6 +14,7 @@
 	"project_github_aria": "{title} on GitHub",
 	"project_demo_cta_default": "See live demo!",
 	"project_not_live_notice": "This project isn't live yet.",
+	"project_more_projects": "Check out more projects",
 
 	"project_pokedex_description": "Full Pokédex built on PokéAPI — virtualized search, evolution chains, per-form details, and advanced filtering.",
 	"project_pokedex_cta": "Check the project live!",

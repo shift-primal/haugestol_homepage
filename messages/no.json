@@ -13,6 +13,7 @@
 	"projects_heading": "Prosjekter",
 	"project_github_aria": "{title} på GitHub",
 	"project_not_live_notice": "Prosjektet er ikke live enda.",
+	"project_more_projects": "Sjekk ut flere prosjekter",
 
 	"project_pokedex_description": "Full Pokédex bygget på PokéAPI — virtualized search, evolution chains, per-form details og avansert filtrering.",
 	"project_pokedex_cta": "Se prosjektet live!",
