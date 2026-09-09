@@ -109,7 +109,11 @@ export const SITE: SiteConfig = {
 // Hero
 // ============================================================================
 
-export const HERO: HeroContent = {
+// Wrapped in a function (rather than a module-level constant) so the
+// paraglide message calls re-resolve the active locale on every call,
+// instead of being frozen to whichever locale was active when this
+// module first loaded.
+export const getHero = (): HeroContent => ({
     tagline: m.hero_tagline(),
     technologies: [
         "Full-Stack",
@@ -119,7 +123,7 @@ export const HERO: HeroContent = {
         "Database",
         "DevOps",
     ],
-};
+});
 
 // ============================================================================
 // Skills
@@ -317,9 +321,9 @@ export const SKILLS: SkillsContent = {
 // About
 // ============================================================================
 
-export const ABOUT: AboutContent = {
+export const getAbout = (): AboutContent => ({
     bio: m.about_bio(),
-};
+});
 
 // ============================================================================
 // Projects
@@ -341,7 +345,7 @@ const screenshotsFor = (project: string): Record<string, Img> =>
         )
     );
 
-export const PROJECTS: Project[] = [
+export const getProjects = (): Project[] => [
     {
         title: "Pokédex",
         liveHref: "https://pokemon.haugestol.com",

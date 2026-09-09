@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { TypingAnimation } from "#/components/shadcn/typing-animation";
 import { WordRotate } from "#/components/shadcn/word-rotate";
 import { Kicker } from "#/components/ui/Kicker";
-import { HERO, SITE } from "#/lib/content";
+import { getHero, SITE } from "#/lib/content";
 import { cn } from "#/lib/shadcn.utils";
 
 const NAME_WITH_LINE_BREAK = SITE.name.replace(" ", "\n");
@@ -47,7 +47,7 @@ export const HeroIntro = () => {
             </div>
             <div className="min-h-10">
                 <WordRotate
-                    words={HERO.technologies}
+                    words={getHero().technologies}
                     className="text-xl tracking-tighter sm:text-2xl md:text-3xl lg:text-4xl"
                 />
             </div>

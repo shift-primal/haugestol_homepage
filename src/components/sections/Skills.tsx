@@ -55,12 +55,14 @@ export const Skills = () => {
                 text={m.skills_heading()}
                 kicker="// my-skills-and-tools"
             />
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8">
+            <div className="grid grid-cols-1 gap-6 sm:block sm:columns-2 sm:gap-8">
                 {SKILLS.skills.map((sg) => (
-                    <SkillCategory
+                    <div
                         key={sg.category}
-                        group={sg}
-                    />
+                        className="sm:mb-8 sm:break-inside-avoid"
+                    >
+                        <SkillCategory group={sg} />
+                    </div>
                 ))}
             </div>
         </SectionContainer>
