@@ -9,7 +9,7 @@ export const Contact = () => {
         <SectionContainer sectionName="contact">
             <SectionHeading
                 text={m.contact_heading()}
-                kicker="// contact"
+                kicker="// get-in-touch"
             />
 
             <div className="flex flex-col lg:flex-row items-center lg:items-stretch gap-8">

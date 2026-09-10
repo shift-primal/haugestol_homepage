@@ -8,7 +8,7 @@
 	"hero_contact_aria": "Kontaktseksjon",
 
 	"about_heading": "Om meg",
-	"about_bio": "Fullstack-utvikler under utdanning ved GET Academy. Arbeider med hele stacken — fra database og backend-logikk til grensesnitt og brukeropplevelser. Med vekt på ryddig, gjennomtenkt kode, beveger jeg meg raskt fra idé til produksjon, og drifter egne prosjekter helt ut i drift.",
+	"about_bio": "Fullstack-utvikler under utdanning ved GET Academy. Arbeider med hele stacken — fra database og backend-logikk til grensesnitt og brukeropplevelser. Med vekt på ryddig, gjennomtenkt kode, beveger jeg meg raskt fra idé til utvikling, og drifter egne prosjekter helt ut i produksjon.",
 
 	"skills_heading": "Skills / Verktøy",
 
@@ -19,14 +19,18 @@
 
 	"project_pokedex_description": "Full Pokédex bygget på PokéAPI — virtualized search, evolution chains, per-form details og avansert filtrering.",
 	"project_pokedex_cta": "Se prosjektet live!",
+
 	"project_bfq_description": "Personlig trivia quiz — hvor godt kjenner du Kasper? Dynamisk score, store-based state, med live leaderboard.",
 	"project_bfq_cta": "Se prosjektet live!",
+
 	"project_groovehaus_description": "Et konsept for en nettbutikk for vinyl, musikkutstyr, og instrumenter — handlevogn, auth, og Stripe checkout.",
 	"project_groovehaus_cta": "Kommer snart!",
-	"project_txcategorizer_description": "Parser og kategoriserer banktransaksjoner til strukturerte og fully typed data. CSV in, transaksjoner ut. Kommer snart: demo app",
+
+	"project_txcategorizer_description": "Parser og kategoriserer banktransaksjoner til strukturerte og fully typed data. CSV in, transaksjoner ut.",
+	"project_txcategroizer_badge": "Demo app kommer snart!",
 	"project_txcategorizer_cta": "Se på npmjs.com!",
 
-	"contact_heading": "Ta kontakt!",
+	"contact_heading": "Kontakt",
 	"contact_form_name_label": "Navn",
 	"contact_form_email_label": "Epost",
 	"contact_form_phone_label": "Telefon",

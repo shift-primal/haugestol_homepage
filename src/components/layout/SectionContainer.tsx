@@ -12,7 +12,7 @@ export const SectionContainer = ({
     <section
         id={sectionName}
         className={cn(
-            "relative z-10 mx-auto w-full max-w-7xl px-4 py-8 pointer-events-none sm:px-6 sm:py-12 lg:px-8 lg:py-16",
+            "relative z-10 mx-auto w-full max-w-7xl p-4 pointer-events-none sm:p-8",
             className
         )}
     >

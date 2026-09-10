@@ -56,7 +56,7 @@ export const ProjectCard = ({
     };
 
     return (
-        <Card className="h-full w-full bg-transparent backdrop-blur-lg hover:scale-102  hover:ring-foreground/25 duration-300">
+        <Card className="h-full w-full bg-transparent backdrop-blur-lg hover:scale-102 duration-300">
             <Carousel>
                 <CarouselContent>
                     {imageEntries.map(([id, img], index) => (
@@ -105,17 +105,17 @@ export const ProjectCard = ({
             )}
 
             <CardHeader>
+                {badge && (
+                    <Badge
+                        variant="outline"
+                        className="inline"
+                    >
+                        {badge}
+                    </Badge>
+                )}
                 <div className="flex w-full items-center justify-between mb-4">
                     <CardTitle>{title}</CardTitle>
 
-                    {badge && (
-                        <Badge
-                            variant="outline"
-                            className="inline"
-                        >
-                            {badge}
-                        </Badge>
-                    )}
                     <Button
                         variant="outline"
                         size="icon-sm"
