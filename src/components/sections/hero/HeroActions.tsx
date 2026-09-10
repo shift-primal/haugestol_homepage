@@ -4,7 +4,7 @@ import {
     LinkedinLogoIcon,
 } from "@phosphor-icons/react";
 import { Button } from "#/components/shadcn/button";
-import { SITE } from "#/lib/content";
+import { SITE } from "#/content";
 import { m } from "#/paraglide/messages";
 
 const scrollToSection = (id: string) =>

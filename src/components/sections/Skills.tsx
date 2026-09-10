@@ -7,7 +7,7 @@ import {
     CardHeader,
     CardTitle,
 } from "#/components/shadcn/card";
-import { SKILLS, type SkillGroup } from "#/lib/content";
+import { SKILLS, type SkillGroup } from "#/content";
 import { m } from "#/paraglide/messages";
 
 const SkillCategory = ({ group }: { group: SkillGroup }) => {

@@ -1,19 +1,65 @@
 import { ArrowRightIcon } from "@phosphor-icons/react";
+import { useState } from "react";
 import { Button } from "#/components/shadcn/button";
 import { Field, FieldGroup, FieldLabel } from "#/components/shadcn/field";
 import { Input } from "#/components/shadcn/input";
 import { Textarea } from "#/components/shadcn/textarea";
+import { contactFormSchema } from "#/lib/schemas/contact-schema";
 import { m } from "#/paraglide/messages";
+import { sendContactMessage } from "#/server/sendContactMessage";
+
+type Status = "idle" | "pending" | "success" | "error";
+
+const fieldErrorMessages = {
+    name: m.contact_form_name_error,
+    email: m.contact_form_email_error,
+    message: m.contact_form_message_error,
+} as const;
+
+type FieldErrors = Partial<Record<keyof typeof fieldErrorMessages, string>>;
 
 export const MessageForm = () => {
-    const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
+    const [status, setStatus] = useState<Status>("idle");
+    const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+
+    const handleSubmit = async (event: React.SubmitEvent<HTMLFormElement>) => {
         event.preventDefault();
-        // TODO: wire this up to an endpoint that emails the submission
+        const form = event.currentTarget;
+        const values = Object.fromEntries(new FormData(form));
+        const result = contactFormSchema.safeParse(values);
+
+        if (!result.success) {
+            const errors: FieldErrors = {};
+            for (const issue of result.error.issues) {
+                const field = issue.path[0];
+                if (typeof field === "string" && field in fieldErrorMessages) {
+                    errors[field as keyof FieldErrors] =
+                        fieldErrorMessages[
+                            field as keyof typeof fieldErrorMessages
+                        ]();
+                }
+            }
+            setFieldErrors(errors);
+            return;
+        }
+
+        setFieldErrors({});
+        setStatus("pending");
+        try {
+            await sendContactMessage({
+                data: result.data,
+            });
+            setStatus("success");
+            form.reset();
+        } catch {
+            setStatus("error");
+        }
     };
 
     return (
         <form
             onSubmit={handleSubmit}
+            noValidate
             className="w-full max-w-md border border-border bg-card/40 p-6 pointer-events-auto sm:max-w-full sm:p-8 backdrop-blur-md lg:flex-2"
         >
             <FieldGroup className="gap-6">
@@ -32,8 +78,13 @@ export const MessageForm = () => {
                             <Input
                                 id="contact-name"
                                 name="name"
-                                required
+                                aria-invalid={Boolean(fieldErrors.name)}
                             />
+                            {fieldErrors.name && (
+                                <p className="text-xs text-destructive">
+                                    {fieldErrors.name}
+                                </p>
+                            )}
                         </Field>
                         <Field>
                             <FieldLabel htmlFor="contact-email">
@@ -49,8 +100,13 @@ export const MessageForm = () => {
                                 id="contact-email"
                                 name="email"
                                 type="email"
-                                required
+                                aria-invalid={Boolean(fieldErrors.email)}
                             />
+                            {fieldErrors.email && (
+                                <p className="text-xs text-destructive">
+                                    {fieldErrors.email}
+                                </p>
+                            )}
                         </Field>
                         <Field>
                             <FieldLabel htmlFor="contact-phone">
@@ -86,18 +142,34 @@ export const MessageForm = () => {
                             id="contact-message"
                             name="message"
                             rows={8}
-                            required
+                            aria-invalid={Boolean(fieldErrors.message)}
                             className="flex-1 resize-none"
                         />
+                        {fieldErrors.message && (
+                            <p className="text-xs text-destructive">
+                                {fieldErrors.message}
+                            </p>
+                        )}
                     </Field>
                 </div>
                 <Button
                     type="submit"
                     className="w-full sm:w-auto"
+                    disabled={status === "pending"}
                 >
                     <span>{m.contact_form_submit()}</span>
                     <ArrowRightIcon />
                 </Button>
+                {status === "success" && (
+                    <p className="text-sm text-muted-foreground">
+                        {m.contact_form_submit_success()}
+                    </p>
+                )}
+                {status === "error" && (
+                    <p className="text-sm text-destructive">
+                        {m.contact_form_submit_error()}
+                    </p>
+                )}
             </FieldGroup>
         </form>
     );

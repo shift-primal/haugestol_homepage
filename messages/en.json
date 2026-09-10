@@ -32,11 +32,22 @@
 	"project_txcategorizer_cta": "See it on npmjs.com!",
 
 	"contact_heading": "Contact",
+
 	"contact_form_name_label": "Name",
+	"contact_form_name_error": "Is your name really under 2 characters?",
+
 	"contact_form_email_label": "Email",
+	"contact_form_email_error": "That's not a real email",
+
 	"contact_form_phone_label": "Phone",
 	"contact_form_phone_optional": "optional",
+
 	"contact_form_message_label": "Message",
-	"contact_form_submit": "Send",
+	"contact_form_message_error": "If your message isn't at least 10 characters, why even bother?",
+
+	"contact_form_submit": "Send message",
+	"contact_form_submit_success": "Message sent - thanks!",
+	"contact_form_submit_error": "Something went wrong (probably my fault). Please try again.",
+
 	"contact_or_divider": "or"
 }

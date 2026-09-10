@@ -20,8 +20,8 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "#/components/shadcn/carousel";
+import type { Project } from "#/content";
 import { useMediaQuery } from "#/hooks/useMediaQuery";
-import type { Project } from "#/lib/content";
 import { m } from "#/paraglide/messages";
 
 export const ProjectCard = ({

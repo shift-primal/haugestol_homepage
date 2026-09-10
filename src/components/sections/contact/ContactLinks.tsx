@@ -4,7 +4,7 @@ import {
     GithubLogoIcon,
     LinkedinLogoIcon,
 } from "@phosphor-icons/react";
-import { SITE } from "#/lib/content";
+import { SITE } from "#/content";
 
 const CONTACT_LINKS = [
     {

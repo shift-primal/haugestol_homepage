@@ -1,7 +1,7 @@
 import { SectionContainer } from "#/components/layout/SectionContainer";
 import { HeroActions } from "#/components/sections/hero/HeroActions";
 import { HeroIntro } from "#/components/sections/hero/HeroIntro";
-import { getHero } from "#/lib/content";
+import { getHero } from "#/content";
 
 export const Hero = () => (
     <SectionContainer sectionName="hero">

@@ -1,7 +1,7 @@
 import { SectionContainer } from "#/components/layout/SectionContainer";
 import { SectionHeading } from "#/components/layout/SectionHeading";
 import { Bio } from "#/components/sections/about/Bio";
-import { getAbout } from "#/lib/content";
+import { getAbout } from "#/content";
 import { m } from "#/paraglide/messages";
 
 export const About = () => {

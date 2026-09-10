@@ -1,5 +1,6 @@
 import { NO, US } from "country-flag-icons/react/3x2";
 import { Button } from "#/components/shadcn/button";
+import { HERO_SKIP_TYPING_SESSION_KEY } from "#/components/sections/hero/HeroIntro";
 import { getLocale, setLocale } from "#/paraglide/runtime";
 
 export const LanguageSwitcher = () => {
@@ -10,7 +11,14 @@ export const LanguageSwitcher = () => {
     return (
         <Button
             type="button"
-            onClick={() => setLocale(nextLocale)}
+            onClick={() => {
+                try {
+                    sessionStorage.setItem(HERO_SKIP_TYPING_SESSION_KEY, "1");
+                } catch {
+                    // sessionStorage unavailable (e.g. private browsing) - animation will just replay
+                }
+                setLocale(nextLocale);
+            }}
             aria-label={
                 nextLocale === "no"
                     ? "Switch language to Norwegian"

@@ -62,7 +62,11 @@ const config = defineConfig({
                 },
             ],
         }),
-        tanstackStart(),
+        tanstackStart({
+            server: {
+                entry: "./server/entry.ts",
+            },
+        }),
         viteReact(),
         babel({
             presets: [

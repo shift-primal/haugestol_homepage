@@ -31,11 +31,22 @@
 	"project_txcategorizer_cta": "Se på npmjs.com!",
 
 	"contact_heading": "Kontakt",
+
 	"contact_form_name_label": "Navn",
+	"contact_form_name_error": "Er navnet ditt virkelig mindre enn 2 bokstaver?",
+
 	"contact_form_email_label": "Epost",
+	"contact_form_email_error": "Det der er ikke en ekte epost",
+
 	"contact_form_phone_label": "Telefon",
 	"contact_form_phone_optional": "valgfritt",
+	
 	"contact_form_message_label": "Melding",
-	"contact_form_submit": "Send",
+	"contact_form_message_error": "Hvis meldingen din ikke engang er 10 karakterer lang, hvorfor gidde?",
+
+	"contact_form_submit": "Send melding",
+	"contact_form_submit_success": "Melding sendt - takk!",
+	"contact_form_submit_error": "Noe gikk galt. Vennligst prøv igjen.",
+
 	"contact_or_divider": "eller"
 }

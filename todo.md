@@ -1,1 +1,3 @@
-- [ ] @resend/node for email
+- [x] @resend/node for email
+- [ ] Better carousel (wrap, autoplay)
+- [ ] Better screenshots
