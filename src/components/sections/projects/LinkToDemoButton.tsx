@@ -21,7 +21,7 @@ export const LinkToDemoButton = ({
                 <Button
                     disabled={!liveHref}
                     variant="outline"
-                    className="w-full"
+                    className="grow"
                     nativeButton={false}
                     render={(buttonProps) => (
                         <a

@@ -97,41 +97,42 @@ export const ProjectCard = ({
             )}
 
             <CardHeader>
-                {badge && (
-                    <Badge
-                        variant="outline"
-                        className="inline"
-                    >
-                        {badge}
-                    </Badge>
-                )}
                 <div className="flex w-full items-center justify-between mb-4">
                     <CardTitle>{title}</CardTitle>
 
-                    <Button
-                        variant="outline"
-                        size="icon-sm"
-                        aria-label={m.project_github_aria({
-                            title,
-                        })}
-                        nativeButton={false}
-                        render={(props) => (
-                            <a
-                                {...props}
-                                href={githubHref}
-                                rel="noopener"
-                                target="_blank"
-                            >
-                                <GithubLogoIcon />
-                            </a>
-                        )}
-                    />
+                    {badge && (
+                        <Badge
+                            variant="outline"
+                            className="inline"
+                        >
+                            {badge}
+                        </Badge>
+                    )}
                 </div>
 
                 <CardDescription>{description}</CardDescription>
             </CardHeader>
 
-            <CardContent className="mt-auto">
+            <CardContent className="mt-auto flex justify-center items-center gap-2">
+                <Button
+                    variant="outline"
+                    size="icon"
+                    className="self-end"
+                    aria-label={m.project_github_aria({
+                        title,
+                    })}
+                    nativeButton={false}
+                    render={(props) => (
+                        <a
+                            {...props}
+                            href={githubHref}
+                            rel="noopener"
+                            target="_blank"
+                        >
+                            <GithubLogoIcon />
+                        </a>
+                    )}
+                />
                 <LinkToDemoButton
                     liveHref={liveHref}
                     ctaText={ctaText}

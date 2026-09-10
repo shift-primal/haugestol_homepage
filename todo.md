@@ -3,6 +3,6 @@
 - [?] Position theme toggle and lang toggle better
 - [ ] Volume på sfx (og kutt de)
 - [x] Translation på prøv meg
-- [ ] Better carousel (wrap, autoplay)
+- [x] Better carousel (wrap etc)
 - [ ] Better screenshots
-- [ ] Label on project card
+- [x] Label, badge links on project card
