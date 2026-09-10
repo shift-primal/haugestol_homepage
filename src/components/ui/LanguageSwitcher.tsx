@@ -1,6 +1,6 @@
 import { NO, US } from "country-flag-icons/react/3x2";
-import { Button } from "#/components/shadcn/button";
 import { HERO_SKIP_TYPING_SESSION_KEY } from "#/components/sections/hero/HeroIntro";
+import { Button } from "#/components/shadcn/button";
 import { getLocale, setLocale } from "#/paraglide/runtime";
 
 export const LanguageSwitcher = () => {
@@ -24,7 +24,7 @@ export const LanguageSwitcher = () => {
                     ? "Switch language to Norwegian"
                     : "Switch language to English"
             }
-            className="pointer-events-auto absolute top-10 left-1/4 z-50 flex h-8 w-8 -translate-x-1/2 items-center justify-center rounded-full bg-foreground/10 text-foreground/60 outline-none transition-colors hover:bg-foreground/20 hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring/50"
+            className="pointer-events-auto z-50 flex h-8 w-8 items-center justify-center rounded-full bg-foreground/10 text-foreground/60 outline-none transition-colors hover:bg-foreground/20 hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring/50"
         >
             <CurrentFlag className="size-3 rounded-[1px]" />
         </Button>

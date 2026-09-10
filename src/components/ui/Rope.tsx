@@ -64,7 +64,7 @@ export const Rope = () => {
     return (
         <div
             ref={containerRef}
-            className="pointer-events-none absolute top-0 right-1/4 z-50 translate-x-1/2 drop-shadow-lg drop-shadow-foreground/25"
+            className="pointer-events-none z-50 -mt-8 drop-shadow-xs drop-shadow-foreground/25"
             style={{
                 width: CONTAINER_WIDTH,
                 height: config.containerHeight,
@@ -99,7 +99,7 @@ export const Rope = () => {
                     onPointerCancel={handlePointerUp}
                     onDragStart={(event) => event.preventDefault()}
                     draggable={false}
-                    className="pointer-events-auto absolute top-0 left-0 origin-top touch-none cursor-grab outline-none active:cursor-grabbing focus-visible:ring-1 focus-visible:ring-ring/50 flex justify-center items-start select-none [-webkit-user-drag:none]"
+                    className="pointer-events-auto origin-top touch-none cursor-grab outline-none active:cursor-grabbing focus-visible:ring-1 focus-visible:ring-ring/50 flex justify-center items-start select-none [-webkit-user-drag:none]"
                     style={{
                         width: config.hitboxWidth,
                         height: config.hitboxHeight,

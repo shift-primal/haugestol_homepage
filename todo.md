@@ -1,3 +1,5 @@
 - [x] @resend/node for email
+- [ ] Make theme toggle suspicious
+- [ ] Position theme toggle and lang toggle better
 - [ ] Better carousel (wrap, autoplay)
 - [ ] Better screenshots

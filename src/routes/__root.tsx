@@ -3,6 +3,7 @@ import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 // import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { ThemeProvider } from "next-themes";
 import { Filter } from "#/components/layout/Filter";
+import { Header } from "#/components/layout/Header";
 import { PageLoader } from "#/components/layout/PageLoader";
 import { m } from "#/paraglide/messages";
 import {
@@ -26,6 +27,7 @@ const RootDocument = ({ children }: { children: React.ReactNode }) => {
             </head>
             <body className="overflow-hidden">
                 <ThemeProvider attribute="class">
+                    <Header />
                     <div className="fixed inset-0 flex flex-col">
                         <main className="min-h-0 flex-1 overflow-y-auto">
                             {children}

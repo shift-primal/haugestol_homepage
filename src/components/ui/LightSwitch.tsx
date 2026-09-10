@@ -1,26 +1,35 @@
-import { MoonIcon, SunIcon } from "@phosphor-icons/react";
+import { QuestionMarkIcon } from "@phosphor-icons/react";
 import { useState } from "react";
 import { Button } from "#/components/shadcn/button";
+import { Label } from "#/components/shadcn/label";
 import { Rope } from "#/components/ui/Rope";
-import { useThemeTransition } from "#/hooks/useThemeTransition";
 import { unlockAudioContext } from "#/lib/sound-engine";
 
 export const LightSwitch = () => {
     const [activated, setActivated] = useState(false);
-    const { isDark } = useThemeTransition();
 
     if (!activated) {
         return (
             <Button
+                id="lightswitch-button"
                 type="button"
                 onClick={() => {
                     unlockAudioContext();
                     setActivated(true);
                 }}
                 aria-label="Turn on the light"
-                className="pointer-events-auto absolute top-10 right-1/4 z-50 flex h-8 w-8 translate-x-1/2 items-center justify-center rounded-full bg-foreground/10 text-foreground/60 outline-none transition-colors hover:bg-foreground/20 hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring/50"
+                className="pointer-events-auto z-50 flex h-8 w-8 items-center justify-center rounded-full bg-foreground/10 text-foreground/60 outline-none transition-colors hover:bg-foreground/20 hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring/50 relative"
             >
-                {isDark ? <MoonIcon /> : <SunIcon />}
+                <QuestionMarkIcon />
+                <Label
+                    htmlFor="lightswitch-button"
+                    className="absolute top-[120%] text-foreground/75 flex flex-col gap-0.75"
+                >
+                    Prøv meg
+                    <span className="text-[0.65rem] text-muted-foreground">
+                        (please)
+                    </span>
+                </Label>
             </Button>
         );
     }
