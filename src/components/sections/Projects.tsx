@@ -30,6 +30,7 @@ export const Projects = () => {
                             href={SITE.github}
                             target="_blank"
                             rel="noreferrer"
+                            aria-label={m.project_more_projects()}
                             {...props}
                         >
                             {m.project_more_projects()}

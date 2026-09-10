@@ -7,8 +7,8 @@ import {
     XCircleIcon,
     XIcon,
 } from "@phosphor-icons/react";
-import { cn } from "cn";
 import { Button } from "#/components/shadcn/button.tsx";
+import { cn } from "#/lib/shadcn.utils";
 
 const toast = ToastPrimitive.createToastManager();
 

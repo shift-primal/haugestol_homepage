@@ -1,10 +1,10 @@
 import { CaretLeftIcon, CaretRightIcon } from "@phosphor-icons/react";
-import { cn } from "cn";
 import useEmblaCarousel, {
     type UseEmblaCarouselType,
 } from "embla-carousel-react";
 import * as React from "react";
 import { Button } from "#/components/shadcn/button.tsx";
+import { cn } from "#/lib/shadcn.utils";
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;

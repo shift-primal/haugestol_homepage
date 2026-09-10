@@ -1,7 +1,7 @@
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
 import { XIcon } from "@phosphor-icons/react";
-import { cn } from "cn";
 import { Button } from "#/components/shadcn/button.tsx";
+import { cn } from "#/lib/shadcn.utils";
 
 function Dialog({ ...props }: DialogPrimitive.Root.Props) {
     return (

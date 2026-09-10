@@ -114,25 +114,27 @@ export const ProjectCard = ({
             </CardHeader>
 
             <CardContent className="mt-auto flex justify-center items-center gap-2">
-                <Button
-                    variant="outline"
-                    size="icon"
-                    className="self-end"
-                    aria-label={m.project_github_aria({
-                        title,
-                    })}
-                    nativeButton={false}
-                    render={(props) => (
-                        <a
-                            {...props}
-                            href={githubHref}
-                            rel="noopener"
-                            target="_blank"
-                        >
-                            <GithubLogoIcon />
-                        </a>
-                    )}
-                />
+                {githubHref && (
+                    <Button
+                        variant="outline"
+                        size="icon"
+                        className="self-end"
+                        aria-label={m.project_github_aria({
+                            title,
+                        })}
+                        nativeButton={false}
+                        render={(props) => (
+                            <a
+                                {...props}
+                                href={githubHref}
+                                rel="noopener"
+                                target="_blank"
+                            >
+                                <GithubLogoIcon />
+                            </a>
+                        )}
+                    />
+                )}
                 <LinkToDemoButton
                     liveHref={liveHref}
                     ctaText={ctaText}

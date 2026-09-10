@@ -1,7 +1,12 @@
 import { ArrowRightIcon } from "@phosphor-icons/react";
 import { useState } from "react";
 import { Button } from "#/components/shadcn/button";
-import { Field, FieldGroup, FieldLabel } from "#/components/shadcn/field";
+import {
+    Field,
+    FieldError,
+    FieldGroup,
+    FieldLabel,
+} from "#/components/shadcn/field";
 import { Input } from "#/components/shadcn/input";
 import { Textarea } from "#/components/shadcn/textarea";
 import { contactFormSchema } from "#/lib/schemas/contact-schema";
@@ -81,9 +86,9 @@ export const MessageForm = () => {
                                 aria-invalid={Boolean(fieldErrors.name)}
                             />
                             {fieldErrors.name && (
-                                <p className="text-xs text-destructive">
+                                <FieldError className="text-xs text-destructive">
                                     {fieldErrors.name}
-                                </p>
+                                </FieldError>
                             )}
                         </Field>
                         <Field>
@@ -103,9 +108,9 @@ export const MessageForm = () => {
                                 aria-invalid={Boolean(fieldErrors.email)}
                             />
                             {fieldErrors.email && (
-                                <p className="text-xs text-destructive">
+                                <FieldError className="text-xs text-destructive">
                                     {fieldErrors.email}
-                                </p>
+                                </FieldError>
                             )}
                         </Field>
                         <Field>
@@ -146,9 +151,9 @@ export const MessageForm = () => {
                             className="flex-1 resize-none"
                         />
                         {fieldErrors.message && (
-                            <p className="text-xs text-destructive">
+                            <FieldError className="text-xs text-destructive">
                                 {fieldErrors.message}
-                            </p>
+                            </FieldError>
                         )}
                     </Field>
                 </div>

@@ -7,7 +7,7 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "#/components/shadcn/carousel";
-import { Dialog, DialogContent } from "#/components/shadcn/dialog";
+import { Dialog, DialogContent, DialogTitle } from "#/components/shadcn/dialog";
 
 export const ProjectLightbox = ({
     title,
@@ -30,6 +30,9 @@ export const ProjectLightbox = ({
         onOpenChange={onOpenChange}
     >
         <DialogContent className="max-w-7xl border-none bg-transparent ring-0 sm:max-w-7xl">
+            <DialogTitle className="sr-only">
+                Lightbox for image carousel
+            </DialogTitle>
             <Carousel
                 opts={{
                     startIndex,

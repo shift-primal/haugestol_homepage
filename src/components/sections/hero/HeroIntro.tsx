@@ -40,6 +40,7 @@ export const HeroIntro = () => {
                 </span>
                 <TypingAnimation
                     className={cn("absolute inset-0", HEADING_CLASSNAME)}
+                    as="h1"
                     instant={skipTyping}
                 >
                     {NAME_WITH_LINE_BREAK}

@@ -1,9 +1,8 @@
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "cn";
-
 import { Separator } from "#/components/shadcn/separator.tsx";
+import { cn } from "#/lib/shadcn.utils";
 
 function ItemGroup({ className, ...props }: React.ComponentProps<"div">) {
     return (
