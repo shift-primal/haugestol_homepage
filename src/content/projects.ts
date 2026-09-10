@@ -41,7 +41,7 @@ export const getProjects = (): Project[] => [
         liveHref: "https://quiz.haugestol.com",
         githubHref: "https://github.com/shift-primal/bfq",
         description: m.project_bfq_description(),
-        images: screenshotsFor("quiz"),
+        images: screenshotsFor("bfq"),
         ctaText: m.project_bfq_cta(),
     },
     {

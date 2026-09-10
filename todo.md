@@ -4,5 +4,5 @@
 - [ ] Volume på sfx (og kutt de)
 - [x] Translation på prøv meg
 - [x] Better carousel (wrap etc)
-- [ ] Better screenshots
+- [x] Better screenshots
 - [x] Label, badge links on project card
