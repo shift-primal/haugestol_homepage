@@ -4,6 +4,7 @@ import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { ThemeProvider } from "next-themes";
 import { Filter } from "#/components/layout/Filter";
 import { Header } from "#/components/layout/Header";
+import { NotFound } from "#/components/layout/NotFound";
 import { PageLoader } from "#/components/layout/PageLoader";
 import { ScrollToTopButton } from "#/components/ui/ScrollToTopButton";
 import { PAGE_SCROLL_CONTAINER_ID } from "#/lib/scroll";
@@ -150,4 +151,5 @@ export const Route = createRootRoute({
         ],
     }),
     shellComponent: RootDocument,
+    notFoundComponent: NotFound,
 });

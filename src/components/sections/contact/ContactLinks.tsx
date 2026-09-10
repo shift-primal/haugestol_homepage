@@ -5,6 +5,7 @@ import {
     GithubLogoIcon,
     LinkedinLogoIcon,
 } from "@phosphor-icons/react";
+import { Fragment } from "react/jsx-runtime";
 import { Separator } from "#/components/shadcn/separator";
 import { SITE } from "#/content";
 import { m } from "#/paraglide/messages";
@@ -43,12 +44,11 @@ export const ContactLinks = () => {
             </div>
             <div className="flex flex-col">
                 {CONTACT_LINKS.map(({ label, href, icon: Icon }, index) => (
-                    <>
+                    <Fragment key={label}>
                         {index !== 0 && (
                             <Separator className="bg-accent/75 my-1" />
                         )}
                         <a
-                            key={label}
                             href={href}
                             target={
                                 href.startsWith("mailto:")
@@ -76,7 +76,7 @@ export const ContactLinks = () => {
                             </span>
                             <ArrowUpRightIcon className="ml-auto size-3.5 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100 duration-150" />
                         </a>
-                    </>
+                    </Fragment>
                 ))}
             </div>
         </div>

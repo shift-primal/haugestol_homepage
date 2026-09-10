@@ -67,7 +67,7 @@ export function WordRotate({
             <AnimatePresence mode="wait">
                 <motion.span
                     key={words[index]}
-                    className={cn(className)}
+                    className={cn("inline-block", className)}
                     {...(prefersReducedMotion
                         ? {
                               initial: false,

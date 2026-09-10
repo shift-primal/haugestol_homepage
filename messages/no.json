@@ -3,6 +3,11 @@
 
 	"meta_description": "Kasper Haugestøl — fullstack-utvikler med fokus på solid struktur og gode brukeropplevelser. Se prosjekter og ta kontakt.",
 
+	"page_not_found_message": "Siden kunne ikke bli funnet",
+	"page_not_found_question": "Hva lette du etter?",
+	"page_not_found_goback": "Vennligst gå tilbake",
+	"page_not_found_now": "nå",
+
 	"suspicious_button_label": "Prøv meg",
 	"lightswitch_aria": "Skru på lyset",
 	"theme_toggle_aria": "Bytt fargetema",
@@ -18,6 +23,12 @@
 	"about_bio": "Fullstack-utvikler under utdanning ved GET Academy. Arbeider med hele stacken — fra database og backend-logikk til grensesnitt og brukeropplevelser. Med vekt på ryddig, gjennomtenkt kode, beveger jeg meg raskt fra idé til utvikling, og drifter egne prosjekter helt ut i produksjon.",
 
 	"skills_heading": "Skills / Verktøy",
+
+"activity_heading": "Aktivitet",
+"activity_commit_aria": "Se siste commit i {repo}",
+"activity_stat_week": "Denne uken",
+"activity_stat_month": "Denne måneden",
+"activity_stat_year": "Dette året",
 
 	"projects_heading": "Prosjekter",
 	"project_github_aria": "{title} på GitHub",
@@ -53,7 +64,7 @@
 
 	"contact_form_submit": "Send melding",
 	"contact_form_submit_success": "Melding sendt - takk!",
-	"contact_form_submit_error": "Noe gikk galt. Vennligst prøv igjen.",
+	"contact_form_submit_error": "Noe gikk galt (sikkert min feil). Vennligst prøv igjen.",
 
 	"contact_or_divider": "eller",
 	"contact_response_time": "Svarer vanligvis innen 24 timer"

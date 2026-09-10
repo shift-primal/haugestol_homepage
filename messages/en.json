@@ -3,6 +3,11 @@
 
 	"meta_description": "Kasper Haugestøl — fullstack developer focused on solid structure and great user experiences. View projects and get in touch.",
 
+	"page_not_found_message": "Page not found",
+	"page_not_found_question": "What were you searching for?",
+	"page_not_found_goback": "Please go back",
+	"page_not_found_now": "now",
+
 	"suspicious_button_label": "Try me",
 	"lightswitch_aria": "Turn on the light",
 	"theme_toggle_aria": "Toggle color theme",
@@ -18,6 +23,12 @@
 	"about_bio": "Fullstack developer training at GET Academy. Working across the whole stack — from database and backend logic to UI and UX. With an emphasis on clean, well structured code, I move quickly from idea to development, and run my own projects all the way into production.",
 
 	"skills_heading": "Skills / Tools",
+
+	"activity_heading": "Activity",
+	"activity_commit_aria": "View latest commit in {repo}",
+	"activity_stat_week": "This week",
+	"activity_stat_month": "This month",
+	"activity_stat_year": "This year",
 
 	"projects_heading": "Projects",
 	"project_github_aria": "{title} on GitHub",

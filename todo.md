@@ -1,6 +1,6 @@
 ## ideas
 
-- [ ] GitHub Contribution stats
+- [x] GitHub Contribution stats
 - [ ] Uses section (editor, terminal, keyboard, dotfiles link)
 - [ ] Timeline / Journey section
 - [ ] Courses taken
