@@ -16,11 +16,11 @@ export const Contact = () => {
                 <MessageForm />
                 <div className="w-full lg:w-auto flex flex-col gap-8 items-center lg:flex-row lg:items-stretch">
                     <div className="flex w-full max-w-md items-center gap-4 pointer-events-auto sm:max-w-full lg:w-auto lg:flex-col lg:self-stretch">
-                        <span className="h-px flex-1 bg-border lg:h-auto lg:w-px" />
-                        <span className="font-mono text-xs tracking-widest text-muted-foreground">
+                        <span className="h-px flex-1 bg-border lg:hidden" />
+                        <span className="font-mono text-xs tracking-widest text-muted-foreground lg:my-auto">
                             {m.contact_or_divider()}
                         </span>
-                        <span className="h-px flex-1 bg-border lg:h-auto lg:w-px" />
+                        <span className="h-px flex-1 bg-border lg:hidden" />
                     </div>
                 </div>
                 <ContactLinks />

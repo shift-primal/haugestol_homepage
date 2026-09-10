@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import {
     ANCHOR_X,
     buildPath,
@@ -191,6 +191,52 @@ export function useRopeCord({
         onReleaseRef.current(armed);
     };
 
+    // Keyboard equivalent of a drag: scripts the knob through the same
+    // "pull past the arm threshold, then let go" path a pointer drag takes,
+    // so Enter/Space gets the same physics, sound, and brightness-dip
+    // feedback as a real tug instead of silently toggling the theme.
+    const simulatePull = useCallback(() => {
+        if (draggingRef.current) return;
+
+        const points = pointsRef.current;
+        const knob = points[points.length - 1];
+        const startY = knob.y;
+        const targetY = startY + config.stretchTrigger + 24;
+        const pullDurationMs = 220;
+        const holdDurationMs = 140;
+
+        draggingRef.current = true;
+        pulledPastThresholdRef.current = false;
+        hasSettledRef.current = true;
+        wakeRef.current();
+
+        const start = performance.now();
+        const animatePull = (time: number) => {
+            if (!draggingRef.current) return;
+            const t = Math.min(1, (time - start) / pullDurationMs);
+            const eased = 1 - (1 - t) ** 3;
+            knob.oldX = knob.x;
+            knob.oldY = knob.y;
+            knob.x = ANCHOR_X;
+            knob.y = startY + (targetY - startY) * eased;
+
+            if (t < 1) {
+                requestAnimationFrame(animatePull);
+            } else {
+                setTimeout(() => {
+                    if (!draggingRef.current) return;
+                    draggingRef.current = false;
+                    const armed = pulledPastThresholdRef.current;
+                    pulledPastThresholdRef.current = false;
+                    onReleaseRef.current(armed);
+                }, holdDurationMs);
+            }
+        };
+        requestAnimationFrame(animatePull);
+    }, [
+        config,
+    ]);
+
     // Static pose for the very first paint, before the loop's first tick runs.
     const initialPose = useMemo(
         () => createFallPoints(config.numPoints),
@@ -215,6 +261,7 @@ export function useRopeCord({
         handlePointerDown,
         handlePointerMove,
         handlePointerUp,
+        simulatePull,
         initialPathD,
         initialKnobX: initialKnob.x,
         initialKnobY: initialKnob.y,

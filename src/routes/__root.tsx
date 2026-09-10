@@ -5,6 +5,8 @@ import { ThemeProvider } from "next-themes";
 import { Filter } from "#/components/layout/Filter";
 import { Header } from "#/components/layout/Header";
 import { PageLoader } from "#/components/layout/PageLoader";
+import { ScrollToTopButton } from "#/components/ui/ScrollToTopButton";
+import { PAGE_SCROLL_CONTAINER_ID } from "#/lib/scroll";
 import { m } from "#/paraglide/messages";
 import {
     baseLocale,
@@ -28,13 +30,17 @@ const RootDocument = ({ children }: { children: React.ReactNode }) => {
             <body className="overflow-hidden">
                 <ThemeProvider attribute="class">
                     <div className="fixed inset-0 flex flex-col">
-                        <div className="min-h-0 flex-1 overflow-y-auto relative w-full">
+                        <div
+                            id={PAGE_SCROLL_CONTAINER_ID}
+                            className="min-h-0 flex-1 overflow-y-auto relative w-full"
+                        >
                             <Header />
                             <main>{children}</main>
                         </div>
                     </div>
                     <Filter />
                     <PageLoader />
+                    <ScrollToTopButton />
                 </ThemeProvider>
                 {/* <TanStackDevtools */}
                 {/* 	plugins={[ */}
@@ -67,11 +73,61 @@ export const Route = createRootRoute({
                 name: "description",
                 content: m.meta_description(),
             },
+            {
+                property: "og:type",
+                content: "website",
+            },
+            {
+                property: "og:url",
+                content: `${SITE_ORIGIN}${localizeHref("/")}`,
+            },
+            {
+                property: "og:title",
+                content: "Kasper Haugestøl - Full-Stack Developer",
+            },
+            {
+                property: "og:description",
+                content: m.meta_description(),
+            },
+            {
+                property: "og:image",
+                content: `${SITE_ORIGIN}/og-image.png`,
+            },
+            {
+                name: "twitter:card",
+                content: "summary_large_image",
+            },
+            {
+                name: "twitter:title",
+                content: "Kasper Haugestøl - Full-Stack Developer",
+            },
+            {
+                name: "twitter:description",
+                content: m.meta_description(),
+            },
+            {
+                name: "twitter:image",
+                content: `${SITE_ORIGIN}/og-image.png`,
+            },
         ],
         links: [
             {
                 rel: "stylesheet",
                 href: appCss,
+            },
+            {
+                rel: "icon",
+                type: "image/svg+xml",
+                href: "/favicon.svg",
+            },
+            {
+                rel: "icon",
+                type: "image/x-icon",
+                href: "/favicon.ico",
+            },
+            {
+                rel: "apple-touch-icon",
+                href: "/apple-touch-icon.png",
             },
             {
                 rel: "canonical",

@@ -65,7 +65,7 @@ export const MessageForm = () => {
         <form
             onSubmit={handleSubmit}
             noValidate
-            className="w-full max-w-md border border-border bg-card/40 p-6 pointer-events-auto sm:max-w-full sm:p-8 backdrop-blur-md lg:flex-2"
+            className="w-full max-w-md border border-border bg-transparent p-6 pointer-events-auto sm:max-w-full sm:p-8 backdrop-blur-md lg:flex-2"
         >
             <FieldGroup className="gap-6">
                 <div className="flex flex-col gap-5 sm:flex-row sm:gap-6">

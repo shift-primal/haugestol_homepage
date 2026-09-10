@@ -25,7 +25,6 @@
     "@tanstack/react-start": "latest",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "cn": "^0.2.4",
     "country-flag-icons": "^1.6.20",
     "dotenv": "^17.4.2",
     "embla-carousel-react": "^8.6.0",

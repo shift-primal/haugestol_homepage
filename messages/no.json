@@ -4,6 +4,11 @@
 	"meta_description": "Kasper Haugestøl — fullstack-utvikler med fokus på solid struktur og gode brukeropplevelser. Se prosjekter og ta kontakt.",
 
 	"suspicious_button_label": "Prøv meg",
+	"lightswitch_aria": "Skru på lyset",
+	"theme_toggle_aria": "Bytt fargetema",
+	"language_switch_to_norwegian_aria": "Bytt språk til norsk",
+	"language_switch_to_english_aria": "Bytt språk til engelsk",
+	"scroll_to_top_aria": "Til toppen",
 
 	"hero_tagline": "Fullstack-utvikler med fokus på solid struktur og gode brukeropplevelser.",
 	"hero_projects_button": "Se prosjekter",
@@ -50,5 +55,6 @@
 	"contact_form_submit_success": "Melding sendt - takk!",
 	"contact_form_submit_error": "Noe gikk galt. Vennligst prøv igjen.",
 
-	"contact_or_divider": "eller"
+	"contact_or_divider": "eller",
+	"contact_response_time": "Svarer vanligvis innen 24 timer"
 }

@@ -1,8 +1,9 @@
-- [x] @resend/node for email
-- [x] Make theme toggle suspicious
-- [?] Position theme toggle and lang toggle better
-- [x] Volume på sfx
-- [x] Translation på prøv meg
-- [x] Better carousel (wrap etc)
-- [x] Better screenshots
-- [x] Label, badge links on project card
+## ideas
+
+- [ ] GitHub Contribution stats
+- [ ] Uses section (editor, terminal, keyboard, dotfiles link)
+- [ ] Timeline / Journey section
+- [ ] Courses taken
+- [ ] Downloadable CV/resume
+- [ ] 404 page
+- [ ] Terminal loading

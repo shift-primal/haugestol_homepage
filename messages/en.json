@@ -4,6 +4,11 @@
 	"meta_description": "Kasper Haugestøl — fullstack developer focused on solid structure and great user experiences. View projects and get in touch.",
 
 	"suspicious_button_label": "Try me",
+	"lightswitch_aria": "Turn on the light",
+	"theme_toggle_aria": "Toggle color theme",
+	"language_switch_to_norwegian_aria": "Switch language to Norwegian",
+	"language_switch_to_english_aria": "Switch language to English",
+	"scroll_to_top_aria": "Scroll to top",
 
 	"hero_tagline": "Fullstack developer focused on solid structure and great user experiences.",
 	"hero_projects_button": "View projects",
@@ -51,5 +56,6 @@
 	"contact_form_submit_success": "Message sent - thanks!",
 	"contact_form_submit_error": "Something went wrong (probably my fault). Please try again.",
 
-	"contact_or_divider": "or"
+	"contact_or_divider": "or",
+	"contact_response_time": "Usually replies within 24h"
 }

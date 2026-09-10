@@ -10,6 +10,7 @@ import {
     KNOB_WIDTH,
     MOBILE_CONFIG,
 } from "#/lib/rope-physics";
+import { m } from "#/paraglide/messages";
 
 // Intensity for the brightness filter applied to the page while pulling down.
 const BRIGHTNESS_FILTER = 0.25;
@@ -42,6 +43,7 @@ export const Rope = () => {
         handlePointerDown,
         handlePointerMove,
         handlePointerUp,
+        simulatePull,
         initialPathD,
         initialKnobX,
         initialKnobY,
@@ -71,11 +73,11 @@ export const Rope = () => {
             }}
         >
             <svg
+                aria-hidden="true"
                 width={CONTAINER_WIDTH}
                 height={config.containerHeight}
                 className="absolute inset-0 overflow-visible"
             >
-                <title>Theme toggle pull cord</title>
                 <path
                     ref={pathRef}
                     d={initialPathD}
@@ -92,11 +94,16 @@ export const Rope = () => {
                     role="switch"
                     tabIndex={0}
                     aria-checked={isDark}
-                    aria-label="Toggle color theme"
+                    aria-label={m.theme_toggle_aria()}
                     onPointerDown={handlePointerDown}
                     onPointerMove={handlePointerMove}
                     onPointerUp={handlePointerUp}
                     onPointerCancel={handlePointerUp}
+                    onKeyDown={(event) => {
+                        if (event.key !== "Enter" && event.key !== " ") return;
+                        event.preventDefault();
+                        simulatePull();
+                    }}
                     onDragStart={(event) => event.preventDefault()}
                     draggable={false}
                     className="pointer-events-auto origin-top touch-none cursor-grab outline-none active:cursor-grabbing focus-visible:ring-1 focus-visible:ring-ring/50 flex justify-center items-start select-none [-webkit-user-drag:none]"
@@ -107,6 +114,7 @@ export const Rope = () => {
                     }}
                 >
                     <svg
+                        aria-hidden="true"
                         width={KNOB_WIDTH}
                         height={KNOB_HEIGHT}
                         viewBox="0 -150 100 150"
@@ -114,7 +122,6 @@ export const Rope = () => {
                         className="text-primary select-none [-webkit-user-drag:none]"
                         onDragStart={(event) => event.preventDefault()}
                     >
-                        <title>Lightswitch knob</title>
                         <path
                             d={KNOB_PATH}
                             fill="currentColor"

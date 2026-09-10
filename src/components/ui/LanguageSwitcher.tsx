@@ -1,6 +1,7 @@
 import { NO, US } from "country-flag-icons/react/3x2";
 import { HERO_SKIP_TYPING_SESSION_KEY } from "#/components/sections/hero/HeroIntro";
 import { Button } from "#/components/shadcn/button";
+import { m } from "#/paraglide/messages";
 import { getLocale, setLocale } from "#/paraglide/runtime";
 
 export const LanguageSwitcher = () => {
@@ -21,8 +22,8 @@ export const LanguageSwitcher = () => {
             }}
             aria-label={
                 nextLocale === "no"
-                    ? "Switch language to Norwegian"
-                    : "Switch language to English"
+                    ? m.language_switch_to_norwegian_aria()
+                    : m.language_switch_to_english_aria()
             }
             className="pointer-events-auto z-50 flex h-8 w-8 items-center justify-center rounded-full bg-foreground/10 text-foreground/60 outline-none transition-colors hover:bg-foreground/20 hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring/50"
         >

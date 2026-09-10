@@ -13,7 +13,7 @@ import { m } from "#/paraglide/messages";
 const SkillCategory = ({ group }: { group: SkillGroup }) => {
     const GroupIcon = group.icon;
     return (
-        <Card className="bg-transparent backdrop-blur-xs">
+        <Card className="bg-transparent backdrop-blur-md">
             <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-muted-foreground tracking-widest">
                     <GroupIcon className="size-4" />

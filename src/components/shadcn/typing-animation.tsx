@@ -15,6 +15,7 @@ import {
     useState,
 } from "react";
 
+import { useMediaQuery } from "#/hooks/useMediaQuery";
 import { cn } from "#/lib/shadcn.utils";
 
 const motionElements = {
@@ -112,9 +113,13 @@ export function TypingAnimation({
     const deletingSpeed = deleteSpeed ?? typingSpeed / 2;
 
     const shouldStart = startOnView ? isInView : true;
+    const prefersReducedMotion = useMediaQuery(
+        "(prefers-reduced-motion: reduce)"
+    );
+    const effectiveInstant = instant || prefersReducedMotion;
 
     useEffect(() => {
-        if (instant) {
+        if (effectiveInstant) {
             setDisplayedText(wordsToAnimate[0] ?? "");
             return;
         }
@@ -123,14 +128,14 @@ export function TypingAnimation({
         setCurrentCharIndex(0);
         setPhase("typing");
     }, [
-        instant,
+        effectiveInstant,
         wordsToAnimate,
     ]);
 
     useEffect(() => {
         let timeout: ReturnType<typeof setTimeout> | null = null;
 
-        if (!instant && shouldStart && wordsToAnimate.length > 0) {
+        if (!effectiveInstant && shouldStart && wordsToAnimate.length > 0) {
             const timeoutDelay =
                 delay > 0 && displayedText === ""
                     ? delay
@@ -194,7 +199,7 @@ export function TypingAnimation({
             }
         };
     }, [
-        instant,
+        effectiveInstant,
         shouldStart,
         phase,
         currentCharIndex,
@@ -210,6 +215,7 @@ export function TypingAnimation({
     ]);
 
     const shouldShowCursor = showCursor;
+    const shouldBlinkCursor = blinkCursor && !prefersReducedMotion;
 
     const getCursorChar = () => {
         switch (cursorStyle) {
@@ -237,7 +243,7 @@ export function TypingAnimation({
                 <span
                     className={cn(
                         "inline-block",
-                        blinkCursor && "animate-blink-cursor"
+                        shouldBlinkCursor && "animate-blink-cursor"
                     )}
                 >
                     {getCursorChar()}

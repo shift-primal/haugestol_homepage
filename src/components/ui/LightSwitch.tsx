@@ -18,7 +18,7 @@ export const LightSwitch = () => {
                     unlockAudioContext();
                     setActivated(true);
                 }}
-                aria-label="Turn on the light"
+                aria-label={m.lightswitch_aria()}
                 className="pointer-events-auto z-50 flex h-8 w-8 items-center justify-center rounded-full bg-foreground/10 text-foreground/60 outline-none transition-colors hover:bg-foreground/20 hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring/50 relative"
             >
                 <QuestionMarkIcon />

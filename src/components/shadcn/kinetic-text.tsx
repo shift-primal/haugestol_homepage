@@ -25,6 +25,7 @@ export function KineticText({
     return (
         <Tag
             {...rest}
+            aria-label={text}
             className={cn("flex flex-wrap font-light", className)}
             style={mergedStyle}
         >
@@ -38,7 +39,6 @@ export function KineticText({
                     {letter === " " ? "\u00A0" : letter}
                 </span>
             ))}
-            <span className="sr-only">{text}</span>
         </Tag>
     );
 }
