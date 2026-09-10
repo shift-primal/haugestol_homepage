@@ -3,6 +3,8 @@
 
 	"meta_description": "Kasper Haugestøl — fullstack developer focused on solid structure and great user experiences. View projects and get in touch.",
 
+	"suspicious_button_label": "Try me",
+
 	"hero_tagline": "Fullstack developer focused on solid structure and great user experiences.",
 	"hero_projects_button": "View projects",
 	"hero_contact_aria": "Contact section",

@@ -1,5 +1,8 @@
 - [x] @resend/node for email
-- [ ] Make theme toggle suspicious
-- [ ] Position theme toggle and lang toggle better
+- [x] Make theme toggle suspicious
+- [?] Position theme toggle and lang toggle better
+- [ ] Volume på sfx (og kutt de)
+- [x] Translation på prøv meg
 - [ ] Better carousel (wrap, autoplay)
 - [ ] Better screenshots
+- [ ] Label on project card

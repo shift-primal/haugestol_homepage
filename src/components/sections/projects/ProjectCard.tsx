@@ -1,5 +1,5 @@
 import { GithubLogoIcon } from "@phosphor-icons/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { LinkToDemoButton } from "#/components/sections/projects/LinkToDemoButton";
 import { ProjectImage } from "#/components/sections/projects/ProjectImage";
 import { ProjectLightbox } from "#/components/sections/projects/ProjectLightbox";
@@ -14,7 +14,6 @@ import {
 } from "#/components/shadcn/card";
 import {
     Carousel,
-    type CarouselApi,
     CarouselContent,
     CarouselItem,
     CarouselNext,
@@ -38,17 +37,6 @@ export const ProjectCard = ({
 
     const [lightboxOpen, setLightboxOpen] = useState(false);
     const [startIndex, setStartIndex] = useState(0);
-    const [lightboxApi, setLightboxApi] = useState<CarouselApi>();
-
-    useEffect(() => {
-        if (lightboxOpen && lightboxApi) {
-            lightboxApi.scrollTo(startIndex, true);
-        }
-    }, [
-        lightboxOpen,
-        lightboxApi,
-        startIndex,
-    ]);
 
     const openLightbox = (index: number) => {
         setStartIndex(index);
@@ -57,7 +45,11 @@ export const ProjectCard = ({
 
     return (
         <Card className="h-full w-full bg-transparent backdrop-blur-lg hover:scale-102 duration-300">
-            <Carousel>
+            <Carousel
+                opts={{
+                    loop: true,
+                }}
+            >
                 <CarouselContent>
                     {imageEntries.map(([id, img], index) => (
                         <CarouselItem key={id}>
@@ -71,6 +63,7 @@ export const ProjectCard = ({
                                         <ProjectImage
                                             img={img}
                                             title={title}
+                                            className="border"
                                         />
                                     </button>
                                 ) : (
@@ -85,11 +78,11 @@ export const ProjectCard = ({
                 </CarouselContent>
                 <CarouselPrevious
                     variant="secondary"
-                    className="left-4 opacity-65"
+                    className="left-4 opacity-65 absolute"
                 />
                 <CarouselNext
                     variant="secondary"
-                    className="right-4 opacity-65"
+                    className="right-4 opacity-65 absolute"
                 />
             </Carousel>
 
@@ -100,7 +93,6 @@ export const ProjectCard = ({
                     open={lightboxOpen}
                     onOpenChange={setLightboxOpen}
                     startIndex={startIndex}
-                    setApi={setLightboxApi}
                 />
             )}
 

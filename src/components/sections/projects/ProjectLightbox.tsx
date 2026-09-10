@@ -2,7 +2,6 @@ import type { Img } from "vite-imagetools";
 import { ProjectImage } from "#/components/sections/projects/ProjectImage";
 import {
     Carousel,
-    type CarouselApi,
     CarouselContent,
     CarouselItem,
     CarouselNext,
@@ -16,7 +15,6 @@ export const ProjectLightbox = ({
     open,
     onOpenChange,
     startIndex,
-    setApi,
 }: {
     title: string;
     imageEntries: [
@@ -26,7 +24,6 @@ export const ProjectLightbox = ({
     open: boolean;
     onOpenChange: (open: boolean) => void;
     startIndex: number;
-    setApi: (api: CarouselApi) => void;
 }) => (
     <Dialog
         open={open}
@@ -34,13 +31,16 @@ export const ProjectLightbox = ({
     >
         <DialogContent className="max-w-7xl border-none bg-transparent ring-0 sm:max-w-7xl">
             <Carousel
-                setApi={setApi}
                 opts={{
                     startIndex,
                     loop: true,
                 }}
-                className="w-full max-w-7xl cursor-default"
+                className="w-full max-w-7xl cursor-default flex gap-6"
             >
+                <CarouselPrevious
+                    variant="secondary"
+                    className="opacity-65"
+                />
                 <CarouselContent>
                     {imageEntries.map(([id, img]) => (
                         <CarouselItem
@@ -55,10 +55,6 @@ export const ProjectLightbox = ({
                         </CarouselItem>
                     ))}
                 </CarouselContent>
-                <CarouselPrevious
-                    variant="secondary"
-                    className="opacity-65"
-                />
                 <CarouselNext
                     variant="secondary"
                     className="opacity-65"
