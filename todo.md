@@ -1,7 +1,7 @@
 - [x] @resend/node for email
 - [x] Make theme toggle suspicious
 - [?] Position theme toggle and lang toggle better
-- [ ] Volume på sfx (og kutt de)
+- [x] Volume på sfx
 - [x] Translation på prøv meg
 - [x] Better carousel (wrap etc)
 - [x] Better screenshots

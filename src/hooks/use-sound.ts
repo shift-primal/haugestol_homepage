@@ -11,7 +11,7 @@ export function useSound(
     options: UseSoundOptions = {}
 ): UseSoundReturn {
     const {
-        volume = 1,
+        volume = 0.5,
         playbackRate = 1,
         interrupt = false,
         soundEnabled = true,
