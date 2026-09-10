@@ -27,11 +27,11 @@ const RootDocument = ({ children }: { children: React.ReactNode }) => {
             </head>
             <body className="overflow-hidden">
                 <ThemeProvider attribute="class">
-                    <Header />
                     <div className="fixed inset-0 flex flex-col">
-                        <main className="min-h-0 flex-1 overflow-y-auto">
-                            {children}
-                        </main>
+                        <div className="min-h-0 flex-1 overflow-y-auto relative w-full">
+                            <Header />
+                            <main>{children}</main>
+                        </div>
                     </div>
                     <Filter />
                     <PageLoader />
