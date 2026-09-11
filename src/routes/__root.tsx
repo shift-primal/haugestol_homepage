@@ -1,6 +1,4 @@
-// import { TanStackDevtools } from "@tanstack/react-devtools";
 import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
-// import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { ThemeProvider } from "next-themes";
 import { Filter } from "#/components/layout/Filter";
 import { Header } from "#/components/layout/Header";
@@ -58,14 +56,6 @@ const RootDocument = ({ children }: { children: React.ReactNode }) => {
                     <PageLoader />
                     <ScrollToTopButton />
                 </ThemeProvider>
-                {/* <TanStackDevtools */}
-                {/* 	plugins={[ */}
-                {/* 		{ */}
-                {/* 			name: "Tanstack Router", */}
-                {/* 			render: <TanStackRouterDevtoolsPanel />, */}
-                {/* 		}, */}
-                {/* 	]} */}
-                {/* /> */}
                 <Scripts />
             </body>
         </html>

@@ -18,17 +18,18 @@
 	"hero_tagline": "Fullstack-utvikler med fokus på solid struktur og gode brukeropplevelser.",
 	"hero_projects_button": "Se prosjekter",
 	"hero_contact_aria": "Kontaktseksjon",
+	"hero_resume": "CV",
 
 	"about_heading": "Om meg",
 	"about_bio": "Fullstack-utvikler under utdanning ved GET Academy. Arbeider med hele stacken — fra database og backend-logikk til grensesnitt og brukeropplevelser. Med vekt på ryddig, gjennomtenkt kode, beveger jeg meg raskt fra idé til utvikling, og drifter egne prosjekter helt ut i produksjon.",
 
 	"skills_heading": "Skills / Verktøy",
 
-"activity_heading": "Aktivitet",
-"activity_commit_aria": "Se siste commit i {repo}",
-"activity_stat_week": "Denne uken",
-"activity_stat_month": "Denne måneden",
-"activity_stat_year": "Dette året",
+	"activity_heading": "Aktivitet",
+	"activity_commit_aria": "Se siste commit i {repo}",
+	"activity_stat_week": "Denne uken",
+	"activity_stat_month": "Denne måneden",
+	"activity_stat_year": "Dette året",
 
 	"projects_heading": "Prosjekter",
 	"project_github_aria": "{title} på GitHub",

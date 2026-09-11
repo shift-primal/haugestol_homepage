@@ -1,7 +1,7 @@
 import {
+    DownloadIcon,
     EnvelopeIcon,
     GithubLogoIcon,
-    LinkedinLogoIcon,
 } from "@phosphor-icons/react";
 import { Button } from "#/components/shadcn/button";
 import { SITE } from "#/content";
@@ -19,6 +19,22 @@ export const HeroActions = () => (
         </Button>
         <Button
             variant="outline"
+            aria-label="LinkedIn"
+            nativeButton={false}
+            render={(props) => (
+                <a
+                    href="/CV_KASPER_HAUGESTØL_SEP_26.pdf"
+                    target="_blank"
+                    rel="noreferrer"
+                    {...props}
+                >
+                    <span>{m.hero_resume()}</span>
+                    <DownloadIcon />
+                </a>
+            )}
+        />
+        <Button
+            variant="outline"
             size="icon-lg"
             aria-label="GitHub"
             nativeButton={false}
@@ -30,22 +46,6 @@ export const HeroActions = () => (
                     {...props}
                 >
                     <GithubLogoIcon />
-                </a>
-            )}
-        />
-        <Button
-            variant="outline"
-            size="icon-lg"
-            aria-label="LinkedIn"
-            nativeButton={false}
-            render={(props) => (
-                <a
-                    href={SITE.linkedin}
-                    target="_blank"
-                    rel="noreferrer"
-                    {...props}
-                >
-                    <LinkedinLogoIcon />
                 </a>
             )}
         />
