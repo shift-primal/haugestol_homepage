@@ -20,8 +20,8 @@ const Home = () => {
                 <Hero />
                 <About />
                 <Skills />
-                <Courses />
                 <Projects />
+                <Courses />
                 <Activity
                     commits={commits}
                     stats={stats}
