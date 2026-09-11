@@ -14,7 +14,7 @@ export const CourseItem = ({
     return (
         <div
             className={cn(
-                "flex items-center gap-3 px-4 py-3",
+                "flex items-center gap-3 px-4 py-3 hover:bg-accent duration-150",
                 index !== totalCourses && "border-b border-border"
             )}
         >

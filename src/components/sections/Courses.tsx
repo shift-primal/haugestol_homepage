@@ -1,4 +1,8 @@
-import { GraduationCapIcon } from "@phosphor-icons/react";
+import {
+    CertificateIcon,
+    GraduationCapIcon,
+    type Icon,
+} from "@phosphor-icons/react";
 import { SectionContainer } from "#/components/layout/SectionContainer";
 import { SectionHeading } from "#/components/layout/SectionHeading";
 import { CourseItem } from "#/components/sections/courses/CourseItem";
@@ -9,20 +13,25 @@ import { m } from "#/paraglide/messages";
 
 const GroupLabel = ({
     text,
+    icon: Icon,
     className,
 }: {
     text: string;
+    icon?: Icon;
     className?: string;
-}) => (
-    <div
-        className={cn(
-            "border-b border-border bg-foreground/5 px-4 py-2 font-mono text-xs font-medium tracking-widest text-muted-foreground uppercase",
-            className
-        )}
-    >
-        {text}
-    </div>
-);
+}) => {
+    return (
+        <div
+            className={cn(
+                "border-b border-border bg-foreground/5 px-4 py-2 font-mono text-xs font-medium tracking-widest text-muted-foreground uppercase flex items-center gap-2",
+                className
+            )}
+        >
+            {Icon && <Icon />}
+            {text}
+        </div>
+    );
+};
 
 export const Courses = () => {
     return (
@@ -31,13 +40,12 @@ export const Courses = () => {
                 text={m.courses_heading()}
                 kicker="// courses-and-certificates"
             />
-            <Card className="bg-transparent backdrop-blur-md py-1">
-                <div className="flex items-center gap-2 border-border px-4 pt-4 font-mono text-xs tracking-wide text-muted-foreground justify">
-                    <GraduationCapIcon className="size-4" />
-                    {m.courses_note()}
-                </div>
+            <Card className="bg-transparent backdrop-blur-md py-0">
                 <CardContent className="flex flex-col px-0">
-                    <GroupLabel text={m.courses_group_courses()} />
+                    <GroupLabel
+                        text={m.courses_group_courses()}
+                        icon={GraduationCapIcon}
+                    />
                     {COURSES.map((course, index) => (
                         <CourseItem
                             key={course.title}
@@ -48,6 +56,7 @@ export const Courses = () => {
                     ))}
                     <GroupLabel
                         text={m.courses_group_certificates()}
+                        icon={CertificateIcon}
                         className="border-t"
                     />
                     {CERTIFICATES.map((certificate, index) => (
