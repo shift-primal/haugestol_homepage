@@ -23,7 +23,7 @@ export const HeroActions = () => (
             nativeButton={false}
             render={(props) => (
                 <a
-                    href="/CV_KASPER_HAUGESTØL_SEP_26.pdf"
+                    href="/CV_KH_26.pdf"
                     target="_blank"
                     rel="noreferrer"
                     {...props}
