@@ -25,6 +25,11 @@
 
 	"skills_heading": "Skills / Verktøy",
 
+	"courses_heading": "Kurs",
+	"courses_note": "Ferdigheter bygget utenfor klasserommet",
+	"courses_group_courses": "Kurs",
+	"courses_group_certificates": "Sertifikater",
+
 	"activity_heading": "Aktivitet",
 	"activity_commit_aria": "Se siste commit i {repo}",
 	"activity_stat_week": "Denne uken",

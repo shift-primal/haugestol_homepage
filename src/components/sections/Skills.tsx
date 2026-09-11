@@ -1,52 +1,8 @@
 import { SectionContainer } from "#/components/layout/SectionContainer";
 import { SectionHeading } from "#/components/layout/SectionHeading";
-import { Badge } from "#/components/shadcn/badge";
-import {
-    Card,
-    CardContent,
-    CardHeader,
-    CardTitle,
-} from "#/components/shadcn/card";
-import { SKILLS, type SkillGroup } from "#/content";
+import { SkillCategory } from "#/components/sections/skills/SkillCategory";
+import { SKILLS } from "#/content";
 import { m } from "#/paraglide/messages";
-
-const SkillCategory = ({ group }: { group: SkillGroup }) => {
-    const GroupIcon = group.icon;
-    return (
-        <Card className="bg-transparent backdrop-blur-md">
-            <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-muted-foreground tracking-widest">
-                    <GroupIcon className="size-4" />
-                    {group.category.toUpperCase()}
-                </CardTitle>
-            </CardHeader>
-            <CardContent className="flex flex-wrap gap-2">
-                {group.skills.map((skill) => {
-                    const SkillIcon = skill.icon;
-                    return (
-                        <Badge
-                            key={skill.title}
-                            variant="outline"
-                            className="gap-1.5 hover:scale-105 transition-transform duration-300 select-none"
-                        >
-                            <SkillIcon
-                                className="size-3"
-                                style={
-                                    skill.color
-                                        ? {
-                                              color: skill.color,
-                                          }
-                                        : undefined
-                                }
-                            />
-                            {skill.title}
-                        </Badge>
-                    );
-                })}
-            </CardContent>
-        </Card>
-    );
-};
 
 export const Skills = () => {
     return (

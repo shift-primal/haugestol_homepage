@@ -4,6 +4,7 @@ import { PageContainer } from "#/components/layout/PageContainer";
 import { About } from "#/components/sections/About";
 import { Activity } from "#/components/sections/Activity";
 import { Contact } from "#/components/sections/Contact";
+import { Courses } from "#/components/sections/Courses";
 import { Hero } from "#/components/sections/Hero";
 import { Projects } from "#/components/sections/Projects";
 import { Skills } from "#/components/sections/Skills";
@@ -15,10 +16,11 @@ const Home = () => {
     return (
         <PageContainer>
             <GridBackground />
-            <div className="mt-24 mb-12 lg:mt-32">
+            <div className="mt-24 mb-2 lg:mb-8 lg:mt-32">
                 <Hero />
                 <About />
                 <Skills />
+                <Courses />
                 <Projects />
                 <Activity
                     commits={commits}

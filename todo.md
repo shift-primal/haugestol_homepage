@@ -4,8 +4,8 @@
 - [x] Icons/public assets
 - [x] SEO
 - [x] 404 page
+- [x] Downloadable CV/resume
+- [x] Courses taken
 - [ ] Uses section (editor, terminal, keyboard, dotfiles link)
 - [ ] Timeline / Journey section
-- [ ] Courses taken
-- [ ] Downloadable CV/resume
-- [ ] Terminal loading
+- [c] Terminal loading

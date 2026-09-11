@@ -25,6 +25,11 @@
 
 	"skills_heading": "Skills / Tools",
 
+	"courses_heading": "Courses",
+	"courses_note": "Skills built outside the classroom",
+	"courses_group_courses": "Courses",
+	"courses_group_certificates": "Certificates",
+
 	"activity_heading": "Activity",
 	"activity_commit_aria": "View latest commit in {repo}",
 	"activity_stat_week": "This week",
