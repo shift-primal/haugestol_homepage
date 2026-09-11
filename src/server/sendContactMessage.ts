@@ -24,6 +24,7 @@ export const sendContactMessage = createServerFn({
         });
 
         if (error) {
+            console.error("[sendContactMessage] Resend error:", error);
             throw new Error(error.message);
         }
 
