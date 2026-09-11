@@ -8,7 +8,7 @@ export const sendContactMessage = createServerFn({
     .validator(contactFormSchema)
     .handler(async ({ data }) => {
         const { error } = await resend.emails.send({
-            from: "contact@portfolio.haugestol.com",
+            from: "contact@haugestol.com",
             to: "kasper@haugestol.com",
             replyTo: data.email,
             subject: `New message from ${data.name}`,
