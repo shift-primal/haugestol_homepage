@@ -7,6 +7,7 @@ import { Header } from "#/components/layout/Header";
 import { NotFound } from "#/components/layout/NotFound";
 import { PageLoader } from "#/components/layout/PageLoader";
 import { ScrollToTopButton } from "#/components/ui/ScrollToTopButton";
+import { SITE } from "#/content";
 import { PAGE_SCROLL_CONTAINER_ID } from "#/lib/scroll";
 import { m } from "#/paraglide/messages";
 import {
@@ -18,6 +19,20 @@ import {
 import appCss from "../styles.css?url";
 
 const SITE_ORIGIN = "https://haugestol.com";
+
+const personSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: SITE.name,
+    url: SITE_ORIGIN,
+    image: `${SITE_ORIGIN}/og-image.png`,
+    jobTitle: "Full-Stack Developer",
+    email: `mailto:${SITE.email}`,
+    sameAs: [
+        SITE.github,
+        SITE.linkedin,
+    ],
+};
 
 const RootDocument = ({ children }: { children: React.ReactNode }) => {
     return (
@@ -118,6 +133,12 @@ export const Route = createRootRoute({
             },
             {
                 rel: "icon",
+                type: "image/png",
+                sizes: "96x96",
+                href: "/favicon-96x96.png",
+            },
+            {
+                rel: "icon",
                 type: "image/svg+xml",
                 href: "/favicon.svg",
             },
@@ -129,6 +150,10 @@ export const Route = createRootRoute({
             {
                 rel: "apple-touch-icon",
                 href: "/apple-touch-icon.png",
+            },
+            {
+                rel: "manifest",
+                href: "/site.webmanifest",
             },
             {
                 rel: "canonical",
@@ -147,6 +172,12 @@ export const Route = createRootRoute({
                 href: `${SITE_ORIGIN}${localizeHref("/", {
                     locale: baseLocale,
                 })}`,
+            },
+        ],
+        scripts: [
+            {
+                type: "application/ld+json",
+                children: JSON.stringify(personSchema),
             },
         ],
     }),

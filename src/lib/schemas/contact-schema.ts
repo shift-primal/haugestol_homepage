@@ -9,6 +9,8 @@ export const contactFormSchema = z.object({
         .optional()
         .transform((value) => value || undefined),
     message: z.string().trim().min(10),
+    // honeypot — must stay empty; bots that fill every field trip it
+    company: z.string().max(0).optional(),
 });
 
 export type ContactFormValues = z.infer<typeof contactFormSchema>;

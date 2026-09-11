@@ -68,6 +68,19 @@ export const MessageForm = () => {
             className="w-full max-w-md border border-border bg-transparent p-6 pointer-events-auto sm:max-w-full sm:p-8 backdrop-blur-md lg:flex-2"
         >
             <FieldGroup className="gap-6">
+                <div
+                    aria-hidden="true"
+                    className="absolute left-[-9999px] top-auto h-0 w-0 overflow-hidden"
+                >
+                    <label htmlFor="contact-company">Company</label>
+                    <input
+                        id="contact-company"
+                        name="company"
+                        type="text"
+                        tabIndex={-1}
+                        autoComplete="off"
+                    />
+                </div>
                 <div className="flex flex-col gap-5 sm:flex-row sm:gap-6">
                     <div className="flex flex-col gap-5 sm:w-56 sm:shrink-0">
                         <Field>

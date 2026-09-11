@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://haugestol.com/</loc>
+    <xhtml:link rel="alternate" hreflang="no" href="https://haugestol.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://haugestol.com/en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://haugestol.com/" />
+  </url>
+  <url>
+    <loc>https://haugestol.com/en</loc>
+    <xhtml:link rel="alternate" hreflang="no" href="https://haugestol.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://haugestol.com/en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://haugestol.com/" />
+  </url>
+</urlset>
