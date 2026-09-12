@@ -44,7 +44,7 @@ export const ProjectCard = ({
     };
 
     return (
-        <Card className="h-full w-full bg-glass">
+        <Card className="h-full w-full bg-glass hover-lift">
             <Carousel
                 opts={{
                     loop: true,

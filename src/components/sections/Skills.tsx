@@ -1,6 +1,6 @@
 import { SectionContainer } from "#/components/layout/SectionContainer";
 import { SectionHeading } from "#/components/layout/SectionHeading";
-import { SkillCategory } from "#/components/sections/skills/SkillCategory";
+import { SkillCategoryCard } from "#/components/sections/skills/SkillCategoryCard";
 import { SKILLS } from "#/content";
 import { m } from "#/paraglide/messages";
 
@@ -17,7 +17,7 @@ export const Skills = () => {
                         key={sg.category}
                         className="sm:mb-8 sm:break-inside-avoid"
                     >
-                        <SkillCategory group={sg} />
+                        <SkillCategoryCard group={sg} />
                     </div>
                 ))}
             </div>

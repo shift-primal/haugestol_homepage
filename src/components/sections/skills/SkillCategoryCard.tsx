@@ -7,10 +7,10 @@ import {
 } from "#/components/shadcn/card";
 import type { SkillGroup } from "#/content";
 
-export const SkillCategory = ({ group }: { group: SkillGroup }) => {
+export const SkillCategoryCard = ({ group }: { group: SkillGroup }) => {
     const GroupIcon = group.icon;
     return (
-        <Card className="bg-glass">
+        <Card className="bg-glass hover-lift">
             <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-muted-foreground tracking-widest">
                     <GroupIcon className="size-4" />

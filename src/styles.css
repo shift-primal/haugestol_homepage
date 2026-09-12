@@ -9,6 +9,10 @@
   @apply bg-transparent backdrop-blur-md;
 }
 
+@utility hover-lift {
+  @apply hover:scale-102 duration-200;
+}
+
 * {
   box-sizing: border-box;
 }
