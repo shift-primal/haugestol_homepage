@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { decodeAudioData, getAudioContext } from "@/lib/sound-engine";
+import { decodeAudioData, getAudioContext } from "#/lib/sound-engine";
 import type {
     SoundAsset,
     UseSoundOptions,
     UseSoundReturn,
-} from "@/lib/sound-types";
+} from "#/lib/sound-types";
 
 export function useSound(
     sound: SoundAsset,

@@ -1,10 +1,4 @@
-import {
-    ArrowUpRightIcon,
-    DiscordLogoIcon,
-    EnvelopeIcon,
-    GithubLogoIcon,
-    LinkedinLogoIcon,
-} from "@phosphor-icons/react";
+import { ArrowUpRightIcon } from "@phosphor-icons/react";
 import { Fragment } from "react";
 import {
     Item,
@@ -15,31 +9,8 @@ import {
     ItemSeparator,
     ItemTitle,
 } from "#/components/shadcn/item";
-import { SITE } from "#/content";
+import { CONTACT_LINKS } from "#/content/contact";
 import { m } from "#/paraglide/messages";
-
-const CONTACT_LINKS = [
-    {
-        label: "GitHub",
-        href: SITE.github,
-        icon: GithubLogoIcon,
-    },
-    {
-        label: "LinkedIn",
-        href: SITE.linkedin,
-        icon: LinkedinLogoIcon,
-    },
-    {
-        label: "Discord",
-        href: SITE.discord,
-        icon: DiscordLogoIcon,
-    },
-    {
-        label: SITE.email,
-        href: `mailto:${SITE.email}`,
-        icon: EnvelopeIcon,
-    },
-];
 
 export const ContactLinks = () => {
     return (

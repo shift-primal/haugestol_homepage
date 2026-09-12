@@ -12,6 +12,8 @@ export const LanguageSwitcher = () => {
     return (
         <Button
             type="button"
+            variant="pill"
+            size="icon"
             onClick={() => {
                 try {
                     sessionStorage.setItem(HERO_SKIP_TYPING_SESSION_KEY, "1");
@@ -25,7 +27,7 @@ export const LanguageSwitcher = () => {
                     ? m.language_switch_to_norwegian_aria()
                     : m.language_switch_to_english_aria()
             }
-            className="pointer-events-auto z-50 flex h-8 w-8 items-center justify-center rounded-full bg-foreground/10 text-foreground/60 outline-none transition-colors hover:bg-foreground/20 hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring/50"
+            className="z-50"
         >
             <CurrentFlag className="size-3 rounded-[1px]" />
         </Button>

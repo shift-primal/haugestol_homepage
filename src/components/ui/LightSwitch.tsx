@@ -14,12 +14,14 @@ export const LightSwitch = () => {
             <Button
                 id="lightswitch-button"
                 type="button"
+                variant="pill"
+                size="icon"
                 onClick={() => {
                     unlockAudioContext();
                     setActivated(true);
                 }}
                 aria-label={m.lightswitch_aria()}
-                className="pointer-events-auto z-50 flex h-8 w-8 items-center justify-center rounded-full bg-foreground/10 text-foreground/60 outline-none transition-colors hover:bg-foreground/20 hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring/50 relative"
+                className="relative z-50"
             >
                 <QuestionMarkIcon />
                 <Label

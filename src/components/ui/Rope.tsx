@@ -106,7 +106,7 @@ export const Rope = () => {
                     }}
                     onDragStart={(event) => event.preventDefault()}
                     draggable={false}
-                    className="pointer-events-auto origin-top touch-none cursor-grab outline-none active:cursor-grabbing focus-visible:ring-1 focus-visible:ring-ring/50 flex justify-center items-start select-none [-webkit-user-drag:none]"
+                    className="pointer-events-auto origin-top touch-none cursor-grab outline-none active:cursor-grabbing focus-ring flex justify-center items-start select-none [-webkit-user-drag:none]"
                     style={{
                         width: config.hitboxWidth,
                         height: config.hitboxHeight,

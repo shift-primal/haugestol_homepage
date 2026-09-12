@@ -1,6 +1,6 @@
 import switchOffUrl from "#/assets/sfx/switch-off.mp3";
 import switchOnUrl from "#/assets/sfx/switch-on.mp3";
-import { useSound } from "#/hooks/use-sound";
+import { useSound } from "#/hooks/useSound";
 import type { SoundAsset } from "#/lib/sound-types";
 
 const switchOnSound: SoundAsset = {

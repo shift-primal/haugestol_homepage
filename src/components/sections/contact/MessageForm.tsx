@@ -1,5 +1,4 @@
 import { ArrowRightIcon } from "@phosphor-icons/react";
-import { useState } from "react";
 import { Button } from "#/components/shadcn/button";
 import { Card, CardContent } from "#/components/shadcn/card";
 import {
@@ -10,57 +9,11 @@ import {
 } from "#/components/shadcn/field";
 import { Input } from "#/components/shadcn/input";
 import { Textarea } from "#/components/shadcn/textarea";
-import { contactFormSchema } from "#/lib/schemas/contact-schema";
+import { useContactForm } from "#/hooks/useContactForm";
 import { m } from "#/paraglide/messages";
-import { sendContactMessage } from "#/server/sendContactMessage";
-
-type Status = "idle" | "pending" | "success" | "error";
-
-const fieldErrorMessages = {
-    name: m.contact_form_name_error,
-    email: m.contact_form_email_error,
-    message: m.contact_form_message_error,
-} as const;
-
-type FieldErrors = Partial<Record<keyof typeof fieldErrorMessages, string>>;
 
 export const MessageForm = () => {
-    const [status, setStatus] = useState<Status>("idle");
-    const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
-
-    const handleSubmit = async (event: React.SubmitEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const form = event.currentTarget;
-        const values = Object.fromEntries(new FormData(form));
-        const result = contactFormSchema.safeParse(values);
-
-        if (!result.success) {
-            const errors: FieldErrors = {};
-            for (const issue of result.error.issues) {
-                const field = issue.path[0];
-                if (typeof field === "string" && field in fieldErrorMessages) {
-                    errors[field as keyof FieldErrors] =
-                        fieldErrorMessages[
-                            field as keyof typeof fieldErrorMessages
-                        ]();
-                }
-            }
-            setFieldErrors(errors);
-            return;
-        }
-
-        setFieldErrors({});
-        setStatus("pending");
-        try {
-            await sendContactMessage({
-                data: result.data,
-            });
-            setStatus("success");
-            form.reset();
-        } catch {
-            setStatus("error");
-        }
-    };
+    const { status, fieldErrors, handleSubmit } = useContactForm();
 
     return (
         <Card className="w-full max-w-md bg-glass py-0 pointer-events-auto sm:max-w-full lg:flex-2">
@@ -70,6 +23,7 @@ export const MessageForm = () => {
             >
                 <CardContent className="p-6 sm:p-8">
                     <FieldGroup className="gap-6">
+                        {/* honeypot field */}
                         <div
                             aria-hidden="true"
                             className="absolute left-[-9999px] top-auto h-0 w-0 overflow-hidden"
@@ -85,7 +39,7 @@ export const MessageForm = () => {
                         </div>
                         <div className="flex flex-col gap-5 sm:flex-row sm:gap-6">
                             <div className="flex flex-col gap-5 sm:w-56 sm:shrink-0">
-                                <Field>
+                                <Field data-invalid={Boolean(fieldErrors.name)}>
                                     <FieldLabel htmlFor="contact-name">
                                         <span
                                             aria-hidden
@@ -106,7 +60,9 @@ export const MessageForm = () => {
                                         </FieldError>
                                     )}
                                 </Field>
-                                <Field>
+                                <Field
+                                    data-invalid={Boolean(fieldErrors.email)}
+                                >
                                     <FieldLabel htmlFor="contact-email">
                                         <span
                                             aria-hidden
@@ -150,7 +106,10 @@ export const MessageForm = () => {
                                     />
                                 </Field>
                             </div>
-                            <Field className="sm:flex-1">
+                            <Field
+                                className="sm:flex-1"
+                                data-invalid={Boolean(fieldErrors.message)}
+                            >
                                 <FieldLabel htmlFor="contact-message">
                                     <span
                                         aria-hidden
