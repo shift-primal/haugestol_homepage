@@ -33,7 +33,7 @@ export const NotFound = () => {
                 <span
                     aria-hidden={!show}
                     className={cn(
-                        "inline-block transition-all duration-300 ease-out",
+                        "inline-block transition-all duration-slow ease-out",
                         show
                             ? "translate-y-0 opacity-100"
                             : "translate-y-3 opacity-0"

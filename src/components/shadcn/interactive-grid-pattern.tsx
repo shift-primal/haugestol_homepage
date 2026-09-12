@@ -66,7 +66,7 @@ export function InteractiveGridPattern({
                                     width={cellWidth}
                                     height={cellHeight}
                                     className={cn(
-                                        "fill-transparent stroke-gray-400/30 transition-[fill] duration-50 ease-in-out",
+                                        "fill-transparent stroke-gray-400/30 transition-[fill] duration-fast ease-in-out",
                                         "lg:hover:fill-gray-600/10 lg:hover:dark:fill-gray-300/10 lg:not-[&:hover]:duration-1000",
                                         squaresClassName
                                     )}

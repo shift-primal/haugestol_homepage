@@ -33,7 +33,7 @@ export const ScrollToTopButton = () => {
             onClick={scrollPageToTop}
             aria-label={m.scroll_to_top_aria()}
             className={cn(
-                "fixed right-4 bottom-4 z-50 duration-300 sm:right-8 sm:bottom-8",
+                "fixed right-4 bottom-4 z-50 duration-slow sm:right-8 sm:bottom-8",
                 visible
                     ? "opacity-100"
                     : "pointer-events-none translate-y-2 opacity-0"

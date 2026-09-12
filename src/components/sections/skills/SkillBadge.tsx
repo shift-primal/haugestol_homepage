@@ -8,7 +8,7 @@ export const SkillBadge = ({ skill }: { skill: Skill }) => {
         <Badge
             key={skill.title}
             variant="outline"
-            className="gap-1.5 hover:scale-105 transition-transform duration-300 select-none"
+            className="gap-1.5 hover:scale-105 transition-transform duration-slow select-none"
         >
             <SkillIcon
                 className="size-3"

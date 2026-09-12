@@ -29,7 +29,7 @@ export const HeroActions = () => (
                     {...props}
                 >
                     <span>{m.hero_resume()}</span>
-                    <DownloadIcon />
+                    <DownloadIcon data-icon="inline-end" />
                 </a>
             )}
         />

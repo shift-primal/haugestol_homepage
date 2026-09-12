@@ -33,7 +33,7 @@ export const LinkToDemoButton = ({
                             target="_blank"
                         >
                             <span>{ctaText}</span>
-                            <ArrowRightIcon />
+                            <ArrowRightIcon data-icon="inline-end" />
                         </a>
                     )}
                 />

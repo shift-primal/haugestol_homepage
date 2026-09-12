@@ -139,7 +139,7 @@ export const MessageForm = () => {
                             disabled={status === "pending"}
                         >
                             <span>{m.contact_form_submit()}</span>
-                            <ArrowRightIcon />
+                            <ArrowRightIcon data-icon="inline-end" />
                         </Button>
                         {status === "success" && (
                             <p className="text-sm text-muted-foreground">

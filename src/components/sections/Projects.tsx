@@ -34,7 +34,7 @@ export const Projects = () => {
                             {...props}
                         >
                             {m.project_more_projects()}
-                            <GithubLogoIcon />
+                            <GithubLogoIcon data-icon="inline-end" />
                         </a>
                     )}
                 />
