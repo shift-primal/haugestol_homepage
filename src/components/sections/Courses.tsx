@@ -3,10 +3,13 @@ import {
     GraduationCapIcon,
     type Icon,
 } from "@phosphor-icons/react";
+import { Fragment } from "react";
 import { SectionContainer } from "#/components/layout/SectionContainer";
 import { SectionHeading } from "#/components/layout/SectionHeading";
 import { CourseItem } from "#/components/sections/courses/CourseItem";
 import { Card, CardContent } from "#/components/shadcn/card";
+import { ItemGroup, ItemSeparator } from "#/components/shadcn/item";
+import type { Course } from "#/content";
 import { CERTIFICATES, COURSES } from "#/content";
 import { cn } from "#/lib/shadcn.utils";
 import { m } from "#/paraglide/messages";
@@ -33,6 +36,17 @@ const GroupLabel = ({
     );
 };
 
+const CourseGroup = ({ items }: { items: Course[] }) => (
+    <ItemGroup className="gap-0">
+        {items.map((item, index) => (
+            <Fragment key={item.title}>
+                {index !== 0 && <ItemSeparator className="my-0" />}
+                <CourseItem course={item} />
+            </Fragment>
+        ))}
+    </ItemGroup>
+);
+
 export const Courses = () => {
     return (
         <SectionContainer sectionName="courses">
@@ -40,33 +54,19 @@ export const Courses = () => {
                 text={m.courses_heading()}
                 kicker="// courses-and-certificates"
             />
-            <Card className="bg-transparent backdrop-blur-md py-0">
-                <CardContent className="flex flex-col px-0">
+            <Card className="bg-glass py-0">
+                <CardContent className="px-0">
                     <GroupLabel
                         text={m.courses_group_courses()}
                         icon={GraduationCapIcon}
                     />
-                    {COURSES.map((course, index) => (
-                        <CourseItem
-                            key={course.title}
-                            course={course}
-                            index={index}
-                            totalCourses={COURSES.length - 1}
-                        />
-                    ))}
+                    <CourseGroup items={COURSES} />
                     <GroupLabel
                         text={m.courses_group_certificates()}
                         icon={CertificateIcon}
                         className="border-t"
                     />
-                    {CERTIFICATES.map((certificate, index) => (
-                        <CourseItem
-                            key={certificate.title}
-                            course={certificate}
-                            index={index}
-                            totalCourses={CERTIFICATES.length - 1}
-                        />
-                    ))}
+                    <CourseGroup items={CERTIFICATES} />
                 </CardContent>
             </Card>
         </SectionContainer>

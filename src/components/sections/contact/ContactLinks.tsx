@@ -5,8 +5,16 @@ import {
     GithubLogoIcon,
     LinkedinLogoIcon,
 } from "@phosphor-icons/react";
-import { Fragment } from "react/jsx-runtime";
-import { Separator } from "#/components/shadcn/separator";
+import { Fragment } from "react";
+import {
+    Item,
+    ItemActions,
+    ItemContent,
+    ItemGroup,
+    ItemMedia,
+    ItemSeparator,
+    ItemTitle,
+} from "#/components/shadcn/item";
 import { SITE } from "#/content";
 import { m } from "#/paraglide/messages";
 
@@ -42,43 +50,52 @@ export const ContactLinks = () => {
                     {m.contact_response_time()}
                 </span>
             </div>
-            <div className="flex flex-col">
+            <ItemGroup className="gap-0">
                 {CONTACT_LINKS.map(({ label, href, icon: Icon }, index) => (
                     <Fragment key={label}>
                         {index !== 0 && (
-                            <Separator className="bg-accent/75 my-1" />
+                            <ItemSeparator className="my-1 bg-accent/75" />
                         )}
-                        <a
-                            href={href}
-                            target={
-                                href.startsWith("mailto:")
-                                    ? undefined
-                                    : "_blank"
-                            }
-                            rel={
-                                href.startsWith("mailto:")
-                                    ? undefined
-                                    : "noreferrer"
-                            }
-                            className="group flex items-center gap-3 border-border py-2 transition-colors duration-150"
+                        <Item
+                            className="rounded-none px-0 py-2"
+                            render={(props) => (
+                                <a
+                                    {...props}
+                                    href={href}
+                                    target={
+                                        href.startsWith("mailto:")
+                                            ? undefined
+                                            : "_blank"
+                                    }
+                                    rel={
+                                        href.startsWith("mailto:")
+                                            ? undefined
+                                            : "noreferrer"
+                                    }
+                                />
+                            )}
                         >
-                            <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-foreground/10 text-foreground/70 transition-colors group-hover:bg-foreground/20 group-hover:text-foreground duration-150">
-                                <Icon className="size-4" />
-                            </span>
-                            <span
-                                aria-hidden
-                                className="text-muted-foreground"
-                            >
-                                {">"}
-                            </span>
-                            <span className="font-mono text-sm text-foreground/90 transition-colors group-hover:text-foreground duration-150">
-                                {label}
-                            </span>
-                            <ArrowUpRightIcon className="ml-auto size-3.5 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100 duration-150" />
-                        </a>
+                            <ItemMedia variant="icon-circle">
+                                <Icon />
+                            </ItemMedia>
+                            <ItemContent className="min-w-0 flex-row items-center gap-2">
+                                <span
+                                    aria-hidden
+                                    className="text-muted-foreground"
+                                >
+                                    {">"}
+                                </span>
+                                <ItemTitle className="font-mono text-foreground/90">
+                                    {label}
+                                </ItemTitle>
+                            </ItemContent>
+                            <ItemActions>
+                                <ArrowUpRightIcon className="size-3.5 text-muted-foreground opacity-0 transition-opacity group-hover/item:opacity-100" />
+                            </ItemActions>
+                        </Item>
                     </Fragment>
                 ))}
-            </div>
+            </ItemGroup>
         </div>
     );
 };

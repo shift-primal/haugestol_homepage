@@ -10,7 +10,7 @@ import type { SkillGroup } from "#/content";
 export const SkillCategory = ({ group }: { group: SkillGroup }) => {
     const GroupIcon = group.icon;
     return (
-        <Card className="bg-transparent backdrop-blur-md">
+        <Card className="bg-glass">
             <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-muted-foreground tracking-widest">
                     <GroupIcon className="size-4" />

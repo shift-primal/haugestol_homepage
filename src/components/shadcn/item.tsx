@@ -92,6 +92,8 @@ const itemMediaVariants = cva(
             variant: {
                 default: "bg-transparent",
                 icon: "[&_svg:not([class*='size-'])]:size-4",
+                "icon-circle":
+                    "size-8 rounded-full bg-foreground/10 text-foreground/70 transition-colors group-hover/item:bg-foreground/20 group-hover/item:text-foreground [&_svg:not([class*='size-'])]:size-4",
                 image: "size-10 overflow-hidden rounded-none group-data-[size=sm]/item:size-8 group-data-[size=xs]/item:size-6 [&_img]:size-full [&_img]:object-cover",
             },
         },

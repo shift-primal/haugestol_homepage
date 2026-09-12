@@ -1,32 +1,27 @@
+import {
+    Item,
+    ItemActions,
+    ItemContent,
+    ItemMedia,
+    ItemTitle,
+} from "#/components/shadcn/item";
 import type { Course } from "#/content";
-import { cn } from "#/lib/shadcn.utils";
 
-export const CourseItem = ({
-    course,
-    index,
-    totalCourses,
-}: {
-    course: Course;
-    index: number;
-    totalCourses: number;
-}) => {
+export const CourseItem = ({ course }: { course: Course }) => {
     const ProviderIcon = course.icon;
     return (
-        <div
-            className={cn(
-                "flex items-center gap-3 px-4 py-3 hover:bg-accent duration-150",
-                index !== totalCourses && "border-b border-border"
-            )}
-        >
-            <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-foreground/10 text-foreground/70">
-                <ProviderIcon className="size-4" />
-            </span>
-            <span className="flex min-w-0 flex-1 flex-col">
-                <span className="truncate font-mono text-sm text-foreground/90">
-                    {course.provider} | {course.title} -{" "}
-                    <span className="text-muted-foreground">{course.year}</span>
-                </span>
-            </span>
-        </div>
+        <Item className="rounded-none px-4 py-3 hover:bg-muted">
+            <ItemMedia variant="icon-circle">
+                <ProviderIcon />
+            </ItemMedia>
+            <ItemContent className="min-w-0">
+                <ItemTitle className="font-mono text-foreground/90">
+                    {course.provider} | {course.title}
+                </ItemTitle>
+            </ItemContent>
+            <ItemActions className="font-mono text-muted-foreground">
+                {course.year}
+            </ItemActions>
+        </Item>
     );
 };

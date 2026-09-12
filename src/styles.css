@@ -5,6 +5,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@utility bg-glass {
+  @apply bg-transparent backdrop-blur-md;
+}
+
 * {
   box-sizing: border-box;
 }
