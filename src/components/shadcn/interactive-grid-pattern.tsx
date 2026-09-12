@@ -49,7 +49,7 @@ export function InteractiveGridPattern({
                     aria-hidden
                     width={columns * cellWidth}
                     height={rows * cellHeight}
-                    className="border-gray-400/30 select-none pointer-events-none sm:pointer-events-auto"
+                    className="border-foreground select-none pointer-events-none sm:pointer-events-auto"
                 >
                     {Array.from(
                         {
@@ -66,8 +66,8 @@ export function InteractiveGridPattern({
                                     width={cellWidth}
                                     height={cellHeight}
                                     className={cn(
-                                        "fill-transparent stroke-gray-400/30 transition-[fill] duration-fast ease-in-out",
-                                        "lg:hover:fill-gray-600/10 lg:hover:dark:fill-gray-300/10 lg:not-[&:hover]:duration-1000",
+                                        "fill-transparent stroke-foreground/30 transition-[fill] duration-fast ease-in-out",
+                                        "lg:hover:fill-foreground/30 lg:not-[&:hover]:duration-1000",
                                         squaresClassName
                                     )}
                                 />

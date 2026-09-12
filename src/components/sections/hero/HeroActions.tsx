@@ -13,7 +13,7 @@ const scrollToSection = (id: string) =>
     });
 
 export const HeroActions = () => (
-    <div className="flex flex-wrap items-center gap-3 pointer-events-auto">
+    <div className="flex flex-wrap items-center gap-3 pointer-events-auto w-fit">
         <Button onClick={() => scrollToSection("projects")}>
             {m.hero_projects_button()}
         </Button>

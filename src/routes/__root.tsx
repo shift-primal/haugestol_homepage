@@ -46,7 +46,7 @@ const RootDocument = ({ children }: { children: React.ReactNode }) => {
                     <div className="fixed inset-0 flex flex-col">
                         <div
                             id={PAGE_SCROLL_CONTAINER_ID}
-                            className="min-h-0 flex-1 overflow-y-auto relative w-full"
+                            className="min-h-0 flex-1 overflow-y-auto overflow-x-clip relative w-full"
                         >
                             <Header />
                             <main>{children}</main>

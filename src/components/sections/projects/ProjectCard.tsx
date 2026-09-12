@@ -57,13 +57,12 @@ export const ProjectCard = ({
                                 {isDesktop ? (
                                     <button
                                         type="button"
-                                        className="block w-full cursor-zoom-in"
+                                        className="block w-full cursor-zoom-in outline-none focus-ring"
                                         onClick={() => openLightbox(index)}
                                     >
                                         <ProjectImage
                                             img={img}
                                             title={title}
-                                            className="border"
                                         />
                                     </button>
                                 ) : (
