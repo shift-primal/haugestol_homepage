@@ -103,9 +103,15 @@ export const ProjectCard = ({
                         <Badge
                             variant="outline"
                             className="inline"
-                        >
-                            {badge}
-                        </Badge>
+                            render={(props) => (
+                                <a
+                                    {...props}
+                                    href={badge.href}
+                                >
+                                    {badge.title}
+                                </a>
+                            )}
+                        />
                     )}
                 </div>
 

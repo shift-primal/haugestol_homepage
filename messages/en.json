@@ -42,16 +42,19 @@
 	"project_more_projects": "Check out more projects",
 
 	"project_pokedex_description": "Full Pokédex built on PokéAPI — virtualized search, evolution chains, per-form details, and advanced filtering.",
-	"project_pokedex_cta": "Check the project live!",
+	"project_pokedex_cta": "Try it live!",
 
 	"project_bfq_description": "A personal trivia quiz — how well do you know Kasper? Dynamic scoring, store-based state, with a live leaderboard.",
-	"project_bfq_cta": "Check the project live!",
+	"project_bfq_cta": "Try it live!",
 
 	"project_groovehaus_description": "A concept for a vinyl, music gear, and instrument store — cart, auth, and Stripe checkout.",
 	"project_groovehaus_cta": "Coming soon!",
 
+	"project_ws_description": "A personal finance dashboard. Import a bank CSV, get every transaction categorized automatically, then filter and chart where your money goes. Built on txcategorizer.",
+	"project_ws_cta": "Try it live!",
+
 	"project_txcategorizer_description": "Parses and categorizes bank transactions into structured, fully typed data. CSV in, transactions out.",
-	"project_txcategorizer_badge": "Demo app coming soon!",
+	"project_txcategorizer_badge": "Demo app available!",
 	"project_txcategorizer_cta": "See it on npmjs.com!",
 
 	"contact_heading": "Contact",

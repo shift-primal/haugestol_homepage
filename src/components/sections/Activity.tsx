@@ -26,7 +26,7 @@ export const Activity = ({
                 text={m.activity_heading()}
                 kicker="// recent-github-activity"
             />
-            <Card className="bg-glass py-0">
+            <Card className="bg-glass py-0 gap-0">
                 <ActivityStats stats={stats} />
                 <CardContent className="px-0">
                     <ItemGroup className="gap-0">

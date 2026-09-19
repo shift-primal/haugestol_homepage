@@ -1,9 +1,14 @@
 import type { Img } from "vite-imagetools";
 import { m } from "#/paraglide/messages";
 
+export interface Badge {
+    title: string;
+    href: string;
+}
+
 export interface Project {
     title: string;
-    badge?: string;
+    badge?: Badge;
     liveHref?: string;
     githubHref?: string;
     description: string;
@@ -44,13 +49,21 @@ export const getProjects = (): Project[] => [
         images: screenshotsFor("bfq"),
         ctaText: m.project_bfq_cta(),
     },
+    // {
+    //     title: "Groovehaus",
+    //     githubHref: "https://github.com/shift-primal/groovehaus",
+    //     // liveHref: "https://example.com", - Not live
+    //     description: m.project_groovehaus_description(),
+    //     images: screenshotsFor("groovehaus"),
+    //     ctaText: m.project_groovehaus_cta(),
+    // },
     {
-        title: "Groovehaus",
-        githubHref: "https://github.com/shift-primal/groovehaus",
-        // liveHref: "https://example.com", - Not live
-        description: m.project_groovehaus_description(),
-        images: screenshotsFor("groovehaus"),
-        ctaText: m.project_groovehaus_cta(),
+        title: "wastescope",
+        githubHref: "https://github.com/shift-primal/ws",
+        liveHref: "https://ws.haugestol.com",
+        description: m.project_ws_description(),
+        images: screenshotsFor("ws"),
+        ctaText: m.project_ws_cta(),
     },
     {
         title: "txcategorizer",
@@ -59,6 +72,9 @@ export const getProjects = (): Project[] => [
         description: m.project_txcategorizer_description(),
         images: screenshotsFor("txcategorizer"),
         ctaText: m.project_txcategorizer_cta(),
-        badge: m.project_txcategorizer_badge(),
+        badge: {
+            title: m.project_txcategorizer_badge(),
+            href: "https://ws.haugestol.com",
+        },
     },
 ];

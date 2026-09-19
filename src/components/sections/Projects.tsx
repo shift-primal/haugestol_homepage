@@ -24,7 +24,7 @@ export const Projects = () => {
                     variant="outline"
                     aria-label="GitHub"
                     nativeButton={false}
-                    className="col-span-full gap-3"
+                    className="col-span-full gap-3 bg-glass"
                     render={(props) => (
                         <a
                             href={SITE.github}

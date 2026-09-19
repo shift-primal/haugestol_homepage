@@ -41,16 +41,19 @@
 	"project_more_projects": "Sjekk ut flere prosjekter",
 
 	"project_pokedex_description": "Full Pokédex bygget på PokéAPI — virtualized search, evolution chains, per-form details og avansert filtrering.",
-	"project_pokedex_cta": "Se prosjektet live!",
+	"project_pokedex_cta": "Prøv det live!",
 
 	"project_bfq_description": "Personlig trivia quiz — hvor godt kjenner du Kasper? Dynamisk score, store-based state, med live leaderboard.",
-	"project_bfq_cta": "Se prosjektet live!",
+	"project_bfq_cta": "Prøv det live!",
 
 	"project_groovehaus_description": "Et konsept for en nettbutikk for vinyl, musikkutstyr, og instrumenter — handlevogn, auth, og Stripe checkout.",
 	"project_groovehaus_cta": "Kommer snart!",
 
+	"project_ws_description": "Et dashboard for personlig økonomi. Importer en bank-CSV, få alle transaksjoner kategorisert automatisk, og filtrer og se hvor pengene går. Bygget på txcategorizer.",
+	"project_ws_cta": "Prøv det live!",
+
 	"project_txcategorizer_description": "Parser og kategoriserer banktransaksjoner til strukturerte og fully typed data. CSV in, transaksjoner ut.",
-	"project_txcategorizer_badge": "Demo app kommer snart!",
+	"project_txcategorizer_badge": "Demo app tilgjengelig!",
 	"project_txcategorizer_cta": "Se på npmjs.com!",
 
 	"contact_heading": "Kontakt",
