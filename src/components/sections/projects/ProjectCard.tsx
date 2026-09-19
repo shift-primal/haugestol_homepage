@@ -63,6 +63,7 @@ export const ProjectCard = ({
                                         <ProjectImage
                                             img={img}
                                             title={title}
+                                            className="border"
                                         />
                                     </button>
                                 ) : (
