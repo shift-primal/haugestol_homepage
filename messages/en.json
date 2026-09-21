@@ -31,9 +31,9 @@
 
 	"activity_heading": "Activity",
 	"activity_commit_aria": "View latest commit in {repo}",
-	"activity_stat_week": "This week",
-	"activity_stat_month": "This month",
-	"activity_stat_year": "This year",
+	"activity_stat_week": "Last 7 days",
+	"activity_stat_month": "Last 30 days",
+	"activity_stat_year": "Last 365 days",
 
 	"projects_heading": "Projects",
 	"project_github_aria": "{title} on GitHub",

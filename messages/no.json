@@ -31,9 +31,9 @@
 
 	"activity_heading": "Aktivitet",
 	"activity_commit_aria": "Se siste commit i {repo}",
-	"activity_stat_week": "Denne uken",
-	"activity_stat_month": "Denne måneden",
-	"activity_stat_year": "Dette året",
+	"activity_stat_week": "Siste 7 dager",
+	"activity_stat_month": "Siste 30 dager",
+	"activity_stat_year": "Siste 365 dager",
 
 	"projects_heading": "Prosjekter",
 	"project_github_aria": "{title} på GitHub",
