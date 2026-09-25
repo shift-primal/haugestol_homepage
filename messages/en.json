@@ -44,6 +44,9 @@
 	"project_pokedex_description": "Full Pokédex built on PokéAPI — virtualized search, evolution chains, per-form details, and advanced filtering.",
 	"project_pokedex_cta": "Try it live!",
 
+	"project_spot_description": "A collaborative drawing canvas — one shared 32,768 × 32,768 px world. Built to learn more about websockets. Draw together in real time with live cursors.",
+	"project_spot_cta": "Try it live!",
+
 	"project_bfq_description": "A personal trivia quiz — how well do you know Kasper? Dynamic scoring, store-based state, with a live leaderboard.",
 	"project_bfq_cta": "Try it live!",
 

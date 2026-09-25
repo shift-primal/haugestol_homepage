@@ -43,6 +43,9 @@
 	"project_pokedex_description": "Full Pokédex bygget på PokéAPI — virtualized search, evolution chains, per-form details og avansert filtrering.",
 	"project_pokedex_cta": "Prøv det live!",
 
+	"project_spot_description": "Et stort lerret — én delt verden på 32 768 × 32 768 px. Bygget for å lære mer om websockets. Tegn sammen i sanntid med live cursors, tile-based streaming, og SQLite-lagring.",
+	"project_spot_cta": "Prøv det live!",
+
 	"project_bfq_description": "Personlig trivia quiz — hvor godt kjenner du Kasper? Dynamisk score, store-based state, med live leaderboard.",
 	"project_bfq_cta": "Prøv det live!",
 

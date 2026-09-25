@@ -42,6 +42,14 @@ export const getProjects = (): Project[] => [
         ctaText: m.project_pokedex_cta(),
     },
     {
+        title: "spot",
+        liveHref: "https://spot.haugestol.com",
+        githubHref: "https://github.com/shift-primal/spot",
+        description: m.project_spot_description(),
+        images: screenshotsFor("spot"),
+        ctaText: m.project_spot_cta(),
+    },
+    {
         title: "BFQ",
         liveHref: "https://quiz.haugestol.com",
         githubHref: "https://github.com/shift-primal/bfq",
@@ -49,14 +57,14 @@ export const getProjects = (): Project[] => [
         images: screenshotsFor("bfq"),
         ctaText: m.project_bfq_cta(),
     },
-    // {
-    //     title: "Groovehaus",
-    //     githubHref: "https://github.com/shift-primal/groovehaus",
-    //     // liveHref: "https://example.com", - Not live
-    //     description: m.project_groovehaus_description(),
-    //     images: screenshotsFor("groovehaus"),
-    //     ctaText: m.project_groovehaus_cta(),
-    // },
+    {
+        title: "Groovehaus",
+        githubHref: "https://github.com/shift-primal/groovehaus",
+        // liveHref: "https://example.com", - Not live
+        description: m.project_groovehaus_description(),
+        images: screenshotsFor("groovehaus"),
+        ctaText: m.project_groovehaus_cta(),
+    },
     {
         title: "wastescope",
         githubHref: "https://github.com/shift-primal/ws",
