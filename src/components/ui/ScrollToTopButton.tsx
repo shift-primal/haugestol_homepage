@@ -33,10 +33,10 @@ export const ScrollToTopButton = () => {
             onClick={scrollPageToTop}
             aria-label={m.scroll_to_top_aria()}
             className={cn(
-                "fixed right-4 bottom-4 z-50 duration-slow sm:right-8 sm:bottom-8",
+                "fixed right-4 bottom-4 z-50 duration-slow sm:right-8 sm:bottom-8 print:hidden",
                 visible
                     ? "opacity-100"
-                    : "pointer-events-none translate-y-2 opacity-0"
+                    : "pointer-events-none translate-y-2 opacity-0 motion-reduce:translate-y-0"
             )}
         >
             <ArrowUpIcon />

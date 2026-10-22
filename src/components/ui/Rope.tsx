@@ -10,6 +10,7 @@ import {
     KNOB_WIDTH,
     MOBILE_CONFIG,
 } from "#/lib/rope-physics";
+import { unlockAudioContext } from "#/lib/sound-engine";
 import { m } from "#/paraglide/messages";
 
 // Intensity for the brightness filter applied to the page while pulling down.
@@ -26,11 +27,9 @@ L 88 0
 Q 100 0 97.65 -11.77
 Z`;
 
-// The pull cord that toggles the color theme. Always falls into its resting
-// hang on mount — see useRopeCord — so it should only be mounted once
-// there's already been a user gesture to unlock the AudioContext.
 export const Rope = () => {
     const isMobile = useMediaQuery("(max-width: 639px)");
+    const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
     const config = isMobile ? MOBILE_CONFIG : DESKTOP_CONFIG;
 
     const { isDark, toggle } = useThemeTransition();
@@ -50,6 +49,7 @@ export const Rope = () => {
         initialKnobAngleDeg,
     } = useRopeCord({
         config,
+        reducedMotion,
         onStretchArmed: () => {
             setPullFilter(BRIGHTNESS_FILTER);
             playDragDown();
@@ -58,7 +58,14 @@ export const Rope = () => {
             setPullFilter(null);
             if (armed) {
                 playDragUp();
-                toggle();
+                // the new theme spreads out from where the knob hangs
+                const knob = knobRef.current?.getBoundingClientRect();
+                toggle(
+                    knob && {
+                        x: knob.left + knob.width / 2,
+                        y: knob.top + knob.height / 2,
+                    }
+                );
             }
         },
     });
@@ -66,7 +73,7 @@ export const Rope = () => {
     return (
         <div
             ref={containerRef}
-            className="pointer-events-none z-50 -mt-8 drop-shadow-xs drop-shadow-foreground/25"
+            className="pointer-events-none relative z-50 -mt-8"
             style={{
                 width: CONTAINER_WIDTH,
                 height: config.containerHeight,
@@ -95,13 +102,17 @@ export const Rope = () => {
                     tabIndex={0}
                     aria-checked={isDark}
                     aria-label={m.theme_toggle_aria()}
-                    onPointerDown={handlePointerDown}
+                    onPointerDown={(event) => {
+                        unlockAudioContext();
+                        handlePointerDown(event);
+                    }}
                     onPointerMove={handlePointerMove}
                     onPointerUp={handlePointerUp}
                     onPointerCancel={handlePointerUp}
                     onKeyDown={(event) => {
                         if (event.key !== "Enter" && event.key !== " ") return;
                         event.preventDefault();
+                        unlockAudioContext();
                         simulatePull();
                     }}
                     onDragStart={(event) => event.preventDefault()}

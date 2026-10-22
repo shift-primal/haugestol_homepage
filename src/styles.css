@@ -2,23 +2,89 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/jetbrains-mono";
+@import "@fontsource/poppins/300.css";
+@import "@fontsource/poppins/400.css";
+@import "@fontsource/poppins/500.css";
+@import "@fontsource/poppins/600.css";
 
 @custom-variant dark (&:is(.dark *));
-
-@utility bg-glass {
-  @apply bg-transparent backdrop-blur-md;
-}
 
 @utility hover-lift {
   @apply hover:scale-102 duration-base;
 }
 
 @utility focus-ring {
-  @apply focus-visible:border-ring focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:duration-fast;
+  @apply focus-visible:border-ring focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring focus-visible:duration-fast;
 }
 
+/* map-label halo: a soft glow in the page colour clears the metaballs from
+   behind text. It is invisible on the plain background. Filled controls
+   carry their own background, so they opt out */
+@utility text-halo {
+  text-shadow:
+    0 0 0.15em var(--background),
+    0 0 0.4em var(--background),
+    0 0 0.8em var(--background);
+
+  &
+    :where(
+      [data-slot="button"],
+      [data-slot="card"],
+      [data-slot="input"],
+      [data-slot="textarea"]
+    ) {
+    text-shadow: none;
+  }
+}
+
+/* full-width rows: draw the outline inside so a clipping parent can't cut it off */
 @utility focus-ring-lg {
-  @apply focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:duration-fast;
+  @apply focus-visible:outline-solid focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ring focus-visible:duration-fast;
+}
+
+/* CV document (/cv): its own print-first design, ported from ~/jobbsok/resume */
+@theme {
+  --color-cv-navy: #323d53;
+  --color-cv-accent: #dce8fb;
+  --color-cv-ink: #1a1a1a;
+  --color-cv-muted: #6b7280;
+  --color-cv-paper: #ffffff;
+
+  --font-cv-body: "Poppins", sans-serif;
+  --font-cv-name:
+    "TeX Gyre Heros", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  --text-cv-name: 32pt;
+  --text-cv-role: 13pt;
+  --text-cv-heading: 11pt;
+  --text-cv-title: 10.5pt;
+  --text-cv-body: 8.5pt;
+  --text-cv-small: 7.8pt;
+}
+
+@font-face {
+  font-family: "TeX Gyre Heros";
+  src: url("./assets/fonts/texgyreheros-regular.otf") format("opentype");
+  font-weight: 400;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "TeX Gyre Heros";
+  src: url("./assets/fonts/texgyreheros-bold.otf") format("opentype");
+  font-weight: 700;
+  font-display: block;
+}
+
+@page cv {
+  size: A4;
+  margin: 0;
+}
+
+@utility cv-heading-underline {
+  background:
+    linear-gradient(var(--color-cv-navy), var(--color-cv-navy)) left bottom /
+    10mm 0.6mm no-repeat;
 }
 
 * {
@@ -38,20 +104,8 @@ body {
 @theme inline {
   --font-heading: var(--font-mono);
   --font-mono: "JetBrains Mono Variable", monospace;
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
   --color-ring: var(--ring);
+  --color-signal: var(--signal);
   --color-input: var(--input);
   --color-border: var(--border);
   --color-destructive: var(--destructive);
@@ -101,32 +155,20 @@ body {
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.7117 0.1885 42.6);
+  --primary-foreground: oklch(0.18 0.02 40);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
+  --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
+  --ring: oklch(0.66 0.215 38);
+  --signal: oklch(0.58 0.18 40);
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
 }
 
 .dark {
@@ -136,31 +178,19 @@ body {
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
+  --primary: oklch(0.71 0.185 44);
+  --primary-foreground: oklch(0.18 0.02 40);
+  --signal: oklch(0.74 0.165 46);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
   --muted-foreground: oklch(0.708 0 0);
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --ring: oklch(0.71 0.185 44);
 }
 
 @layer base {
@@ -168,7 +198,7 @@ body {
     @apply border-border outline-ring/50 duration-0;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground print:bg-transparent;
   }
   button:not(:disabled):not([data-disabled]),
   [role="button"]:not(:disabled):not([data-disabled]) {
@@ -177,4 +207,79 @@ body {
   html {
     @apply font-mono;
   }
+  ::selection {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+  }
+  input,
+  textarea {
+    caret-color: var(--primary);
+  }
+  #page-scroll {
+    scrollbar-color: color-mix(in oklch, var(--foreground) 22%, transparent)
+      transparent;
+  }
+}
+
+/* Disclosures (<details class="disclosure">): the panel slides open, faster
+   to close than to open, and rows marked .disclosure-row print in one after
+   another like terminal lines. Browsers without ::details-content just open
+   instantly. Reduced motion keeps only the fade. */
+.disclosure {
+  interpolate-size: allow-keywords;
+}
+
+.disclosure::details-content {
+  block-size: 0;
+  overflow-y: clip;
+  transition:
+    block-size 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    content-visibility 200ms allow-discrete;
+}
+
+.disclosure[open]::details-content {
+  block-size: auto;
+  transition-duration: 300ms;
+}
+
+.disclosure[open] .disclosure-row {
+  animation: disclosure-row 300ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--row, 0) * 25ms);
+}
+
+@keyframes disclosure-row {
+  from {
+    opacity: 0;
+    translate: 0 -4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .disclosure::details-content {
+    transition: none;
+  }
+
+  .disclosure[open] .disclosure-row {
+    animation-name: disclosure-fade;
+    animation-delay: 0ms;
+  }
+}
+
+@keyframes disclosure-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+/* Pulling the cord: the new theme spreads out from the knob like light from
+   a lamp (see useThemeTransition). The browser's default crossfade is off so
+   only that circle moves; clicks pass through while it plays. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition {
+  pointer-events: none;
 }

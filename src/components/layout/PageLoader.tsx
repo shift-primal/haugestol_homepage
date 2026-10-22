@@ -10,7 +10,7 @@ export const PageLoader = () => {
                 id="page-loader-fallback"
                 aria-hidden
                 className={cn(
-                    "fixed inset-0 z-100 flex items-center justify-center bg-background transition-opacity duration-slow ease-out",
+                    "fixed inset-0 z-100 flex items-center justify-center bg-background transition-opacity duration-slow ease-out print:hidden",
                     hidden ? "pointer-events-none opacity-0" : "opacity-100"
                 )}
             >

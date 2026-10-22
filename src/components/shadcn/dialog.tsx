@@ -2,6 +2,7 @@ import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
 import { XIcon } from "@phosphor-icons/react";
 import { Button } from "#/components/shadcn/button.tsx";
 import { cn } from "#/lib/shadcn.utils";
+import { m } from "#/paraglide/messages";
 
 function Dialog({ ...props }: DialogPrimitive.Root.Props) {
     return (
@@ -59,17 +60,21 @@ function DialogContent({
     className,
     children,
     showCloseButton = true,
+    overlayClassName,
+    closeButtonClassName,
     ...props
 }: DialogPrimitive.Popup.Props & {
     showCloseButton?: boolean;
+    overlayClassName?: string;
+    closeButtonClassName?: string;
 }) {
     return (
         <DialogPortal>
-            <DialogOverlay />
+            <DialogOverlay className={overlayClassName} />
             <DialogPrimitive.Popup
                 data-slot="dialog-content"
                 className={cn(
-                    "fixed top-1/2 left-1/2 z-50 grid w-full max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 gap-4 rounded-none bg-popover p-4 text-xs/relaxed text-popover-foreground ring-1 ring-foreground/10 duration-fast outline-none sm:max-w-sm data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
+                    "fixed top-1/2 left-1/2 z-50 grid w-full max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 gap-4 rounded-none bg-popover p-4 text-xs/relaxed text-popover-foreground ring-1 ring-foreground/10 duration-fast outline-none sm:max-w-sm data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95 motion-reduce:animate-none",
                     className
                 )}
                 {...props}
@@ -81,13 +86,16 @@ function DialogContent({
                         render={
                             <Button
                                 variant="ghost"
-                                className="absolute top-2 right-2"
+                                className={cn(
+                                    "absolute top-2 right-2",
+                                    closeButtonClassName
+                                )}
                                 size="icon-sm"
                             />
                         }
                     >
                         <XIcon />
-                        <span className="sr-only">Close</span>
+                        <span className="sr-only">{m.common_close()}</span>
                     </DialogPrimitive.Close>
                 )}
             </DialogPrimitive.Popup>

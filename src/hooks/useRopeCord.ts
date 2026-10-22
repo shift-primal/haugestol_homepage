@@ -22,6 +22,8 @@ interface UseRopeCordOptions {
     onStretchArmed: () => void;
     /** Fires on pointer release; `armed` is true if the pull had cleared the threshold. */
     onRelease: (armed: boolean) => void;
+    /** prefers-reduced-motion: hang straight, no fall-in, no swing after release. */
+    reducedMotion?: boolean;
 }
 
 // Drives the verlet rope simulation and drag interaction for a cord that
@@ -31,6 +33,7 @@ export function useRopeCord({
     config,
     onStretchArmed,
     onRelease,
+    reducedMotion = false,
 }: UseRopeCordOptions) {
     const containerRef = useRef<HTMLDivElement>(null);
     const pathRef = useRef<SVGPathElement>(null);
@@ -61,6 +64,12 @@ export function useRopeCord({
             pointsRef.current = hasSettledRef.current
                 ? createPoints(config.numPoints)
                 : createFallPoints(config.numPoints);
+        }
+
+        // reduced motion: skip the fall-in and start at rest
+        if (reducedMotion && !hasSettledRef.current) {
+            pointsRef.current = createPoints(config.numPoints);
+            hasSettledRef.current = true;
         }
 
         const points = pointsRef.current;
@@ -152,7 +161,18 @@ export function useRopeCord({
         return () => cancelAnimationFrame(rafId);
     }, [
         config,
+        reducedMotion,
     ]);
+
+    // reduced motion: put the cord straight back at rest instead of letting
+    // it swing out the energy of the release
+    const snapToRest = () => {
+        const rest = createPoints(config.numPoints);
+        pointsRef.current.forEach((point, index) => {
+            Object.assign(point, rest[index]);
+        });
+        wakeRef.current();
+    };
 
     const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
         event.currentTarget.setPointerCapture(event.pointerId);
@@ -188,6 +208,7 @@ export function useRopeCord({
         event.currentTarget.releasePointerCapture(event.pointerId);
         const armed = pulledPastThresholdRef.current;
         pulledPastThresholdRef.current = false;
+        if (reducedMotion) snapToRest();
         onReleaseRef.current(armed);
     };
 
@@ -197,6 +218,13 @@ export function useRopeCord({
     // feedback as a real tug instead of silently toggling the theme.
     const simulatePull = useCallback(() => {
         if (draggingRef.current) return;
+
+        // reduced motion: same feedback (sound, dip, toggle), no scripted tug
+        if (reducedMotion) {
+            onStretchArmedRef.current();
+            onReleaseRef.current(true);
+            return;
+        }
 
         const points = pointsRef.current;
         const knob = points[points.length - 1];
@@ -235,13 +263,18 @@ export function useRopeCord({
         requestAnimationFrame(animatePull);
     }, [
         config,
+        reducedMotion,
     ]);
 
     // Static pose for the very first paint, before the loop's first tick runs.
     const initialPose = useMemo(
-        () => createFallPoints(config.numPoints),
+        () =>
+            reducedMotion
+                ? createPoints(config.numPoints)
+                : createFallPoints(config.numPoints),
         [
             config.numPoints,
+            reducedMotion,
         ]
     );
     const initialPathD = buildPath(initialPose, 1);

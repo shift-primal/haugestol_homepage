@@ -1,36 +1,50 @@
 import {
-    DownloadIcon,
+    ArrowRightIcon,
     EnvelopeIcon,
+    FileTextIcon,
     GithubLogoIcon,
 } from "@phosphor-icons/react";
+import { Link } from "@tanstack/react-router";
 import { Button } from "#/components/shadcn/button";
 import { SITE } from "#/content";
+import { scrollBehavior } from "#/lib/scroll";
 import { m } from "#/paraglide/messages";
 
 const scrollToSection = (id: string) =>
     document.getElementById(id)?.scrollIntoView({
-        behavior: "smooth",
+        behavior: scrollBehavior(),
     });
 
 export const HeroActions = () => (
     <div className="flex flex-wrap items-center gap-3 pointer-events-auto w-fit">
-        <Button onClick={() => scrollToSection("projects")}>
-            {m.hero_projects_button()}
-        </Button>
+        {/* the homepage's projects start right below the hero, so this goes
+            to the full list instead of scrolling a few pixels */}
         <Button
-            variant="outline"
-            aria-label="LinkedIn"
+            size="lg"
+            className="px-4"
             nativeButton={false}
             render={(props) => (
-                <a
-                    href="/CV_KH_26.pdf"
-                    target="_blank"
-                    rel="noreferrer"
+                <Link
                     {...props}
+                    to="/projects"
+                >
+                    <span>{m.hero_projects_button()}</span>
+                    <ArrowRightIcon data-icon="inline-end" />
+                </Link>
+            )}
+        />
+        <Button
+            variant="outline"
+            size="lg"
+            nativeButton={false}
+            render={(props) => (
+                <Link
+                    {...props}
+                    to="/cv"
                 >
                     <span>{m.hero_resume()}</span>
-                    <DownloadIcon data-icon="inline-end" />
-                </a>
+                    <FileTextIcon data-icon="inline-end" />
+                </Link>
             )}
         />
         <Button

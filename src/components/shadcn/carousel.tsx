@@ -4,7 +4,9 @@ import useEmblaCarousel, {
 } from "embla-carousel-react";
 import * as React from "react";
 import { Button } from "#/components/shadcn/button.tsx";
+import { useMediaQuery } from "#/hooks/useMediaQuery";
 import { cn } from "#/lib/shadcn.utils";
+import { m } from "#/paraglide/messages";
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -23,8 +25,11 @@ type CarouselContextProps = {
     api: ReturnType<typeof useEmblaCarousel>[1];
     scrollPrev: () => void;
     scrollNext: () => void;
+    scrollTo: (index: number) => void;
     canScrollPrev: boolean;
     canScrollNext: boolean;
+    selectedIndex: number;
+    slideCount: number;
 } & CarouselProps;
 
 const CarouselContext = React.createContext<CarouselContextProps | null>(null);
@@ -55,26 +60,44 @@ function Carousel({
         },
         plugins
     );
+    // reduced motion: jump straight to a slide instead of animating there
+    const jump = useMediaQuery("(prefers-reduced-motion: reduce)");
     const [canScrollPrev, setCanScrollPrev] = React.useState(false);
     const [canScrollNext, setCanScrollNext] = React.useState(false);
+    const [selectedIndex, setSelectedIndex] = React.useState(0);
+    const [slideCount, setSlideCount] = React.useState(0);
 
     const onSelect = React.useCallback((api: CarouselApi) => {
         if (!api) return;
         setCanScrollPrev(api.canScrollPrev());
         setCanScrollNext(api.canScrollNext());
+        setSelectedIndex(api.selectedScrollSnap());
+        setSlideCount(api.scrollSnapList().length);
     }, []);
 
     const scrollPrev = React.useCallback(() => {
-        api?.scrollPrev();
+        api?.scrollPrev(jump);
     }, [
         api,
+        jump,
     ]);
 
     const scrollNext = React.useCallback(() => {
-        api?.scrollNext();
+        api?.scrollNext(jump);
     }, [
         api,
+        jump,
     ]);
+
+    const scrollTo = React.useCallback(
+        (index: number) => {
+            api?.scrollTo(index, jump);
+        },
+        [
+            api,
+            jump,
+        ]
+    );
 
     const handleKeyDown = React.useCallback(
         (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -108,6 +131,7 @@ function Carousel({
 
         return () => {
             api?.off("select", onSelect);
+            api?.off("reInit", onSelect);
         };
     }, [
         api,
@@ -125,8 +149,11 @@ function Carousel({
                     (opts?.axis === "y" ? "vertical" : "horizontal"),
                 scrollPrev,
                 scrollNext,
+                scrollTo,
                 canScrollPrev,
                 canScrollNext,
+                selectedIndex,
+                slideCount,
             }}
         >
             {/** biome-ignore lint/a11y/useSemanticElements: <not-my-code> */}
@@ -210,7 +237,7 @@ function CarouselPrevious({
             {...props}
         >
             <CaretLeftIcon />
-            <span className="sr-only">Previous slide</span>
+            <span className="sr-only">{m.carousel_previous()}</span>
         </Button>
     );
 }
@@ -241,8 +268,73 @@ function CarouselNext({
             {...props}
         >
             <CaretRightIcon />
-            <span className="sr-only">Next slide</span>
+            <span className="sr-only">{m.carousel_next()}</span>
         </Button>
+    );
+}
+
+// Position dots: the touch-friendly alternative to the arrow buttons. The
+// visible dot is small; each button keeps a finger-sized hit area.
+function CarouselDots({ className }: { className?: string }) {
+    const { scrollTo, selectedIndex, slideCount } = useCarousel();
+    if (slideCount < 2) return null;
+
+    return (
+        <div
+            data-slot="carousel-dots"
+            className={cn("flex justify-center", className)}
+        >
+            {Array.from(
+                {
+                    length: slideCount,
+                },
+                (_, index) => (
+                    <button
+                        // biome-ignore lint/suspicious/noArrayIndexKey: dots are positional
+                        key={index}
+                        type="button"
+                        aria-label={m.carousel_go_to({
+                            n: index + 1,
+                        })}
+                        aria-current={index === selectedIndex}
+                        onClick={() => scrollTo(index)}
+                        className="group/dot flex size-6 items-center justify-center outline-none focus-ring pointer-coarse:size-11"
+                    >
+                        <span
+                            className={cn(
+                                "block size-1.5 rounded-full transition-colors duration-fast",
+                                index === selectedIndex
+                                    ? "bg-foreground"
+                                    : "bg-foreground/25 group-hover/dot:bg-foreground/50"
+                            )}
+                        />
+                    </button>
+                )
+            )}
+        </div>
+    );
+}
+
+// "2 / 5", announced politely as the slide changes
+function CarouselCounter({ className }: { className?: string }) {
+    const { selectedIndex, slideCount } = useCarousel();
+    if (slideCount < 2) return null;
+
+    return (
+        <p
+            aria-live="polite"
+            className={cn("font-mono text-xs tabular-nums", className)}
+        >
+            <span aria-hidden>
+                {selectedIndex + 1} / {slideCount}
+            </span>
+            <span className="sr-only">
+                {m.carousel_position({
+                    current: selectedIndex + 1,
+                    total: slideCount,
+                })}
+            </span>
+        </p>
     );
 }
 
@@ -250,6 +342,8 @@ export {
     Carousel,
     type CarouselApi,
     CarouselContent,
+    CarouselCounter,
+    CarouselDots,
     CarouselItem,
     CarouselNext,
     CarouselPrevious,
