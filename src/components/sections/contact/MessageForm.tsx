@@ -10,15 +10,19 @@ import {
 import { Input } from "#/components/shadcn/input";
 import { Textarea } from "#/components/shadcn/textarea";
 import { useContactForm } from "#/hooks/useContactForm";
+import { CONTACT_FIELD_MAX_LENGTH } from "#/lib/schemas/contact-schema";
 import { m } from "#/paraglide/messages";
 
 export const MessageForm = () => {
-    const { status, fieldErrors, handleSubmit } = useContactForm();
+    const { status, fieldErrors, handleBlur, handleChange, handleSubmit } =
+        useContactForm();
 
     return (
         <Card className="w-full max-w-md bg-glass py-0 pointer-events-auto sm:max-w-full lg:flex-2">
             <form
                 onSubmit={handleSubmit}
+                onBlur={handleBlur}
+                onChange={handleChange}
                 noValidate
             >
                 <CardContent className="p-6 sm:p-8">
@@ -52,10 +56,23 @@ export const MessageForm = () => {
                                     <Input
                                         id="contact-name"
                                         name="name"
+                                        autoComplete="name"
+                                        required
+                                        maxLength={
+                                            CONTACT_FIELD_MAX_LENGTH.name
+                                        }
                                         aria-invalid={Boolean(fieldErrors.name)}
+                                        aria-describedby={
+                                            fieldErrors.name
+                                                ? "contact-name-error"
+                                                : undefined
+                                        }
                                     />
                                     {fieldErrors.name && (
-                                        <FieldError className="text-xs text-destructive">
+                                        <FieldError
+                                            id="contact-name-error"
+                                            className="text-xs text-destructive"
+                                        >
                                             {fieldErrors.name}
                                         </FieldError>
                                     )}
@@ -76,12 +93,25 @@ export const MessageForm = () => {
                                         id="contact-email"
                                         name="email"
                                         type="email"
+                                        autoComplete="email"
+                                        required
+                                        maxLength={
+                                            CONTACT_FIELD_MAX_LENGTH.email
+                                        }
                                         aria-invalid={Boolean(
                                             fieldErrors.email
                                         )}
+                                        aria-describedby={
+                                            fieldErrors.email
+                                                ? "contact-email-error"
+                                                : undefined
+                                        }
                                     />
                                     {fieldErrors.email && (
-                                        <FieldError className="text-xs text-destructive">
+                                        <FieldError
+                                            id="contact-email-error"
+                                            className="text-xs text-destructive"
+                                        >
                                             {fieldErrors.email}
                                         </FieldError>
                                     )}
@@ -103,6 +133,10 @@ export const MessageForm = () => {
                                         id="contact-phone"
                                         name="phone"
                                         type="tel"
+                                        autoComplete="tel"
+                                        maxLength={
+                                            CONTACT_FIELD_MAX_LENGTH.phone
+                                        }
                                     />
                                 </Field>
                             </div>
@@ -123,11 +157,21 @@ export const MessageForm = () => {
                                     id="contact-message"
                                     name="message"
                                     rows={8}
+                                    required
+                                    maxLength={CONTACT_FIELD_MAX_LENGTH.message}
                                     aria-invalid={Boolean(fieldErrors.message)}
-                                    className="flex-1 resize-none"
+                                    aria-describedby={
+                                        fieldErrors.message
+                                            ? "contact-message-error"
+                                            : undefined
+                                    }
+                                    className="min-h-40 flex-1 resize-none"
                                 />
                                 {fieldErrors.message && (
-                                    <FieldError className="text-xs text-destructive">
+                                    <FieldError
+                                        id="contact-message-error"
+                                        className="text-xs text-destructive"
+                                    >
                                         {fieldErrors.message}
                                     </FieldError>
                                 )}
@@ -138,19 +182,30 @@ export const MessageForm = () => {
                             className="w-full sm:w-auto"
                             disabled={status === "pending"}
                         >
-                            <span>{m.contact_form_submit()}</span>
+                            <span>
+                                {status === "pending"
+                                    ? m.contact_form_submitting()
+                                    : m.contact_form_submit()}
+                            </span>
                             <ArrowRightIcon data-icon="inline-end" />
                         </Button>
-                        {status === "success" && (
-                            <p className="text-sm text-muted-foreground">
-                                {m.contact_form_submit_success()}
-                            </p>
-                        )}
-                        {status === "error" && (
-                            <p className="text-sm text-destructive">
-                                {m.contact_form_submit_error()}
-                            </p>
-                        )}
+                        {/* always mounted so screen readers announce the result */}
+                        <div
+                            role="status"
+                            aria-live="polite"
+                            className="empty:hidden"
+                        >
+                            {status === "success" && (
+                                <p className="text-sm text-muted-foreground">
+                                    {m.contact_form_submit_success()}
+                                </p>
+                            )}
+                            {status === "error" && (
+                                <p className="text-sm text-destructive">
+                                    {m.contact_form_submit_error()}
+                                </p>
+                            )}
+                        </div>
                     </FieldGroup>
                 </CardContent>
             </form>

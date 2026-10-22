@@ -32,15 +32,20 @@ export const HeroIntro = () => {
         <div>
             <Kicker text="// hello-world" />
             <div className="relative min-w-fit pointer-events-auto">
-                <span
-                    aria-hidden
-                    className={cn("invisible inline-block", HEADING_CLASSNAME)}
+                {/* the real heading: server-rendered, sizes the box, read by
+                    screen readers and crawlers; the typing overlay is decoration */}
+                <h1
+                    className={cn(
+                        "inline-block text-transparent",
+                        HEADING_CLASSNAME
+                    )}
                 >
                     {NAME_WITH_LINE_BREAK}
-                </span>
+                </h1>
                 <TypingAnimation
+                    aria-hidden
                     className={cn("absolute inset-0", HEADING_CLASSNAME)}
-                    as="h1"
+                    as="p"
                     instant={skipTyping}
                 >
                     {NAME_WITH_LINE_BREAK}

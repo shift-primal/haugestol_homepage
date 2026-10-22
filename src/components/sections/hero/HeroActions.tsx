@@ -19,7 +19,6 @@ export const HeroActions = () => (
         </Button>
         <Button
             variant="outline"
-            aria-label="LinkedIn"
             nativeButton={false}
             render={(props) => (
                 <a

@@ -34,6 +34,8 @@
 	"activity_stat_week": "Siste 7 dager",
 	"activity_stat_month": "Siste 30 dager",
 	"activity_stat_year": "Siste 365 dager",
+	"activity_unavailable": "Klarte ikke å hente GitHub-aktivitet akkurat nå.",
+	"activity_unavailable_link": "Se den på GitHub",
 
 	"projects_heading": "Prosjekter",
 	"project_github_aria": "{title} på GitHub",
@@ -74,6 +76,7 @@
 	"contact_form_message_error": "Hvis meldingen din ikke engang er 10 karakterer lang, hvorfor gidde?",
 
 	"contact_form_submit": "Send melding",
+	"contact_form_submitting": "Sender…",
 	"contact_form_submit_success": "Melding sendt - takk!",
 	"contact_form_submit_error": "Noe gikk galt (sikkert min feil). Vennligst prøv igjen.",
 

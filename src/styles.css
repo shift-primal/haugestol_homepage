@@ -14,11 +14,12 @@
 }
 
 @utility focus-ring {
-  @apply focus-visible:border-ring focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:duration-fast;
+  @apply focus-visible:border-ring focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring focus-visible:duration-fast;
 }
 
+/* full-width rows: draw the outline inside so a clipping parent can't cut it off */
 @utility focus-ring-lg {
-  @apply focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:duration-fast;
+  @apply focus-visible:outline-solid focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ring focus-visible:duration-fast;
 }
 
 * {
@@ -112,7 +113,7 @@ body {
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --ring: oklch(0.205 0 0);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -147,7 +148,7 @@ body {
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --ring: oklch(0.922 0 0);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
