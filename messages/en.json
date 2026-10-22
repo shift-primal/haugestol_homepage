@@ -22,8 +22,6 @@
 
 	"about_heading": "About me",
 
-	"courses_group_courses": "Courses",
-	"courses_group_certificates": "Certificates",
 
 	"activity_heading": "Activity",
 	"activity_stat_week": "Last 7 days",
@@ -85,7 +83,6 @@
 	"project_lightbox_title": "Screenshots of {title}",
 	"project_screenshot_alt": "Screenshot of {title}",
 	"contact_links_heading": "Reach me directly",
-	"contact_phone_label": "Phone",
 	"common_close": "Close",
 	"carousel_previous": "Previous image",
 	"carousel_next": "Next image",

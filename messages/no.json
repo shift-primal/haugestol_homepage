@@ -22,8 +22,6 @@
 
 	"about_heading": "Om meg",
 
-	"courses_group_courses": "Kurs",
-	"courses_group_certificates": "Sertifikater",
 
 	"activity_heading": "Aktivitet",
 	"activity_stat_week": "Siste 7 dager",
@@ -85,7 +83,6 @@
 	"project_lightbox_title": "Skjermbilder av {title}",
 	"project_screenshot_alt": "Skjermbilde av {title}",
 	"contact_links_heading": "Direkte kontakt",
-	"contact_phone_label": "Telefon",
 	"common_close": "Lukk",
 	"carousel_previous": "Forrige bilde",
 	"carousel_next": "Neste bilde",

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const MAX_WAIT_MS = 1800;
+const MAX_WAIT_MS = 1000;
 const MIN_VISIBLE_MS = 150;
 
 const waitForPageReady = (maxWait: number) =>
