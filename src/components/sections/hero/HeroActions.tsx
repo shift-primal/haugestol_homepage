@@ -1,4 +1,5 @@
 import {
+    ArrowRightIcon,
     EnvelopeIcon,
     FileTextIcon,
     GithubLogoIcon,
@@ -16,13 +17,22 @@ const scrollToSection = (id: string) =>
 
 export const HeroActions = () => (
     <div className="flex flex-wrap items-center gap-3 pointer-events-auto w-fit">
+        {/* the homepage's projects start right below the hero, so this goes
+            to the full list instead of scrolling a few pixels */}
         <Button
             size="lg"
             className="px-4"
-            onClick={() => scrollToSection("projects")}
-        >
-            {m.hero_projects_button()}
-        </Button>
+            nativeButton={false}
+            render={(props) => (
+                <Link
+                    {...props}
+                    to="/projects"
+                >
+                    <span>{m.hero_projects_button()}</span>
+                    <ArrowRightIcon data-icon="inline-end" />
+                </Link>
+            )}
+        />
         <Button
             variant="outline"
             size="lg"

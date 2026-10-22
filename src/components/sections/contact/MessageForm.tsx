@@ -48,7 +48,7 @@ export const MessageForm = () => {
     }, []);
 
     return (
-        <Card className="order-last w-full max-w-md bg-glass py-0 pointer-events-auto sm:max-w-full lg:order-none lg:flex-2">
+        <Card className="order-last w-full max-w-md py-0 pointer-events-auto sm:max-w-full lg:order-none lg:flex-2">
             <form
                 onSubmit={handleSubmit}
                 onBlur={handleBlur}
@@ -210,7 +210,7 @@ export const MessageForm = () => {
                         </div>
                         <Button
                             type="submit"
-                            className="w-full sm:w-auto"
+                            className="w-full sm:w-auto sm:self-end"
                             disabled={status === "pending"}
                         >
                             <span>

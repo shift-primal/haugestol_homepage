@@ -1,6 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useTheme } from "next-themes";
-import { Background } from "#/components/layout/Background.tsx";
 import { PageContainer } from "#/components/layout/PageContainer";
 import { About } from "#/components/sections/About";
 import { Activity } from "#/components/sections/Activity";
@@ -12,11 +10,9 @@ import { fetchGitHubData } from "#/server/fetchGitHubData";
 
 const Home = () => {
     const { commits, stats } = Route.useLoaderData();
-    const { resolvedTheme } = useTheme();
 
     return (
         <PageContainer>
-            <Background theme={resolvedTheme} />
             <div className="mt-24 mb-2 lg:mb-8 lg:mt-32">
                 <Hero />
                 <Projects />

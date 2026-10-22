@@ -44,7 +44,7 @@ const CvPage = () => {
                             "--cv-zoom": scale,
                         } as React.CSSProperties
                     }
-                    className="w-fit shadow-[0_2mm_8mm_rgb(0_0_0/0.3)] [zoom:var(--cv-zoom)] [page:cv] print:shadow-none print:[zoom:1]"
+                    className="w-fit text-shadow-none shadow-[0_2mm_8mm_rgb(0_0_0/0.3)] [zoom:var(--cv-zoom)] [page:cv] print:shadow-none print:[zoom:1]"
                 >
                     <CvDocument cv={getCv()} />
                 </div>

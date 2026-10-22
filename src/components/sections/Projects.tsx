@@ -31,7 +31,7 @@ export const Projects = () => {
                 <Button
                     variant="outline"
                     nativeButton={false}
-                    className="w-fit bg-glass"
+                    className="w-fit"
                     render={(props) => (
                         <Link
                             {...props}

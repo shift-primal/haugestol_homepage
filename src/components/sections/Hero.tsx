@@ -18,10 +18,9 @@ export const Hero = () => {
                     </p>
                     <p className="flex flex-wrap items-center gap-x-5 gap-y-2">
                         <span className="inline-flex items-start gap-2.5 font-semibold">
-                            {/* the "on air" light: he's available now */}
                             <span
                                 aria-hidden
-                                className="relative mt-[0.4375rem] flex size-2.5 shrink-0"
+                                className="relative mt-1.75 flex size-2.5 shrink-0"
                             >
                                 <span className="absolute inset-0 animate-ping rounded-full bg-primary opacity-60 [animation-duration:2.4s] motion-reduce:animate-none" />
                                 <span className="relative size-2.5 rounded-full bg-primary" />

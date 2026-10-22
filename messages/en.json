@@ -4,23 +4,44 @@
 	"meta_title": "Kasper Haugestøl – Full-stack developer",
 	"meta_description": "Kasper Haugestøl, full-stack developer from Innlandet, Norway. Builds whole products himself, from database to deployment. Looking for an internship or junior role.",
 
-	"page_not_found_message": "Page not found",
-	"page_not_found_question": "What were you looking for?",
-	"page_not_found_goback": "Please go back",
-	"page_not_found_now": "now",
-
 	"theme_toggle_aria": "Toggle colour theme",
 	"language_switch_to_norwegian_aria": "Switch language to Norwegian",
 	"language_switch_to_english_aria": "Switch language to English",
 	"scroll_to_top_aria": "Scroll to top",
+	"back_home": "Back to homepage",
+	"common_close": "Close",
+	"footer_signoff": "Thanks for stopping by!",
+	"footer_nav_aria": "Footer",
 
 	"hero_tagline": "I build whole products myself, from database and payments to interface and deployment.",
-	"hero_projects_button": "View projects",
-	"hero_contact_aria": "Go to the contact form",
+	"hero_status": "Looking for an internship or junior role",
+	"hero_projects_button": "View all projects",
 	"hero_resume": "CV",
+	"hero_contact_aria": "Go to the contact form",
+
+	"projects_heading": "Projects",
+	"projects_all": "All projects ({count})",
+	"project_more_projects": "More on GitHub",
+	"project_private": "Private project",
+	"project_status_not_live": "not live yet",
+	"project_screenshots_coming": "Screenshots coming",
+	"project_screenshot_alt": "Screenshot of {title}",
+	"project_lightbox_title": "Screenshots of {title}",
+	"project_github_aria": "{title} on GitHub",
+	"project_request_demo": "Request a demo",
+	"project_demo_message": "Hi! I'd like to see a demo of {title}.",
+
+	"carousel_previous": "Previous image",
+	"carousel_next": "Next image",
+	"carousel_go_to": "Show image {n}",
+	"carousel_position": "Image {current} of {total}",
+
+	"project_pokedex_description": "A Pokédex built on PokéAPI. Virtualised search across every Pokémon, evolution chains, per-form details and advanced filtering.",
+	"project_bfq_description": "A quiz about me: how well do you know Kasper? Running score, store-based state and a live leaderboard.",
+	"project_groovehaus_description": "Concept web shop for vinyl, music gear and instruments, with a cart, login and Stripe checkout.",
 
 	"about_heading": "About me",
-
+	"about_courses_toggle": "Courses and certificates ({count})",
 
 	"activity_heading": "Activity",
 	"activity_stat_week": "Last 7 days",
@@ -29,67 +50,37 @@
 	"activity_unavailable": "Couldn't load recent GitHub activity right now.",
 	"activity_unavailable_link": "See it on GitHub",
 
-	"projects_heading": "Projects",
-	"project_github_aria": "{title} on GitHub",
-	"project_more_projects": "More on GitHub",
-
-	"project_pokedex_description": "A Pokédex built on PokéAPI. Virtualised search across every Pokémon, evolution chains, per-form details and advanced filtering.",
-
-	"project_bfq_description": "A quiz about me: how well do you know Kasper? Running score, store-based state and a live leaderboard.",
-
-	"project_groovehaus_description": "Concept web shop for vinyl, music gear and instruments, with a cart, login and Stripe checkout.",
-
 	"contact_heading": "Contact",
-
+	"contact_links_heading": "Reach me directly",
+	"contact_response_time": "Usually replies within 24 hours",
+	"contact_or_divider": "or",
 	"contact_form_name_label": "Name",
 	"contact_form_name_error": "Add your name so I know who I'm replying to.",
-
 	"contact_form_email_label": "Email",
 	"contact_form_email_error": "I need an email address to reply to, like name@company.com.",
-
 	"contact_form_phone_label": "Phone",
 	"contact_form_phone_optional": "optional",
-
 	"contact_form_message_label": "Message",
 	"contact_form_message_error": "Write a short message. One sentence is plenty.",
-
 	"contact_form_submit": "Send message",
 	"contact_form_submitting": "Sending…",
 	"contact_form_submit_success": "Thanks for your message! I usually reply within 24 hours.",
 	"contact_form_submit_error": "Your message didn't go through (probably my fault). Try again, or email me at {email}.",
 
-	"contact_or_divider": "or",
-	"contact_response_time": "Usually replies within 24 hours",
+	"projects_meta_title": "Projects – Kasper Haugestøl",
+	"projects_meta_description": "All projects by Kasper Haugestøl, full-stack developer: from an online store and a SaaS to smaller learning projects.",
+	"projects_page_heading": "All projects",
+	"projects_contact_heading": "Want to hear more about one of these?",
+	"projects_contact_button": "Get in touch",
 
 	"cv_meta_title": "CV – Kasper Haugestøl",
 	"cv_meta_description": "CV for Kasper Haugestøl, full-stack developer: projects, skills, education and work experience.",
 	"cv_download": "Download as PDF",
 	"cv_download_hint": "Opens the print dialog. Choose “Save as PDF”.",
 
-	"hero_status": "Looking for an internship or junior role",
-	"projects_all": "All projects ({count})",
-	"projects_page_heading": "All projects",
-	"projects_meta_title": "Projects – Kasper Haugestøl",
-	"projects_meta_description": "All projects by Kasper Haugestøl, full-stack developer: from an online store and a SaaS to smaller learning projects.",
-	"project_private": "Private project",
-	"project_screenshots_coming": "Screenshots coming",
-	"project_status_not_live": "not live yet",
-	"about_courses_toggle": "Courses and certificates ({count})",
-	"back_home": "Back to homepage",
-
-	"page_not_found_heading": "Oops …",
-	"project_lightbox_title": "Screenshots of {title}",
-	"project_screenshot_alt": "Screenshot of {title}",
-	"contact_links_heading": "Reach me directly",
-	"common_close": "Close",
-	"carousel_previous": "Previous image",
-	"carousel_next": "Next image",
-	"carousel_go_to": "Show image {n}",
-	"carousel_position": "Image {current} of {total}",
-	"project_request_demo": "Request a demo",
-	"project_demo_message": "Hi! I'd like to see a demo of {title}.",
-	"footer_signoff": "Thanks for stopping by!",
-	"footer_nav_aria": "Footer",
-	"projects_contact_heading": "Want to hear more about one of these?",
-	"projects_contact_button": "Get in touch"
+	"page_not_found_heading": "Oops…",
+	"page_not_found_message": "Page not found",
+	"page_not_found_question": "What were you looking for?",
+	"page_not_found_goback": "Please go back",
+	"page_not_found_now": "now"
 }

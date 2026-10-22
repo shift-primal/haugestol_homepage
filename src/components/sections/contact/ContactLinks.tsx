@@ -14,7 +14,7 @@ import { m } from "#/paraglide/messages";
 
 export const ContactLinks = () => {
     return (
-        <div className="order-first flex w-full max-w-md flex-col pointer-events-auto px-4 py-4 sm:max-w-full lg:order-none lg:w-auto lg:flex-1 lg:px-8 lg:py-8">
+        <div className="order-first flex w-full max-w-md flex-col pointer-events-auto px-4 py-4 sm:max-w-full lg:order-none lg:w-auto lg:flex-1 lg:px-8 lg:pt-8 lg:pb-0">
             <div className="mb-4 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                 <h3 className="font-semibold">{m.contact_links_heading()}</h3>
                 <span className="font-mono text-xs text-muted-foreground">
@@ -25,10 +25,10 @@ export const ContactLinks = () => {
                 {CONTACT_LINKS.map(({ label, href, icon: Icon }, index) => (
                     <Fragment key={label}>
                         {index !== 0 && (
-                            <ItemSeparator className="my-1 bg-accent/75" />
+                            <ItemSeparator className="my-0 bg-accent/75" />
                         )}
                         <Item
-                            className="[a]:hover:bg-transparent"
+                            className="py-1.5 [a]:hover:bg-transparent"
                             render={(props) => (
                                 <a
                                     {...props}

@@ -9,7 +9,7 @@ export const Footer = () => {
     const location = getCvLocation();
 
     return (
-        <footer className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-10 sm:px-8 print:hidden">
+        <footer className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-10 sm:px-8 text-halo print:hidden">
             <div className="flex flex-col gap-6 border-t border-border pt-8 text-xs text-muted-foreground sm:flex-row sm:items-end sm:justify-between">
                 <div className="flex flex-col gap-1">
                     <p className="text-sm text-foreground">

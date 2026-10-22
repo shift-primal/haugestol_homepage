@@ -1,5 +1,6 @@
 import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { ThemeProvider } from "next-themes";
+import { Background } from "#/components/layout/Background";
 import { Filter } from "#/components/layout/Filter";
 import { Footer } from "#/components/layout/Footer";
 import { Header } from "#/components/layout/Header";
@@ -39,12 +40,13 @@ const RootDocument = ({ children }: { children: React.ReactNode }) => {
             <body className="overflow-hidden print:overflow-visible">
                 <ThemeProvider attribute="class">
                     <div className="fixed inset-0 flex flex-col print:static">
+                        <Background />
                         <div
                             id={PAGE_SCROLL_CONTAINER_ID}
                             className="min-h-0 flex-1 overflow-y-auto overflow-x-clip relative w-full print:overflow-visible"
                         >
                             <Header />
-                            <main>{children}</main>
+                            <main className="text-halo">{children}</main>
                             <Footer />
                         </div>
                     </div>

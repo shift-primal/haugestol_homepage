@@ -4,23 +4,44 @@
 	"meta_title": "Kasper Haugestøl – Fullstack-utvikler",
 	"meta_description": "Kasper Haugestøl, fullstack-utvikler fra Innlandet. Bygger hele produkter selv, fra database til drift. Ser etter praksisplass eller juniorstilling.",
 
-	"page_not_found_message": "Fant ikke siden",
-	"page_not_found_question": "Hva lette du etter?",
-	"page_not_found_goback": "Vennligst gå tilbake",
-	"page_not_found_now": "nå",
-
 	"theme_toggle_aria": "Bytt fargetema",
 	"language_switch_to_norwegian_aria": "Bytt språk til norsk",
 	"language_switch_to_english_aria": "Bytt språk til engelsk",
 	"scroll_to_top_aria": "Til toppen",
+	"back_home": "Tilbake til forsiden",
+	"common_close": "Lukk",
+	"footer_signoff": "Takk for at du tittet innom!",
+	"footer_nav_aria": "Bunntekst",
 
 	"hero_tagline": "Jeg bygger hele produkter selv, fra database og betaling til grensesnitt og drift.",
-	"hero_projects_button": "Se prosjekter",
-	"hero_contact_aria": "Gå til kontaktskjemaet",
+	"hero_status": "Ser etter praksisplass eller juniorstilling",
+	"hero_projects_button": "Se alle prosjekter",
 	"hero_resume": "CV",
+	"hero_contact_aria": "Gå til kontaktskjemaet",
+
+	"projects_heading": "Prosjekter",
+	"projects_all": "Alle prosjekter ({count})",
+	"project_more_projects": "Mer på GitHub",
+	"project_private": "Privat prosjekt",
+	"project_status_not_live": "ikke live ennå",
+	"project_screenshots_coming": "Skjermbilder kommer",
+	"project_screenshot_alt": "Skjermbilde av {title}",
+	"project_lightbox_title": "Skjermbilder av {title}",
+	"project_github_aria": "{title} på GitHub",
+	"project_request_demo": "Be om demo",
+	"project_demo_message": "Hei! Jeg vil gjerne se en demo av {title}.",
+
+	"carousel_previous": "Forrige bilde",
+	"carousel_next": "Neste bilde",
+	"carousel_go_to": "Vis bilde {n}",
+	"carousel_position": "Bilde {current} av {total}",
+
+	"project_pokedex_description": "Pokédex bygget på PokéAPI. Virtualisert søk i alle Pokémon, utviklingskjeder, detaljer for hver form og avansert filtrering.",
+	"project_bfq_description": "Quiz om meg: hvor godt kjenner du Kasper? Poengsum underveis, state i en store og en toppliste som oppdateres live.",
+	"project_groovehaus_description": "Konsept for en nettbutikk for vinyl, musikkutstyr og instrumenter, med handlekurv, innlogging og betaling med Stripe.",
 
 	"about_heading": "Om meg",
-
+	"about_courses_toggle": "Kurs og sertifikater ({count})",
 
 	"activity_heading": "Aktivitet",
 	"activity_stat_week": "Siste 7 dager",
@@ -29,67 +50,37 @@
 	"activity_unavailable": "Klarte ikke å hente GitHub-aktivitet akkurat nå.",
 	"activity_unavailable_link": "Se den på GitHub",
 
-	"projects_heading": "Prosjekter",
-	"project_github_aria": "{title} på GitHub",
-	"project_more_projects": "Mer på GitHub",
-
-	"project_pokedex_description": "Pokédex bygget på PokéAPI. Virtualisert søk i alle Pokémon, utviklingskjeder, detaljer for hver form og avansert filtrering.",
-
-	"project_bfq_description": "Quiz om meg: hvor godt kjenner du Kasper? Poengsum underveis, state i en store og en toppliste som oppdateres live.",
-
-	"project_groovehaus_description": "Konsept for en nettbutikk for vinyl, musikkutstyr og instrumenter, med handlekurv, innlogging og betaling med Stripe.",
-
 	"contact_heading": "Kontakt",
-
+	"contact_links_heading": "Direkte kontakt",
+	"contact_response_time": "Svarer vanligvis innen 24 timer",
+	"contact_or_divider": "eller",
 	"contact_form_name_label": "Navn",
 	"contact_form_name_error": "Skriv navnet ditt, så vet jeg hvem jeg svarer.",
-
 	"contact_form_email_label": "E-post",
 	"contact_form_email_error": "Jeg trenger en e-postadresse å svare til, som navn@firma.no.",
-
 	"contact_form_phone_label": "Telefon",
 	"contact_form_phone_optional": "valgfritt",
-
 	"contact_form_message_label": "Melding",
 	"contact_form_message_error": "Skriv en kort melding. Én setning holder.",
-
 	"contact_form_submit": "Send melding",
 	"contact_form_submitting": "Sender…",
 	"contact_form_submit_success": "Takk for meldingen! Jeg svarer vanligvis innen 24 timer.",
 	"contact_form_submit_error": "Meldingen ble ikke sendt (sikkert min feil). Prøv igjen, eller send en e-post til {email}.",
 
-	"contact_or_divider": "eller",
-	"contact_response_time": "Svarer vanligvis innen 24 timer",
+	"projects_meta_title": "Prosjekter – Kasper Haugestøl",
+	"projects_meta_description": "Alle prosjektene til Kasper Haugestøl, fullstack-utvikler: fra nettbutikk og SaaS til mindre læringsprosjekter.",
+	"projects_page_heading": "Alle prosjekter",
+	"projects_contact_heading": "Vil du høre mer om et av prosjektene?",
+	"projects_contact_button": "Ta kontakt",
 
 	"cv_meta_title": "CV – Kasper Haugestøl",
 	"cv_meta_description": "CV for Kasper Haugestøl, fullstack-utvikler: prosjekter, ferdigheter, utdanning og arbeidserfaring.",
 	"cv_download": "Last ned som PDF",
 	"cv_download_hint": "Åpner utskriftsvinduet. Velg «Lagre som PDF».",
 
-	"hero_status": "Ser etter praksisplass eller juniorstilling",
-	"projects_all": "Alle prosjekter ({count})",
-	"projects_page_heading": "Alle prosjekter",
-	"projects_meta_title": "Prosjekter – Kasper Haugestøl",
-	"projects_meta_description": "Alle prosjektene til Kasper Haugestøl, fullstack-utvikler: fra nettbutikk og SaaS til mindre læringsprosjekter.",
-	"project_private": "Privat prosjekt",
-	"project_screenshots_coming": "Skjermbilder kommer",
-	"project_status_not_live": "ikke live ennå",
-	"about_courses_toggle": "Kurs og sertifikater ({count})",
-	"back_home": "Tilbake til forsiden",
-
 	"page_not_found_heading": "Oi da …",
-	"project_lightbox_title": "Skjermbilder av {title}",
-	"project_screenshot_alt": "Skjermbilde av {title}",
-	"contact_links_heading": "Direkte kontakt",
-	"common_close": "Lukk",
-	"carousel_previous": "Forrige bilde",
-	"carousel_next": "Neste bilde",
-	"carousel_go_to": "Vis bilde {n}",
-	"carousel_position": "Bilde {current} av {total}",
-	"project_request_demo": "Be om demo",
-	"project_demo_message": "Hei! Jeg vil gjerne se en demo av {title}.",
-	"footer_signoff": "Takk for at du tittet innom!",
-	"footer_nav_aria": "Bunntekst",
-	"projects_contact_heading": "Vil du høre mer om et av prosjektene?",
-	"projects_contact_button": "Ta kontakt"
+	"page_not_found_message": "Fant ikke siden",
+	"page_not_found_question": "Hva lette du etter?",
+	"page_not_found_goback": "Vennligst gå tilbake",
+	"page_not_found_now": "nå"
 }
