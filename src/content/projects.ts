@@ -13,6 +13,8 @@ export interface Project {
     githubHref?: string;
     // code and app aren't public; shown with a note instead of links
     isPrivate?: boolean;
+    // offers a "Be om demo" button that prefills the contact form
+    demoOnRequest?: boolean;
     // empty = placeholder until real screenshots exist
     images: Record<string, Img>;
 }
@@ -34,10 +36,12 @@ const screenshotsFor = (project: string): Record<string, Img> =>
     );
 
 // What the site adds on top of the CV entries (which own title, copy, tech
-// and public links), keyed by CV entry id.
+// and public links), keyed by CV entry id. To add screenshots to a project,
+// drop PNGs in src/assets/screenshots/projects/<folder>/ (numbered for order)
+// and set `images: screenshotsFor("<folder>")`; the placeholder goes away.
 const SITE_EXTRAS: Record<
     string,
-    Pick<Project, "githubHref" | "isPrivate" | "images">
+    Pick<Project, "githubHref" | "isPrivate" | "demoOnRequest" | "images">
 > = {
     wastescope: {
         githubHref: "https://github.com/shift-primal/ws",
@@ -52,6 +56,7 @@ const SITE_EXTRAS: Record<
     },
     "gront-lys": {
         isPrivate: true,
+        demoOnRequest: true,
         images: {},
     },
     spot: {

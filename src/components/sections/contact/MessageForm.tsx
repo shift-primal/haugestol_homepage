@@ -1,4 +1,5 @@
 import { ArrowRightIcon } from "@phosphor-icons/react";
+import { useEffect, useRef } from "react";
 import { Button } from "#/components/shadcn/button";
 import { Card, CardContent } from "#/components/shadcn/card";
 import {
@@ -11,12 +12,36 @@ import { Input } from "#/components/shadcn/input";
 import { Textarea } from "#/components/shadcn/textarea";
 import { SITE } from "#/content";
 import { useContactForm } from "#/hooks/useContactForm";
+import {
+    CONTACT_PREFILL_EVENT,
+    takeContactPrefill,
+} from "#/lib/contact-prefill";
 import { CONTACT_FIELD_MAX_LENGTH } from "#/lib/schemas/contact-schema";
 import { m } from "#/paraglide/messages";
 
 export const MessageForm = () => {
     const { status, fieldErrors, handleBlur, handleChange, handleSubmit } =
         useContactForm();
+    const messageRef = useRef<HTMLTextAreaElement>(null);
+
+    // a "Be om demo" button elsewhere may have left a starting message,
+    // either before this form mounted or while it's on screen
+    useEffect(() => {
+        const applyPrefill = () => {
+            const message = takeContactPrefill();
+            const textarea = messageRef.current;
+            if (!message || !textarea) return;
+            textarea.value = message;
+            textarea.focus({
+                preventScroll: true,
+            });
+            textarea.setSelectionRange(message.length, message.length);
+        };
+        applyPrefill();
+        window.addEventListener(CONTACT_PREFILL_EVENT, applyPrefill);
+        return () =>
+            window.removeEventListener(CONTACT_PREFILL_EVENT, applyPrefill);
+    }, []);
 
     return (
         <Card className="w-full max-w-md bg-glass py-0 pointer-events-auto sm:max-w-full lg:flex-2">
@@ -155,6 +180,7 @@ export const MessageForm = () => {
                                     {m.contact_form_message_label()}
                                 </FieldLabel>
                                 <Textarea
+                                    ref={messageRef}
                                     id="contact-message"
                                     name="message"
                                     rows={8}

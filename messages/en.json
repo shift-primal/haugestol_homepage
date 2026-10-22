@@ -87,5 +87,7 @@
 	"carousel_previous": "Previous image",
 	"carousel_next": "Next image",
 	"carousel_go_to": "Show image {n}",
-	"carousel_position": "Image {current} of {total}"
+	"carousel_position": "Image {current} of {total}",
+	"project_request_demo": "Request a demo",
+	"project_demo_message": "Hi! I'd like to see a demo of {title}."
 }

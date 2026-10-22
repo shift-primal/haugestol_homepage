@@ -87,5 +87,7 @@
 	"carousel_previous": "Forrige bilde",
 	"carousel_next": "Neste bilde",
 	"carousel_go_to": "Vis bilde {n}",
-	"carousel_position": "Bilde {current} av {total}"
+	"carousel_position": "Bilde {current} av {total}",
+	"project_request_demo": "Be om demo",
+	"project_demo_message": "Hei! Jeg vil gjerne se en demo av {title}."
 }

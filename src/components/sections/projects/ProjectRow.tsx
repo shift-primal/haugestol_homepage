@@ -1,11 +1,14 @@
 import {
     ArrowUpRightIcon,
+    ChatCircleTextIcon,
     GithubLogoIcon,
     LockSimpleIcon,
 } from "@phosphor-icons/react";
+import { useNavigate } from "@tanstack/react-router";
 import { ProjectGallery } from "#/components/sections/projects/ProjectGallery";
 import { Button } from "#/components/shadcn/button";
 import type { Project } from "#/content";
+import { requestContactPrefill } from "#/lib/contact-prefill";
 import { cn } from "#/lib/shadcn.utils";
 import { m } from "#/paraglide/messages";
 
@@ -30,8 +33,31 @@ export const ProjectRow = ({
         links,
         githubHref,
         isPrivate,
+        demoOnRequest,
         images,
     } = project;
+    const navigate = useNavigate();
+
+    // prefill the contact form, then take the visitor to it: in place on the
+    // homepage, via navigation from /projects
+    const requestDemo = () => {
+        requestContactPrefill(
+            m.project_demo_message({
+                title,
+            })
+        );
+        const contact = document.getElementById("contact");
+        if (contact) {
+            contact.scrollIntoView({
+                behavior: "smooth",
+            });
+        } else {
+            navigate({
+                to: "/",
+                hash: "contact",
+            });
+        }
+    };
 
     return (
         <article
@@ -86,6 +112,12 @@ export const ProjectRow = ({
                 )}
 
                 <div className="flex flex-wrap items-center gap-2">
+                    {demoOnRequest && (
+                        <Button onClick={requestDemo}>
+                            <span>{m.project_request_demo()}</span>
+                            <ChatCircleTextIcon data-icon="inline-end" />
+                        </Button>
+                    )}
                     {links.map((link) => (
                         <Button
                             key={link.href}

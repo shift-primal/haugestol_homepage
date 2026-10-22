@@ -13,17 +13,27 @@ import {
 } from "#/components/shadcn/carousel";
 import { m } from "#/paraglide/messages";
 
-// Stand-in until real screenshots exist (private projects for now). Says
-// what it is rather than faking a screenshot.
-const GalleryPlaceholder = ({ isPrivate }: { isPrivate?: boolean }) => (
-    <div className="flex aspect-video w-full flex-col items-center justify-center gap-2 border border-dashed border-border bg-muted text-muted-foreground">
-        {isPrivate && (
-            <LockSimpleIcon
-                aria-hidden
-                className="size-5"
-            />
-        )}
-        <span className="text-xs text-foreground/75">
+// Stand-in until real screenshots exist: a title card that says what it is
+// rather than faking a screenshot. Swapped out automatically once the
+// project has images (see SITE_EXTRAS in content/projects.ts).
+const GalleryPlaceholder = ({
+    title,
+    isPrivate,
+}: {
+    title: string;
+    isPrivate?: boolean;
+}) => (
+    <div className="flex aspect-video w-full flex-col justify-between border border-border bg-muted p-5 sm:p-6">
+        <span className="text-2xl font-bold tracking-tight sm:text-3xl">
+            {title}
+        </span>
+        <span className="inline-flex items-center gap-1.5 text-xs text-foreground/75">
+            {isPrivate && (
+                <LockSimpleIcon
+                    aria-hidden
+                    className="size-3.5"
+                />
+            )}
             {m.project_screenshots_coming()}
         </span>
     </div>
@@ -44,7 +54,12 @@ export const ProjectGallery = ({
     const [startIndex, setStartIndex] = useState(0);
 
     if (imageEntries.length === 0) {
-        return <GalleryPlaceholder isPrivate={isPrivate} />;
+        return (
+            <GalleryPlaceholder
+                title={title}
+                isPrivate={isPrivate}
+            />
+        );
     }
 
     const openLightbox = (index: number) => {
