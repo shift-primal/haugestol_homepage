@@ -7,10 +7,7 @@ import { m } from "#/paraglide/messages";
 export const Contact = () => {
     return (
         <SectionContainer sectionName="contact">
-            <SectionHeading
-                text={m.contact_heading()}
-                kicker="// get-in-touch"
-            />
+            <SectionHeading text={m.contact_heading()} />
 
             <div className="flex flex-col lg:flex-row items-center lg:items-stretch gap-8">
                 <MessageForm />

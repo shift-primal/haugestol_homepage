@@ -24,10 +24,7 @@ export const Activity = ({
 
     return (
         <SectionContainer sectionName="activity">
-            <SectionHeading
-                text={m.activity_heading()}
-                kicker="// recent-github-activity"
-            />
+            <SectionHeading text={m.activity_heading()} />
             <Card className="bg-glass py-0 gap-0">
                 {unavailable ? (
                     <CardContent className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 px-4 py-6">

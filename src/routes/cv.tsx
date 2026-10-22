@@ -25,7 +25,7 @@ const CvPage = () => {
                             to="/"
                         >
                             <ArrowLeftIcon data-icon="inline-start" />
-                            <span>{m.cv_back()}</span>
+                            <span>{m.back_home()}</span>
                         </Link>
                     )}
                 />

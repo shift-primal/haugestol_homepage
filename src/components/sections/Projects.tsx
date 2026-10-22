@@ -1,39 +1,49 @@
-import { GithubLogoIcon } from "@phosphor-icons/react";
+import { ArrowRightIcon } from "@phosphor-icons/react";
+import { Link } from "@tanstack/react-router";
 import { SectionContainer } from "#/components/layout/SectionContainer";
 import { SectionHeading } from "#/components/layout/SectionHeading";
-import { ProjectCard } from "#/components/sections/projects/ProjectCard";
+import { ProjectRow } from "#/components/sections/projects/ProjectRow";
 import { Button } from "#/components/shadcn/button";
-import { getProjects, SITE } from "#/content";
+import { getAllProjects, getCvProjects } from "#/content";
 import { m } from "#/paraglide/messages";
 
 export const Projects = () => {
+    const [featured, ...rest] = getCvProjects();
+
     return (
         <SectionContainer sectionName="projects">
-            <SectionHeading
-                text={m.projects_heading()}
-                kicker="// projects-showcase"
-            />
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
-                {getProjects().map((project) => (
-                    <ProjectCard
-                        key={project.title}
-                        {...project}
+            <SectionHeading text={m.projects_heading()} />
+            <div className="flex flex-col gap-16">
+                {featured && (
+                    <ProjectRow
+                        project={featured}
+                        featured
                     />
-                ))}
+                )}
+                <div className="flex flex-col gap-12 border-t border-border pt-12">
+                    {rest.map((project) => (
+                        <ProjectRow
+                            key={project.id}
+                            project={project}
+                        />
+                    ))}
+                </div>
                 <Button
                     variant="outline"
                     nativeButton={false}
-                    className="col-span-full gap-3 bg-glass"
+                    className="w-fit bg-glass"
                     render={(props) => (
-                        <a
-                            href={SITE.github}
-                            target="_blank"
-                            rel="noreferrer"
+                        <Link
                             {...props}
+                            to="/projects"
                         >
-                            {m.project_more_projects()}
-                            <GithubLogoIcon data-icon="inline-end" />
-                        </a>
+                            <span>
+                                {m.projects_all({
+                                    count: getAllProjects().length,
+                                })}
+                            </span>
+                            <ArrowRightIcon data-icon="inline-end" />
+                        </Link>
                     )}
                 />
             </div>

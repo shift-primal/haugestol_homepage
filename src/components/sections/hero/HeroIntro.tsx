@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { TypingAnimation } from "#/components/shadcn/typing-animation";
 import { WordRotate } from "#/components/shadcn/word-rotate";
-import { Kicker } from "#/components/ui/Kicker";
 import { getHero, SITE } from "#/content";
 import { cn } from "#/lib/shadcn.utils";
 
@@ -30,7 +29,6 @@ export const HeroIntro = () => {
 
     return (
         <div>
-            <Kicker text="// hello-world" />
             <div className="relative min-w-fit pointer-events-auto">
                 {/* the real heading: server-rendered, sizes the box, read by
                     screen readers and crawlers; the typing overlay is decoration */}

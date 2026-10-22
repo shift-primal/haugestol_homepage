@@ -21,11 +21,7 @@
 	"hero_resume": "CV",
 
 	"about_heading": "Om meg",
-	"about_bio": "Fullstack-utvikler under utdanning ved GET Academy. Arbeider med hele stacken — fra database og backend-logikk til grensesnitt og brukeropplevelser. Med vekt på ryddig, gjennomtenkt kode, beveger jeg meg raskt fra idé til utvikling, og drifter egne prosjekter helt ut i produksjon.",
 
-	"skills_heading": "Skills / Verktøy",
-
-	"courses_heading": "Kurs",
 	"courses_group_courses": "Kurs",
 	"courses_group_certificates": "Sertifikater",
 
@@ -39,27 +35,13 @@
 
 	"projects_heading": "Prosjekter",
 	"project_github_aria": "{title} på GitHub",
-	"project_not_live_notice": "Prosjektet er ikke live enda.",
 	"project_more_projects": "Sjekk ut flere prosjekter",
 
 	"project_pokedex_description": "Full Pokédex bygget på PokéAPI — virtualized search, evolution chains, per-form details og avansert filtrering.",
-	"project_pokedex_cta": "Prøv det live!",
-
-	"project_spot_description": "Et stort lerret — én delt verden på 32 768 × 32 768 px. Bygget for å lære mer om websockets. Tegn sammen i sanntid med live cursors, tile-based streaming, og SQLite-lagring.",
-	"project_spot_cta": "Prøv det live!",
 
 	"project_bfq_description": "Personlig trivia quiz — hvor godt kjenner du Kasper? Dynamisk score, store-based state, med live leaderboard.",
-	"project_bfq_cta": "Prøv det live!",
 
 	"project_groovehaus_description": "Et konsept for en nettbutikk for vinyl, musikkutstyr, og instrumenter — handlevogn, auth, og Stripe checkout.",
-	"project_groovehaus_cta": "Kommer snart!",
-
-	"project_ws_description": "Et dashboard for personlig økonomi. Importer en bank-CSV, få alle transaksjoner kategorisert automatisk, og filtrer og se hvor pengene går. Bygget på txcategorizer.",
-	"project_ws_cta": "Prøv det live!",
-
-	"project_txcategorizer_description": "Parser og kategoriserer banktransaksjoner til strukturerte og fully typed data. CSV in, transaksjoner ut.",
-	"project_txcategorizer_badge": "Demo app tilgjengelig!",
-	"project_txcategorizer_cta": "Se på npmjs.com!",
 
 	"contact_heading": "Kontakt",
 
@@ -85,7 +67,17 @@
 
 	"cv_meta_title": "CV – Kasper Haugestøl",
 	"cv_meta_description": "CV for Kasper Haugestøl, fullstack-utvikler: prosjekter, ferdigheter, utdanning og arbeidserfaring.",
-	"cv_back": "Tilbake til forsiden",
 	"cv_download": "Last ned som PDF",
-	"cv_download_hint": "Åpner utskriftsvinduet. Velg «Lagre som PDF»."
+	"cv_download_hint": "Åpner utskriftsvinduet. Velg «Lagre som PDF».",
+
+	"hero_status": "Ser etter praksisplass eller juniorstilling",
+	"projects_all": "Alle prosjekter ({count})",
+	"projects_page_heading": "Alle prosjekter",
+	"projects_meta_title": "Prosjekter – Kasper Haugestøl",
+	"projects_meta_description": "Alle prosjektene til Kasper Haugestøl, fullstack-utvikler: fra nettbutikk og SaaS til mindre læringsprosjekter.",
+	"project_private": "Privat prosjekt",
+	"project_screenshots_coming": "Skjermbilder kommer",
+	"project_status_not_live": "ikke live ennå",
+	"about_courses_toggle": "Kurs og sertifikater ({count})",
+	"back_home": "Tilbake til forsiden"
 }
