@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { GridBackground } from "#/components/layout/GridBackground";
 import { PageContainer } from "#/components/layout/PageContainer";
 import { About } from "#/components/sections/About";
 import { Activity } from "#/components/sections/Activity";
@@ -14,7 +13,6 @@ const Home = () => {
 
     return (
         <PageContainer>
-            <GridBackground />
             <div className="mt-24 mb-2 lg:mb-8 lg:mt-32">
                 <Hero />
                 <Projects />

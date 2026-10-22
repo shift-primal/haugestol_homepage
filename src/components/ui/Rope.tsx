@@ -10,6 +10,7 @@ import {
     KNOB_WIDTH,
     MOBILE_CONFIG,
 } from "#/lib/rope-physics";
+import { unlockAudioContext } from "#/lib/sound-engine";
 import { m } from "#/paraglide/messages";
 
 // Intensity for the brightness filter applied to the page while pulling down.
@@ -26,9 +27,9 @@ L 88 0
 Q 100 0 97.65 -11.77
 Z`;
 
-// The pull cord that toggles the color theme. Always falls into its resting
-// hang on mount — see useRopeCord — so it should only be mounted once
-// there's already been a user gesture to unlock the AudioContext.
+// The pull cord that toggles the color theme. Falls into its resting hang on
+// mount (see useRopeCord). Sound needs an unlocked AudioContext, so the first
+// pointer or key press on the knob unlocks it before anything plays.
 export const Rope = () => {
     const isMobile = useMediaQuery("(max-width: 639px)");
     const config = isMobile ? MOBILE_CONFIG : DESKTOP_CONFIG;
@@ -95,13 +96,17 @@ export const Rope = () => {
                     tabIndex={0}
                     aria-checked={isDark}
                     aria-label={m.theme_toggle_aria()}
-                    onPointerDown={handlePointerDown}
+                    onPointerDown={(event) => {
+                        unlockAudioContext();
+                        handlePointerDown(event);
+                    }}
                     onPointerMove={handlePointerMove}
                     onPointerUp={handlePointerUp}
                     onPointerCancel={handlePointerUp}
                     onKeyDown={(event) => {
                         if (event.key !== "Enter" && event.key !== " ") return;
                         event.preventDefault();
+                        unlockAudioContext();
                         simulatePull();
                     }}
                     onDragStart={(event) => event.preventDefault()}

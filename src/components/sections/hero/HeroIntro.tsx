@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { TypingAnimation } from "#/components/shadcn/typing-animation";
-import { WordRotate } from "#/components/shadcn/word-rotate";
-import { getHero, SITE } from "#/content";
+import { SITE } from "#/content";
 import { cn } from "#/lib/shadcn.utils";
 
 const NAME_WITH_LINE_BREAK = SITE.name.replace(" ", "\n");
@@ -48,12 +47,6 @@ export const HeroIntro = () => {
                 >
                     {NAME_WITH_LINE_BREAK}
                 </TypingAnimation>
-            </div>
-            <div className="min-h-10">
-                <WordRotate
-                    words={getHero().technologies}
-                    className="text-xl tracking-tighter sm:text-2xl md:text-3xl lg:text-4xl"
-                />
             </div>
         </div>
     );
