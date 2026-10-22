@@ -23,11 +23,15 @@ const GalleryPlaceholder = ({
     title: string;
     isPrivate?: boolean;
 }) => (
-    <div className="flex aspect-video w-full flex-col justify-between border border-border bg-muted p-5 sm:p-6">
-        <span className="text-2xl font-bold tracking-tight sm:text-3xl">
+    <div className="flex aspect-video w-full flex-col justify-between bg-foreground p-5 text-background sm:p-7 dark:bg-secondary dark:text-foreground">
+        <span className="flex items-end gap-[0.12em] text-3xl leading-none font-extrabold tracking-tight sm:text-4xl">
             {title}
+            <span
+                aria-hidden
+                className="mb-[0.04em] inline-block h-[0.72em] w-[0.42em] shrink-0 bg-primary"
+            />
         </span>
-        <span className="inline-flex items-center gap-1.5 text-xs text-foreground/75">
+        <span className="inline-flex items-center gap-1.5 text-xs text-background/80 dark:text-foreground/75">
             {isPrivate && (
                 <LockSimpleIcon
                     aria-hidden

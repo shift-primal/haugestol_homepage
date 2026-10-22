@@ -10,14 +10,26 @@ export const Hero = () => {
 
     return (
         <SectionContainer sectionName="hero">
-            <div className="flex flex-col justify-center gap-6">
+            <div className="flex flex-col justify-center gap-8">
                 <HeroIntro />
-                <div className="flex max-w-lg flex-col gap-3 pointer-events-auto">
-                    <p className="text-muted-foreground">{getHero().tagline}</p>
-                    <p className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
-                        <span className="font-semibold">{m.hero_status()}</span>
+                <div className="flex max-w-xl flex-col gap-4 pointer-events-auto">
+                    <p className="text-lg leading-relaxed text-pretty text-foreground/80 sm:text-xl">
+                        {getHero().tagline}
+                    </p>
+                    <p className="flex flex-wrap items-center gap-x-5 gap-y-2">
+                        <span className="inline-flex items-start gap-2.5 font-semibold">
+                            {/* the "on air" light: he's available now */}
+                            <span
+                                aria-hidden
+                                className="relative mt-[0.4375rem] flex size-2.5 shrink-0"
+                            >
+                                <span className="absolute inset-0 animate-ping rounded-full bg-primary opacity-60 [animation-duration:2.4s] motion-reduce:animate-none" />
+                                <span className="relative size-2.5 rounded-full bg-primary" />
+                            </span>
+                            {m.hero_status()}
+                        </span>
                         {location && (
-                            <span className="inline-flex items-center gap-1.5 text-muted-foreground">
+                            <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground">
                                 <MapPinIcon
                                     aria-hidden
                                     className="size-4"

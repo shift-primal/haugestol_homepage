@@ -93,7 +93,7 @@ const itemMediaVariants = cva(
                 default: "bg-transparent",
                 icon: "[&_svg:not([class*='size-'])]:size-4",
                 "icon-circle":
-                    "size-8 rounded-full bg-foreground/10 text-foreground/70 transition-colors group-hover/item:bg-foreground/20 group-hover/item:text-foreground [&_svg:not([class*='size-'])]:size-4",
+                    "size-8 rounded-full bg-foreground/10 text-foreground/70 transition-colors group-hover/item:bg-primary group-hover/item:text-primary-foreground [&_svg:not([class*='size-'])]:size-4",
                 image: "size-10 overflow-hidden rounded-none group-data-[size=sm]/item:size-8 group-data-[size=xs]/item:size-6 [&_img]:size-full [&_img]:object-cover",
             },
         },
@@ -154,7 +154,7 @@ function ItemDescription({ className, ...props }: React.ComponentProps<"p">) {
         <p
             data-slot="item-description"
             className={cn(
-                "line-clamp-2 text-left text-xs/relaxed font-normal text-muted-foreground group-data-[size=xs]/item:text-xs/relaxed [&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-primary",
+                "line-clamp-2 text-left text-xs/relaxed font-normal text-muted-foreground group-data-[size=xs]/item:text-xs/relaxed [&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-signal",
                 className
             )}
             {...props}

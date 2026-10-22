@@ -26,7 +26,7 @@ export const NotFound = () => {
             <p className="mt-4 flex items-baseline gap-2 overflow-hidden">
                 <Link
                     to="/"
-                    className="text-primary underline underline-offset-4 transition-colors hover:text-primary/80"
+                    className="text-signal underline underline-offset-4 transition-colors hover:text-signal/80"
                 >
                     {m.page_not_found_goback()}
                 </Link>

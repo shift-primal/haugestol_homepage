@@ -16,11 +16,16 @@ const scrollToSection = (id: string) =>
 
 export const HeroActions = () => (
     <div className="flex flex-wrap items-center gap-3 pointer-events-auto w-fit">
-        <Button onClick={() => scrollToSection("projects")}>
+        <Button
+            size="lg"
+            className="px-4"
+            onClick={() => scrollToSection("projects")}
+        >
             {m.hero_projects_button()}
         </Button>
         <Button
             variant="outline"
+            size="lg"
             nativeButton={false}
             render={(props) => (
                 <Link

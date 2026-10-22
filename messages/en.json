@@ -9,7 +9,6 @@
 	"page_not_found_goback": "Please go back",
 	"page_not_found_now": "now",
 
-	"suspicious_button_label": "Try me",
 	"theme_toggle_aria": "Toggle colour theme",
 	"language_switch_to_norwegian_aria": "Switch language to Norwegian",
 	"language_switch_to_english_aria": "Switch language to English",
@@ -79,7 +78,6 @@
 	"back_home": "Back to homepage",
 
 	"page_not_found_heading": "Oops …",
-	"suspicious_button_hint": "(please)",
 	"project_lightbox_title": "Screenshots of {title}",
 	"project_screenshot_alt": "Screenshot of {title}",
 	"contact_links_heading": "Reach me directly",

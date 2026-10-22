@@ -9,7 +9,6 @@
 	"page_not_found_goback": "Vennligst gå tilbake",
 	"page_not_found_now": "nå",
 
-	"suspicious_button_label": "Prøv meg",
 	"theme_toggle_aria": "Bytt fargetema",
 	"language_switch_to_norwegian_aria": "Bytt språk til norsk",
 	"language_switch_to_english_aria": "Bytt språk til engelsk",
@@ -79,7 +78,6 @@
 	"back_home": "Tilbake til forsiden",
 
 	"page_not_found_heading": "Oi da …",
-	"suspicious_button_hint": "(vær så snill)",
 	"project_lightbox_title": "Skjermbilder av {title}",
 	"project_screenshot_alt": "Skjermbilde av {title}",
 	"contact_links_heading": "Direkte kontakt",

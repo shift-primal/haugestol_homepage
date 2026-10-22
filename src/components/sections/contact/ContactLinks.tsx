@@ -52,7 +52,7 @@ export const ContactLinks = () => {
                             <ItemContent className="min-w-0 flex-row items-center gap-2">
                                 <span
                                     aria-hidden
-                                    className="text-muted-foreground"
+                                    className="text-muted-foreground transition-colors duration-base group-hover/item:text-signal"
                                 >
                                     {">"}
                                 </span>

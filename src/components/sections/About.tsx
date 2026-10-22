@@ -44,7 +44,7 @@ export const About = () => {
             <div className="grid gap-12 pointer-events-auto lg:grid-cols-12 lg:gap-16">
                 <div className="flex flex-col gap-8 lg:col-span-5">
                     {bio && (
-                        <p className="max-w-prose leading-relaxed text-pretty text-muted-foreground">
+                        <p className="max-w-prose text-lg leading-relaxed text-pretty text-foreground/85">
                             {bio.body}
                         </p>
                     )}

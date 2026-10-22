@@ -5,8 +5,6 @@ import { m } from "#/paraglide/messages";
 const linkClassName =
     "underline-offset-4 outline-none hover:text-foreground hover:underline focus-ring";
 
-// A quiet sign-off on every page, so the visit ends on Kasper rather than on
-// whatever section happened to be last.
 export const Footer = () => {
     const location = getCvLocation();
 

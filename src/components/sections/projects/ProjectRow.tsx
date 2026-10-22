@@ -86,14 +86,23 @@ export const ProjectRow = ({
                 <div className="flex flex-col gap-1">
                     <HeadingTag
                         className={cn(
-                            "font-bold tracking-tight",
-                            featured ? "text-3xl" : "text-xl"
+                            "font-extrabold tracking-tight",
+                            featured
+                                ? "text-4xl leading-none lg:text-5xl"
+                                : "text-2xl"
                         )}
                     >
                         {title}
                     </HeadingTag>
                     {subtitle && (
-                        <p className="text-sm text-foreground/80">{subtitle}</p>
+                        <p
+                            className={cn(
+                                "text-foreground/80",
+                                featured ? "mt-2 text-base" : "text-sm"
+                            )}
+                        >
+                            {subtitle}
+                        </p>
                     )}
                     {status && (
                         <p className="text-xs text-muted-foreground">
@@ -119,10 +128,13 @@ export const ProjectRow = ({
                             <ChatCircleTextIcon data-icon="inline-end" />
                         </Button>
                     )}
-                    {links.map((link) => (
+                    {links.map((link, index) => (
                         <Button
                             key={link.href}
-                            variant="outline"
+                            // the flagship's live site is the one to open first
+                            variant={
+                                featured && index === 0 ? "default" : "outline"
+                            }
                             nativeButton={false}
                             render={(props) => (
                                 <a

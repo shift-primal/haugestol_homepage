@@ -1,5 +1,4 @@
 import { NO, US } from "country-flag-icons/react/3x2";
-import { HERO_SKIP_TYPING_SESSION_KEY } from "#/components/sections/hero/HeroIntro";
 import { Button } from "#/components/shadcn/button";
 import { m } from "#/paraglide/messages";
 import { getLocale, setLocale } from "#/paraglide/runtime";
@@ -7,7 +6,7 @@ import { getLocale, setLocale } from "#/paraglide/runtime";
 export const LanguageSwitcher = () => {
     const currentLocale = getLocale();
     const nextLocale = currentLocale === "no" ? "en" : "no";
-    // show where the button takes you, not where you are
+
     const NextFlag = nextLocale === "no" ? NO : US;
 
     return (
@@ -16,11 +15,6 @@ export const LanguageSwitcher = () => {
             variant="pill"
             size="icon"
             onClick={() => {
-                try {
-                    sessionStorage.setItem(HERO_SKIP_TYPING_SESSION_KEY, "1");
-                } catch {
-                    // sessionStorage unavailable (e.g. private browsing) - animation will just replay
-                }
                 setLocale(nextLocale);
             }}
             aria-label={

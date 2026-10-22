@@ -8,11 +8,11 @@ export const SectionHeading = ({
     text: string;
     className?: string;
 }) => (
-    <div className="mb-10 sm:mb-12">
+    <div className="mb-10 flex items-end gap-[0.12em] text-4xl tracking-tight sm:mb-14 sm:text-5xl lg:text-6xl">
         <KineticText
             as="h2"
             text={text}
-            className={cn("text-3xl sm:text-4xl lg:text-5xl w-fit", className)}
+            className={cn("w-fit leading-none", className)}
         />
     </div>
 );
