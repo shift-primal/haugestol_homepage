@@ -23,7 +23,9 @@ const GalleryPlaceholder = ({ isPrivate }: { isPrivate?: boolean }) => (
                 className="size-5"
             />
         )}
-        <span className="text-xs">{m.project_screenshots_coming()}</span>
+        <span className="text-xs text-foreground/75">
+            {m.project_screenshots_coming()}
+        </span>
     </div>
 );
 

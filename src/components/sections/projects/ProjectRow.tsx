@@ -75,7 +75,7 @@ export const ProjectRow = ({
                     )}
                 </div>
 
-                <p className="max-w-prose text-sm leading-relaxed text-muted-foreground">
+                <p className="max-w-prose text-sm leading-relaxed text-pretty text-muted-foreground">
                     {description}
                 </p>
 
