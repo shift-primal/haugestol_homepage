@@ -2,6 +2,10 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/jetbrains-mono";
+@import "@fontsource/poppins/300.css";
+@import "@fontsource/poppins/400.css";
+@import "@fontsource/poppins/500.css";
+@import "@fontsource/poppins/600.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -20,6 +24,51 @@
 /* full-width rows: draw the outline inside so a clipping parent can't cut it off */
 @utility focus-ring-lg {
   @apply focus-visible:outline-solid focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ring focus-visible:duration-fast;
+}
+
+/* CV document (/cv): its own print-first design, ported from ~/jobbsok/resume */
+@theme {
+  --color-cv-navy: #323d53;
+  --color-cv-accent: #dce8fb;
+  --color-cv-ink: #1a1a1a;
+  --color-cv-muted: #6b7280;
+  --color-cv-paper: #ffffff;
+
+  --font-cv-body: "Poppins", sans-serif;
+  --font-cv-name:
+    "TeX Gyre Heros", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  --text-cv-name: 32pt;
+  --text-cv-role: 13pt;
+  --text-cv-heading: 11pt;
+  --text-cv-title: 10.5pt;
+  --text-cv-body: 8.5pt;
+  --text-cv-small: 7.8pt;
+}
+
+@font-face {
+  font-family: "TeX Gyre Heros";
+  src: url("./assets/fonts/texgyreheros-regular.otf") format("opentype");
+  font-weight: 400;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "TeX Gyre Heros";
+  src: url("./assets/fonts/texgyreheros-bold.otf") format("opentype");
+  font-weight: 700;
+  font-display: block;
+}
+
+@page cv {
+  size: A4;
+  margin: 0;
+}
+
+@utility cv-heading-underline {
+  background:
+    linear-gradient(var(--color-cv-navy), var(--color-cv-navy)) left bottom /
+    10mm 0.6mm no-repeat;
 }
 
 * {
@@ -169,7 +218,7 @@ body {
     @apply border-border outline-ring/50 duration-0;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground print:bg-transparent;
   }
   button:not(:disabled):not([data-disabled]),
   [role="button"]:not(:disabled):not([data-disabled]) {

@@ -13,4 +13,16 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://haugestol.com/en" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://haugestol.com/" />
   </url>
+  <url>
+    <loc>https://haugestol.com/cv</loc>
+    <xhtml:link rel="alternate" hreflang="no" href="https://haugestol.com/cv" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://haugestol.com/en/cv" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://haugestol.com/cv" />
+  </url>
+  <url>
+    <loc>https://haugestol.com/en/cv</loc>
+    <xhtml:link rel="alternate" hreflang="no" href="https://haugestol.com/cv" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://haugestol.com/en/cv" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://haugestol.com/cv" />
+  </url>
 </urlset>

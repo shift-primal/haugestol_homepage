@@ -7,16 +7,10 @@ import { PageLoader } from "#/components/layout/PageLoader";
 import { ScrollToTopButton } from "#/components/ui/ScrollToTopButton";
 import { SITE } from "#/content";
 import { PAGE_SCROLL_CONTAINER_ID } from "#/lib/scroll";
+import { SITE_ORIGIN } from "#/lib/seo";
 import { m } from "#/paraglide/messages";
-import {
-    baseLocale,
-    getLocale,
-    locales,
-    localizeHref,
-} from "#/paraglide/runtime";
+import { getLocale } from "#/paraglide/runtime";
 import appCss from "../styles.css?url";
-
-const SITE_ORIGIN = "https://haugestol.com";
 
 const personSchema = {
     "@context": "https://schema.org",
@@ -41,12 +35,12 @@ const RootDocument = ({ children }: { children: React.ReactNode }) => {
             <head>
                 <HeadContent />
             </head>
-            <body className="overflow-hidden">
+            <body className="overflow-hidden print:overflow-visible">
                 <ThemeProvider attribute="class">
-                    <div className="fixed inset-0 flex flex-col">
+                    <div className="fixed inset-0 flex flex-col print:static">
                         <div
                             id={PAGE_SCROLL_CONTAINER_ID}
-                            className="min-h-0 flex-1 overflow-y-auto overflow-x-clip relative w-full"
+                            className="min-h-0 flex-1 overflow-y-auto overflow-x-clip relative w-full print:overflow-visible"
                         >
                             <Header />
                             <main>{children}</main>
@@ -82,10 +76,6 @@ export const Route = createRootRoute({
             {
                 property: "og:type",
                 content: "website",
-            },
-            {
-                property: "og:url",
-                content: `${SITE_ORIGIN}${localizeHref("/")}`,
             },
             {
                 property: "og:title",
@@ -144,24 +134,6 @@ export const Route = createRootRoute({
             {
                 rel: "manifest",
                 href: "/site.webmanifest",
-            },
-            {
-                rel: "canonical",
-                href: `${SITE_ORIGIN}${localizeHref("/")}`,
-            },
-            ...locales.map((locale) => ({
-                rel: "alternate",
-                hrefLang: locale,
-                href: `${SITE_ORIGIN}${localizeHref("/", {
-                    locale,
-                })}`,
-            })),
-            {
-                rel: "alternate",
-                hrefLang: "x-default",
-                href: `${SITE_ORIGIN}${localizeHref("/", {
-                    locale: baseLocale,
-                })}`,
             },
         ],
         scripts: [

@@ -82,5 +82,11 @@
 	"contact_form_submit_error": "Something went wrong (probably my fault). Please try again.",
 
 	"contact_or_divider": "or",
-	"contact_response_time": "Usually replies within 24h"
+	"contact_response_time": "Usually replies within 24h",
+
+	"cv_meta_title": "CV – Kasper Haugestøl",
+	"cv_meta_description": "CV for Kasper Haugestøl, full-stack developer: projects, skills, education and work experience.",
+	"cv_back": "Back to homepage",
+	"cv_download": "Download as PDF",
+	"cv_download_hint": "Opens the print dialog. Choose “Save as PDF”."
 }

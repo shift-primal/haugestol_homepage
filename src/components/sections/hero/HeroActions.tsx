@@ -1,8 +1,9 @@
 import {
-    DownloadIcon,
     EnvelopeIcon,
+    FileTextIcon,
     GithubLogoIcon,
 } from "@phosphor-icons/react";
+import { Link } from "@tanstack/react-router";
 import { Button } from "#/components/shadcn/button";
 import { SITE } from "#/content";
 import { m } from "#/paraglide/messages";
@@ -21,15 +22,13 @@ export const HeroActions = () => (
             variant="outline"
             nativeButton={false}
             render={(props) => (
-                <a
-                    href="/CV_KH_26.pdf"
-                    target="_blank"
-                    rel="noreferrer"
+                <Link
                     {...props}
+                    to="/cv"
                 >
                     <span>{m.hero_resume()}</span>
-                    <DownloadIcon data-icon="inline-end" />
-                </a>
+                    <FileTextIcon data-icon="inline-end" />
+                </Link>
             )}
         />
         <Button
