@@ -29,8 +29,8 @@ export const LightSwitch = () => {
                     className="absolute top-[120%] text-foreground/75 flex flex-col gap-0.75"
                 >
                     {m.suspicious_button_label()}
-                    <span className="text-[0.65rem] text-muted-foreground">
-                        (please)
+                    <span className="text-xs text-muted-foreground">
+                        {m.suspicious_button_hint()}
                     </span>
                 </Label>
             </Button>

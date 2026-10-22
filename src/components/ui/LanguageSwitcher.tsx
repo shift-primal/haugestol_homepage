@@ -7,7 +7,8 @@ import { getLocale, setLocale } from "#/paraglide/runtime";
 export const LanguageSwitcher = () => {
     const currentLocale = getLocale();
     const nextLocale = currentLocale === "no" ? "en" : "no";
-    const CurrentFlag = currentLocale === "no" ? NO : US;
+    // show where the button takes you, not where you are
+    const NextFlag = nextLocale === "no" ? NO : US;
 
     return (
         <Button
@@ -29,7 +30,7 @@ export const LanguageSwitcher = () => {
             }
             className="z-50"
         >
-            <CurrentFlag className="size-3 rounded-[1px]" />
+            <NextFlag className="size-3 rounded-[1px]" />
         </Button>
     );
 };

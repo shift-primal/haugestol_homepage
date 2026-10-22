@@ -5,6 +5,7 @@ import useEmblaCarousel, {
 import * as React from "react";
 import { Button } from "#/components/shadcn/button.tsx";
 import { cn } from "#/lib/shadcn.utils";
+import { m } from "#/paraglide/messages";
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -210,7 +211,7 @@ function CarouselPrevious({
             {...props}
         >
             <CaretLeftIcon />
-            <span className="sr-only">Previous slide</span>
+            <span className="sr-only">{m.carousel_previous()}</span>
         </Button>
     );
 }
@@ -241,7 +242,7 @@ function CarouselNext({
             {...props}
         >
             <CaretRightIcon />
-            <span className="sr-only">Next slide</span>
+            <span className="sr-only">{m.carousel_next()}</span>
         </Button>
     );
 }

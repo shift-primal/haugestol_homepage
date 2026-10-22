@@ -18,7 +18,7 @@ export const NotFound = () => {
 
     return (
         <div className="flex flex-col items-center justify-center h-dvh pointer-events-auto">
-            <h1 className="text-2xl font-bold">Oops...</h1>
+            <h1 className="text-2xl font-bold">{m.page_not_found_heading()}</h1>
             <span className="text-lg mt-2">{m.page_not_found_message()}</span>
             <span className="font-medium text-muted-foreground">
                 {m.page_not_found_question()}

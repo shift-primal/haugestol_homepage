@@ -7,7 +7,6 @@ import {
     ItemTitle,
 } from "#/components/shadcn/item";
 import { formatRelativeTime } from "#/lib/relative-time";
-import { m } from "#/paraglide/messages";
 import type { Locale } from "#/paraglide/runtime";
 import type { RecentCommit } from "#/server/fetchGitHubData";
 
@@ -27,9 +26,6 @@ export const ActivityItem = ({
                     href={commit.url}
                     target="_blank"
                     rel="noreferrer"
-                    aria-label={m.activity_commit_aria({
-                        repo: commit.repo,
-                    })}
                 />
             )}
         >

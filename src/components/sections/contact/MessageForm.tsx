@@ -9,6 +9,7 @@ import {
 } from "#/components/shadcn/field";
 import { Input } from "#/components/shadcn/input";
 import { Textarea } from "#/components/shadcn/textarea";
+import { SITE } from "#/content";
 import { useContactForm } from "#/hooks/useContactForm";
 import { CONTACT_FIELD_MAX_LENGTH } from "#/lib/schemas/contact-schema";
 import { m } from "#/paraglide/messages";
@@ -202,7 +203,9 @@ export const MessageForm = () => {
                             )}
                             {status === "error" && (
                                 <p className="text-sm text-destructive">
-                                    {m.contact_form_submit_error()}
+                                    {m.contact_form_submit_error({
+                                        email: SITE.email,
+                                    })}
                                 </p>
                             )}
                         </div>

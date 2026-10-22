@@ -2,6 +2,7 @@ import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
 import { XIcon } from "@phosphor-icons/react";
 import { Button } from "#/components/shadcn/button.tsx";
 import { cn } from "#/lib/shadcn.utils";
+import { m } from "#/paraglide/messages";
 
 function Dialog({ ...props }: DialogPrimitive.Root.Props) {
     return (
@@ -87,7 +88,7 @@ function DialogContent({
                         }
                     >
                         <XIcon />
-                        <span className="sr-only">Close</span>
+                        <span className="sr-only">{m.common_close()}</span>
                     </DialogPrimitive.Close>
                 )}
             </DialogPrimitive.Popup>

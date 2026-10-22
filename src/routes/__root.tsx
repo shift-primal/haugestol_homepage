@@ -67,7 +67,7 @@ export const Route = createRootRoute({
                 content: "width=device-width, initial-scale=1",
             },
             {
-                title: "Kasper Haugestøl - Full-Stack Developer",
+                title: m.meta_title(),
             },
             {
                 name: "description",
@@ -79,7 +79,7 @@ export const Route = createRootRoute({
             },
             {
                 property: "og:title",
-                content: "Kasper Haugestøl - Full-Stack Developer",
+                content: m.meta_title(),
             },
             {
                 property: "og:description",
@@ -95,7 +95,7 @@ export const Route = createRootRoute({
             },
             {
                 name: "twitter:title",
-                content: "Kasper Haugestøl - Full-Stack Developer",
+                content: m.meta_title(),
             },
             {
                 name: "twitter:description",

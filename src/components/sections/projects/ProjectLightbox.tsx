@@ -10,6 +10,7 @@ import {
     CarouselPrevious,
 } from "#/components/shadcn/carousel";
 import { Dialog, DialogContent, DialogTitle } from "#/components/shadcn/dialog";
+import { m } from "#/paraglide/messages";
 
 export const ProjectLightbox = ({
     title,
@@ -50,7 +51,9 @@ export const ProjectLightbox = ({
                 }}
             >
                 <DialogTitle className="sr-only">
-                    Lightbox for image carousel
+                    {m.project_lightbox_title({
+                        title,
+                    })}
                 </DialogTitle>
                 <Carousel
                     setApi={setApi}
