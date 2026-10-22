@@ -88,5 +88,7 @@
 	"contact_phone_label": "Phone",
 	"common_close": "Close",
 	"carousel_previous": "Previous image",
-	"carousel_next": "Next image"
+	"carousel_next": "Next image",
+	"carousel_go_to": "Show image {n}",
+	"carousel_position": "Image {current} of {total}"
 }

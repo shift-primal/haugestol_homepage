@@ -6,11 +6,11 @@ import { ProjectLightbox } from "#/components/sections/projects/ProjectLightbox"
 import {
     Carousel,
     CarouselContent,
+    CarouselDots,
     CarouselItem,
     CarouselNext,
     CarouselPrevious,
 } from "#/components/shadcn/carousel";
-import { useMediaQuery } from "#/hooks/useMediaQuery";
 import { m } from "#/paraglide/messages";
 
 // Stand-in until real screenshots exist (private projects for now). Says
@@ -36,7 +36,6 @@ export const ProjectGallery = ({
     images: Record<string, Img>;
     isPrivate?: boolean;
 }) => {
-    const isDesktop = useMediaQuery("(min-width: 1024px)");
     const imageEntries = Object.entries(images);
 
     const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -61,51 +60,45 @@ export const ProjectGallery = ({
                 <CarouselContent>
                     {imageEntries.map(([id, img], index) => (
                         <CarouselItem key={id}>
-                            {isDesktop ? (
-                                <button
-                                    type="button"
-                                    className="block w-full cursor-zoom-in outline-none focus-ring"
-                                    onClick={() => openLightbox(index)}
-                                >
-                                    <ProjectImage
-                                        img={img}
-                                        title={title}
-                                        className="border"
-                                    />
-                                </button>
-                            ) : (
+                            {/* tap or click for full screen, on every size */}
+                            <button
+                                type="button"
+                                className="block w-full cursor-zoom-in outline-none focus-ring"
+                                onClick={() => openLightbox(index)}
+                            >
                                 <ProjectImage
                                     img={img}
                                     title={title}
                                     className="border"
                                 />
-                            )}
+                            </button>
                         </CarouselItem>
                     ))}
                 </CarouselContent>
                 {imageEntries.length > 1 && (
                     <>
+                        {/* arrows over the image fight with swiping, so
+                            phones get the dots below instead */}
                         <CarouselPrevious
                             variant="secondary"
-                            className="left-3 opacity-65 absolute"
+                            className="absolute top-[calc(50%-1.25rem)] left-3 my-0 hidden opacity-65 md:inline-flex"
                         />
                         <CarouselNext
                             variant="secondary"
-                            className="right-3 opacity-65 absolute"
+                            className="absolute top-[calc(50%-1.25rem)] right-3 my-0 hidden opacity-65 md:inline-flex"
                         />
                     </>
                 )}
+                <CarouselDots className="mt-2" />
             </Carousel>
 
-            {isDesktop && (
-                <ProjectLightbox
-                    title={title}
-                    imageEntries={imageEntries}
-                    open={lightboxOpen}
-                    onOpenChange={setLightboxOpen}
-                    startIndex={startIndex}
-                />
-            )}
+            <ProjectLightbox
+                title={title}
+                imageEntries={imageEntries}
+                open={lightboxOpen}
+                onOpenChange={setLightboxOpen}
+                startIndex={startIndex}
+            />
         </>
     );
 };

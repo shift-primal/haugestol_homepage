@@ -88,5 +88,7 @@
 	"contact_phone_label": "Telefon",
 	"common_close": "Lukk",
 	"carousel_previous": "Forrige bilde",
-	"carousel_next": "Neste bilde"
+	"carousel_next": "Neste bilde",
+	"carousel_go_to": "Vis bilde {n}",
+	"carousel_position": "Bilde {current} av {total}"
 }
