@@ -1,6 +1,7 @@
 import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { ThemeProvider } from "next-themes";
 import { Filter } from "#/components/layout/Filter";
+import { Footer } from "#/components/layout/Footer";
 import { Header } from "#/components/layout/Header";
 import { NotFound } from "#/components/layout/NotFound";
 import { PageLoader } from "#/components/layout/PageLoader";
@@ -44,6 +45,7 @@ const RootDocument = ({ children }: { children: React.ReactNode }) => {
                         >
                             <Header />
                             <main>{children}</main>
+                            <Footer />
                         </div>
                     </div>
                     <Filter />

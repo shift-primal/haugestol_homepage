@@ -1,5 +1,6 @@
 import {
     ArrowLeftIcon,
+    ArrowRightIcon,
     ArrowUpRightIcon,
     GithubLogoIcon,
 } from "@phosphor-icons/react";
@@ -48,23 +49,44 @@ const ProjectsPage = () => (
             ))}
         </div>
 
-        <Button
-            variant="outline"
-            nativeButton={false}
-            className="w-fit gap-3"
-            render={(props) => (
-                <a
-                    {...props}
-                    href={SITE.github}
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    <GithubLogoIcon data-icon="inline-start" />
-                    <span>{m.project_more_projects()}</span>
-                    <ArrowUpRightIcon data-icon="inline-end" />
-                </a>
-            )}
-        />
+        {/* end on the next step, not a dead end */}
+        <div className="flex flex-col gap-4 border-t border-border pt-12">
+            <p className="text-xl font-bold tracking-tight">
+                {m.projects_contact_heading()}
+            </p>
+            <div className="flex flex-wrap gap-3">
+                <Button
+                    nativeButton={false}
+                    render={(props) => (
+                        <Link
+                            {...props}
+                            to="/"
+                            hash="contact"
+                        >
+                            <span>{m.projects_contact_button()}</span>
+                            <ArrowRightIcon data-icon="inline-end" />
+                        </Link>
+                    )}
+                />
+                <Button
+                    variant="outline"
+                    nativeButton={false}
+                    className="gap-3"
+                    render={(props) => (
+                        <a
+                            {...props}
+                            href={SITE.github}
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            <GithubLogoIcon data-icon="inline-start" />
+                            <span>{m.project_more_projects()}</span>
+                            <ArrowUpRightIcon data-icon="inline-end" />
+                        </a>
+                    )}
+                />
+            </div>
+        </div>
     </div>
 );
 

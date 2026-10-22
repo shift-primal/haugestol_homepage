@@ -2,19 +2,11 @@ import { MapPinIcon } from "@phosphor-icons/react";
 import { SectionContainer } from "#/components/layout/SectionContainer";
 import { HeroActions } from "#/components/sections/hero/HeroActions";
 import { HeroIntro } from "#/components/sections/hero/HeroIntro";
-import { type CvContactSection, getCv, getHero } from "#/content";
+import { getCvLocation, getHero } from "#/content";
 import { m } from "#/paraglide/messages";
 
-// location comes from the CV so it's only ever written in one place
-const getLocation = () =>
-    getCv()
-        .sidebar.find(
-            (section): section is CvContactSection => section.type === "contact"
-        )
-        ?.items.find((item) => item.icon === "map-pin")?.label;
-
 export const Hero = () => {
-    const location = getLocation();
+    const location = getCvLocation();
 
     return (
         <SectionContainer sectionName="hero">

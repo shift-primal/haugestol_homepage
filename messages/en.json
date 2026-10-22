@@ -89,5 +89,9 @@
 	"carousel_go_to": "Show image {n}",
 	"carousel_position": "Image {current} of {total}",
 	"project_request_demo": "Request a demo",
-	"project_demo_message": "Hi! I'd like to see a demo of {title}."
+	"project_demo_message": "Hi! I'd like to see a demo of {title}.",
+	"footer_signoff": "Thanks for stopping by!",
+	"footer_nav_aria": "Footer",
+	"projects_contact_heading": "Want to hear more about one of these?",
+	"projects_contact_button": "Get in touch"
 }

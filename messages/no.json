@@ -89,5 +89,9 @@
 	"carousel_go_to": "Vis bilde {n}",
 	"carousel_position": "Bilde {current} av {total}",
 	"project_request_demo": "Be om demo",
-	"project_demo_message": "Hei! Jeg vil gjerne se en demo av {title}."
+	"project_demo_message": "Hei! Jeg vil gjerne se en demo av {title}.",
+	"footer_signoff": "Takk for at du tittet innom!",
+	"footer_nav_aria": "Bunntekst",
+	"projects_contact_heading": "Vil du høre mer om et av prosjektene?",
+	"projects_contact_button": "Ta kontakt"
 }

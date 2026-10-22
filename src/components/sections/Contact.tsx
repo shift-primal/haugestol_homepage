@@ -9,15 +9,17 @@ export const Contact = () => {
         <SectionContainer sectionName="contact">
             <SectionHeading text={m.contact_heading()} />
 
-            <div className="flex flex-col lg:flex-row items-center lg:items-stretch gap-8">
+            {/* phones get the one-tap email and phone before the form; desktop
+                keeps the form first */}
+            <div className="flex flex-col items-center gap-8 lg:flex-row lg:items-start">
                 <MessageForm />
-                <div className="w-full lg:w-auto flex flex-col gap-8 items-center lg:flex-row lg:items-stretch">
+                <div className="w-full lg:w-auto flex flex-col gap-8 items-center lg:flex-row lg:items-stretch lg:self-stretch">
                     <div className="flex w-full max-w-md items-center gap-4 pointer-events-auto sm:max-w-full lg:w-auto lg:flex-col lg:self-stretch">
-                        <span className="h-px flex-1 bg-border lg:hidden" />
-                        <span className="font-mono text-xs tracking-widest text-muted-foreground lg:my-auto">
+                        <span className="h-px flex-1 bg-border lg:h-auto lg:w-px" />
+                        <span className="font-mono text-xs tracking-widest text-muted-foreground">
                             {m.contact_or_divider()}
                         </span>
-                        <span className="h-px flex-1 bg-border lg:hidden" />
+                        <span className="h-px flex-1 bg-border lg:h-auto lg:w-px" />
                     </div>
                 </div>
                 <ContactLinks />

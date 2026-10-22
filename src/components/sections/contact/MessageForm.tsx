@@ -1,4 +1,8 @@
-import { ArrowRightIcon } from "@phosphor-icons/react";
+import {
+    ArrowRightIcon,
+    CheckCircleIcon,
+    WarningCircleIcon,
+} from "@phosphor-icons/react";
 import { useEffect, useRef } from "react";
 import { Button } from "#/components/shadcn/button";
 import { Card, CardContent } from "#/components/shadcn/card";
@@ -44,7 +48,7 @@ export const MessageForm = () => {
     }, []);
 
     return (
-        <Card className="w-full max-w-md bg-glass py-0 pointer-events-auto sm:max-w-full lg:flex-2">
+        <Card className="order-last w-full max-w-md bg-glass py-0 pointer-events-auto sm:max-w-full lg:order-none lg:flex-2">
             <form
                 onSubmit={handleSubmit}
                 onBlur={handleBlur}
@@ -223,12 +227,22 @@ export const MessageForm = () => {
                             className="empty:hidden"
                         >
                             {status === "success" && (
-                                <p className="text-sm text-muted-foreground">
+                                <p className="flex items-start gap-3 border border-border bg-muted px-4 py-3 text-sm">
+                                    <CheckCircleIcon
+                                        aria-hidden
+                                        weight="fill"
+                                        className="mt-0.5 size-4 shrink-0"
+                                    />
                                     {m.contact_form_submit_success()}
                                 </p>
                             )}
                             {status === "error" && (
-                                <p className="text-sm text-destructive">
+                                <p className="flex items-start gap-3 border border-destructive/50 px-4 py-3 text-sm text-destructive">
+                                    <WarningCircleIcon
+                                        aria-hidden
+                                        weight="fill"
+                                        className="mt-0.5 size-4 shrink-0"
+                                    />
                                     {m.contact_form_submit_error({
                                         email: SITE.email,
                                     })}

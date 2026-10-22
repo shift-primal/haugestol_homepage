@@ -14,7 +14,7 @@ import { m } from "#/paraglide/messages";
 
 export const ContactLinks = () => {
     return (
-        <div className="flex w-full max-w-md flex-col pointer-events-auto lg:w-auto lg:flex-1 px-4 py-4 lg:px-8 lg:py-8 sm:max-w-full ">
+        <div className="order-first flex w-full max-w-md flex-col pointer-events-auto px-4 py-4 sm:max-w-full lg:order-none lg:w-auto lg:flex-1 lg:px-8 lg:py-8">
             <div className="mb-4 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                 <h3 className="font-semibold">{m.contact_links_heading()}</h3>
                 <span className="font-mono text-xs text-muted-foreground">
