@@ -32,6 +32,7 @@ Z`;
 // pointer or key press on the knob unlocks it before anything plays.
 export const Rope = () => {
     const isMobile = useMediaQuery("(max-width: 639px)");
+    const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
     const config = isMobile ? MOBILE_CONFIG : DESKTOP_CONFIG;
 
     const { isDark, toggle } = useThemeTransition();
@@ -51,6 +52,7 @@ export const Rope = () => {
         initialKnobAngleDeg,
     } = useRopeCord({
         config,
+        reducedMotion,
         onStretchArmed: () => {
             setPullFilter(BRIGHTNESS_FILTER);
             playDragDown();

@@ -11,6 +11,7 @@ import {
     CarouselPrevious,
 } from "#/components/shadcn/carousel";
 import { Dialog, DialogContent, DialogTitle } from "#/components/shadcn/dialog";
+import { useMediaQuery } from "#/hooks/useMediaQuery";
 import { m } from "#/paraglide/messages";
 
 export const ProjectLightbox = ({
@@ -30,6 +31,7 @@ export const ProjectLightbox = ({
     startIndex: number;
 }) => {
     const [api, setApi] = useState<CarouselApi>();
+    const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
 
     return (
         <Dialog
@@ -46,10 +48,10 @@ export const ProjectLightbox = ({
                     if (event.defaultPrevented) return;
                     if (event.key === "ArrowLeft") {
                         event.preventDefault();
-                        api?.scrollPrev();
+                        api?.scrollPrev(reducedMotion);
                     } else if (event.key === "ArrowRight") {
                         event.preventDefault();
-                        api?.scrollNext();
+                        api?.scrollNext(reducedMotion);
                     }
                 }}
             >

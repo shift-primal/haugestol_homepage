@@ -4,6 +4,7 @@ import useEmblaCarousel, {
 } from "embla-carousel-react";
 import * as React from "react";
 import { Button } from "#/components/shadcn/button.tsx";
+import { useMediaQuery } from "#/hooks/useMediaQuery";
 import { cn } from "#/lib/shadcn.utils";
 import { m } from "#/paraglide/messages";
 
@@ -24,6 +25,7 @@ type CarouselContextProps = {
     api: ReturnType<typeof useEmblaCarousel>[1];
     scrollPrev: () => void;
     scrollNext: () => void;
+    scrollTo: (index: number) => void;
     canScrollPrev: boolean;
     canScrollNext: boolean;
     selectedIndex: number;
@@ -58,6 +60,8 @@ function Carousel({
         },
         plugins
     );
+    // reduced motion: jump straight to a slide instead of animating there
+    const jump = useMediaQuery("(prefers-reduced-motion: reduce)");
     const [canScrollPrev, setCanScrollPrev] = React.useState(false);
     const [canScrollNext, setCanScrollNext] = React.useState(false);
     const [selectedIndex, setSelectedIndex] = React.useState(0);
@@ -72,16 +76,28 @@ function Carousel({
     }, []);
 
     const scrollPrev = React.useCallback(() => {
-        api?.scrollPrev();
+        api?.scrollPrev(jump);
     }, [
         api,
+        jump,
     ]);
 
     const scrollNext = React.useCallback(() => {
-        api?.scrollNext();
+        api?.scrollNext(jump);
     }, [
         api,
+        jump,
     ]);
+
+    const scrollTo = React.useCallback(
+        (index: number) => {
+            api?.scrollTo(index, jump);
+        },
+        [
+            api,
+            jump,
+        ]
+    );
 
     const handleKeyDown = React.useCallback(
         (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -133,6 +149,7 @@ function Carousel({
                     (opts?.axis === "y" ? "vertical" : "horizontal"),
                 scrollPrev,
                 scrollNext,
+                scrollTo,
                 canScrollPrev,
                 canScrollNext,
                 selectedIndex,
@@ -259,7 +276,7 @@ function CarouselNext({
 // Position dots: the touch-friendly alternative to the arrow buttons. The
 // visible dot is small; each button keeps a finger-sized hit area.
 function CarouselDots({ className }: { className?: string }) {
-    const { api, selectedIndex, slideCount } = useCarousel();
+    const { scrollTo, selectedIndex, slideCount } = useCarousel();
     if (slideCount < 2) return null;
 
     return (
@@ -280,7 +297,7 @@ function CarouselDots({ className }: { className?: string }) {
                             n: index + 1,
                         })}
                         aria-current={index === selectedIndex}
-                        onClick={() => api?.scrollTo(index)}
+                        onClick={() => scrollTo(index)}
                         className="group/dot flex size-6 items-center justify-center outline-none focus-ring pointer-coarse:size-11"
                     >
                         <span

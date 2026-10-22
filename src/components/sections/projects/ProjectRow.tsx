@@ -9,6 +9,7 @@ import { ProjectGallery } from "#/components/sections/projects/ProjectGallery";
 import { Button } from "#/components/shadcn/button";
 import type { Project } from "#/content";
 import { requestContactPrefill } from "#/lib/contact-prefill";
+import { scrollBehavior } from "#/lib/scroll";
 import { cn } from "#/lib/shadcn.utils";
 import { m } from "#/paraglide/messages";
 
@@ -49,7 +50,7 @@ export const ProjectRow = ({
         const contact = document.getElementById("contact");
         if (contact) {
             contact.scrollIntoView({
-                behavior: "smooth",
+                behavior: scrollBehavior(),
             });
         } else {
             navigate({

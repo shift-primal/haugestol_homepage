@@ -6,11 +6,12 @@ import {
 import { Link } from "@tanstack/react-router";
 import { Button } from "#/components/shadcn/button";
 import { SITE } from "#/content";
+import { scrollBehavior } from "#/lib/scroll";
 import { m } from "#/paraglide/messages";
 
 const scrollToSection = (id: string) =>
     document.getElementById(id)?.scrollIntoView({
-        behavior: "smooth",
+        behavior: scrollBehavior(),
     });
 
 export const HeroActions = () => (
