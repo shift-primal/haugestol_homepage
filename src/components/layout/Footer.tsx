@@ -3,7 +3,7 @@ import { getCvLocation, SITE } from "#/content";
 import { m } from "#/paraglide/messages";
 
 const linkClassName =
-    "underline-offset-4 outline-none hover:text-foreground hover:underline focus-ring";
+    "underline-offset-4 outline-none transition-colors duration-base hover:text-foreground hover:underline focus-ring";
 
 export const Footer = () => {
     const location = getCvLocation();

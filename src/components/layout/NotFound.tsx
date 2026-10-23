@@ -26,14 +26,14 @@ export const NotFound = () => {
             <p className="mt-4 flex items-baseline gap-2 overflow-hidden">
                 <Link
                     to="/"
-                    className="text-signal underline underline-offset-4 transition-colors hover:text-signal/80"
+                    className="text-signal underline underline-offset-4 transition-colors duration-base hover:text-signal/80"
                 >
                     {m.page_not_found_goback()}
                 </Link>
                 <span
                     aria-hidden={!show}
                     className={cn(
-                        "inline-block transition-all duration-slow ease-out",
+                        "inline-block transition-[opacity,translate] duration-slow",
                         show
                             ? "translate-y-0 opacity-100"
                             : "translate-y-3 opacity-0"

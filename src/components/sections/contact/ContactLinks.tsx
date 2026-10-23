@@ -61,7 +61,7 @@ export const ContactLinks = () => {
                                 </ItemTitle>
                             </ItemContent>
                             <ItemActions>
-                                <ArrowUpRightIcon className="size-3.5 -translate-x-0.5 text-muted-foreground opacity-0 transition-all duration-base group-hover/item:translate-x-0 group-hover/item:opacity-100" />
+                                <ArrowUpRightIcon className="size-3.5 -translate-x-0.5 text-muted-foreground opacity-0 transition-[opacity,translate] duration-base group-hover/item:translate-x-0 group-hover/item:opacity-100" />
                             </ItemActions>
                         </Item>
                     </Fragment>

@@ -9,10 +9,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@utility hover-lift {
-  @apply hover:scale-102 duration-base;
-}
-
 @utility focus-ring {
   @apply focus-visible:border-ring focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring focus-visible:duration-fast;
 }
@@ -40,6 +36,22 @@
 /* full-width rows: draw the outline inside so a clipping parent can't cut it off */
 @utility focus-ring-lg {
   @apply focus-visible:outline-solid focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ring focus-visible:duration-fast;
+}
+
+/* Motion tokens: every transition and animation on the site uses these.
+   fast = focus and press feedback, base = hover and colour changes, and
+   closing; slow = opening and showing (panels, dialogs, entrances);
+   reveal = the theme switch. One curve for all of it. Static, so the
+   theme switch can read them from JS (see useThemeTransition). */
+@theme static {
+  --transition-duration-fast: 100ms;
+  --transition-duration-base: 200ms;
+  --transition-duration-slow: 300ms;
+  --transition-duration-reveal: 700ms;
+  --transition-stagger: 25ms;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --default-transition-duration: var(--transition-duration-base);
+  --default-transition-timing-function: var(--ease-out-expo);
 }
 
 /* CV document (/cv): its own print-first design, ported from ~/jobbsok/resume */
@@ -131,10 +143,6 @@ body {
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 
-  --transition-duration-fast: 100ms;
-  --transition-duration-base: 200ms;
-  --transition-duration-slow: 300ms;
-
   --animate-blink-cursor: blink-cursor 1.2s step-end infinite;
   @keyframes blink-cursor {
     0%,
@@ -195,7 +203,7 @@ body {
 
 @layer base {
   * {
-    @apply border-border outline-ring/50 duration-0;
+    @apply border-border outline-ring/50 duration-0 ease-out-expo;
   }
   body {
     @apply bg-background text-foreground print:bg-transparent;
@@ -233,18 +241,19 @@ body {
   block-size: 0;
   overflow-y: clip;
   transition:
-    block-size 200ms cubic-bezier(0.16, 1, 0.3, 1),
-    content-visibility 200ms allow-discrete;
+    block-size var(--transition-duration-base) var(--ease-out-expo),
+    content-visibility var(--transition-duration-base) allow-discrete;
 }
 
 .disclosure[open]::details-content {
   block-size: auto;
-  transition-duration: 300ms;
+  transition-duration: var(--transition-duration-slow);
 }
 
 .disclosure[open] .disclosure-row {
-  animation: disclosure-row 300ms cubic-bezier(0.16, 1, 0.3, 1) both;
-  animation-delay: calc(var(--row, 0) * 25ms);
+  animation: disclosure-row var(--transition-duration-slow) var(--ease-out-expo)
+    both;
+  animation-delay: calc(var(--row, 0) * var(--transition-stagger));
 }
 
 @keyframes disclosure-row {
@@ -282,4 +291,12 @@ body {
 
 ::view-transition {
   pointer-events: none;
+}
+
+/* while the circle grows, colours switch at once so the new theme inside
+   it is already settled instead of fading in a second time */
+.theme-switching *,
+.theme-switching *::before,
+.theme-switching *::after {
+  transition: none;
 }

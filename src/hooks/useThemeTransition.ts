@@ -1,8 +1,15 @@
 import { useTheme } from "next-themes";
 import { useCallback, useEffect, useState } from "react";
 
-const REVEAL_MS = 700;
-const REVEAL_EASING = "cubic-bezier(0.16, 1, 0.3, 1)";
+// the reveal's timing comes from the motion tokens in styles.css
+const motionToken = (name: string) =>
+    getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
+// the CSS minifier may rewrite 700ms as .7s
+const toMs = (time: string) =>
+    time.endsWith("ms")
+        ? Number.parseFloat(time)
+        : Number.parseFloat(time) * 1000;
 
 export function useThemeTransition() {
     const { resolvedTheme, setTheme } = useTheme();
@@ -27,6 +34,7 @@ export function useThemeTransition() {
             }
 
             const transition = document.startViewTransition(() => {
+                root.classList.add("theme-switching");
                 // apply the class here so the new snapshot is ready at once;
                 // next-themes sets the same class when its state catches up
                 root.classList.remove(isDark ? "dark" : "light");
@@ -50,8 +58,10 @@ export function useThemeTransition() {
                             ],
                         },
                         {
-                            duration: REVEAL_MS,
-                            easing: REVEAL_EASING,
+                            duration: toMs(
+                                motionToken("--transition-duration-reveal")
+                            ),
+                            easing: motionToken("--ease-out-expo"),
                             pseudoElement: "::view-transition-new(root)",
                         }
                     );
@@ -59,6 +69,9 @@ export function useThemeTransition() {
                 .catch(() => {
                     // transition skipped (e.g. tab hidden): the theme still changed
                 });
+            transition.finished.finally(() =>
+                root.classList.remove("theme-switching")
+            );
         },
         [
             isDark,

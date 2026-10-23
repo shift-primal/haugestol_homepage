@@ -103,7 +103,7 @@ export const About = () => {
                     <summary className="flex w-fit cursor-pointer list-none items-center gap-2 text-sm font-semibold outline-none focus-ring [&::-webkit-details-marker]:hidden">
                         <CaretRightIcon
                             aria-hidden
-                            className="size-3.5 transition-transform duration-base group-open:rotate-90 motion-reduce:transition-none"
+                            className="size-3.5 transition-transform duration-base group-open:rotate-90 group-open:duration-slow motion-reduce:transition-none"
                         />
                         {m.about_courses_toggle({
                             count: courses.length,

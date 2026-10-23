@@ -34,7 +34,7 @@ function ItemSeparator({
 }
 
 const itemVariants = cva(
-    "group/item flex w-full flex-wrap items-center rounded-none border text-xs transition-colors duration-fast outline-none focus-ring-lg [a]:transition-colors [a]:hover:bg-muted",
+    "group/item flex w-full flex-wrap items-center rounded-none border text-xs transition-colors duration-base outline-none focus-ring-lg [a]:hover:bg-muted",
     {
         variants: {
             variant: {
@@ -93,7 +93,7 @@ const itemMediaVariants = cva(
                 default: "bg-transparent",
                 icon: "[&_svg:not([class*='size-'])]:size-4",
                 "icon-circle":
-                    "size-8 rounded-full bg-foreground/10 text-foreground/70 transition-colors group-hover/item:bg-primary group-hover/item:text-primary-foreground [&_svg:not([class*='size-'])]:size-4",
+                    "size-8 rounded-full bg-foreground/10 text-foreground/70 transition-colors duration-base group-hover/item:bg-primary group-hover/item:text-primary-foreground [&_svg:not([class*='size-'])]:size-4",
                 image: "size-10 overflow-hidden rounded-none group-data-[size=sm]/item:size-8 group-data-[size=xs]/item:size-6 [&_img]:size-full [&_img]:object-cover",
             },
         },
