@@ -19,7 +19,8 @@ RUN pnpm build
 # Run app
 FROM node:22-alpine3.24 AS runner
 WORKDIR /app
-RUN apk add --no-cache curl=8.22.0-r0
+# Unpinned: Alpine drops old package versions from its index, which breaks the build.
+RUN apk add --no-cache curl
 ENV NODE_ENV=production
 ENV PORT=3000
 ENV HOST=0.0.0.0
