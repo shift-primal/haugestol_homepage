@@ -23,7 +23,7 @@ export const ProjectImage = ({
                     title,
                 })}
                 loading="lazy"
-                className="relative z-20 aspect-video object-fill scale-101"
+                className="relative z-20 aspect-video object-cover scale-101"
             />
         </div>
     );

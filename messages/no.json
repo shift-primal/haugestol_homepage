@@ -23,7 +23,6 @@
 	"projects_all": "Alle prosjekter ({count})",
 	"project_more_projects": "Mer på GitHub",
 	"project_private": "Privat prosjekt",
-	"project_status_not_live": "ikke live ennå",
 	"project_screenshots_coming": "Skjermbilder kommer",
 	"project_screenshot_alt": "Skjermbilde av {title}",
 	"project_lightbox_title": "Skjermbilder av {title}",
@@ -38,7 +37,6 @@
 
 	"project_pokedex_description": "Pokédex bygget på PokéAPI. Virtualisert søk i alle Pokémon, utviklingskjeder, detaljer for hver form og avansert filtrering.",
 	"project_bfq_description": "Quiz om meg: hvor godt kjenner du Kasper? Poengsum underveis, state i en store og en toppliste som oppdateres live.",
-	"project_groovehaus_description": "Konsept for en nettbutikk for vinyl, musikkutstyr og instrumenter, med handlekurv, innlogging og betaling med Stripe.",
 
 	"about_heading": "Om meg",
 	"about_courses_toggle": "Kurs og sertifikater ({count})",
