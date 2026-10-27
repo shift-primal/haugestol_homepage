@@ -13,7 +13,7 @@ export const Hero = () => {
             <div className="flex flex-col justify-center gap-8">
                 <HeroIntro />
                 <div className="flex max-w-xl flex-col gap-4 pointer-events-auto">
-                    <p className="font-sans text-lg leading-[1.6] text-pretty text-foreground/80 sm:text-xl">
+                    <p className="text-lg leading-relaxed text-pretty text-foreground/80 sm:text-xl">
                         {getHero().tagline}
                     </p>
                     <p className="flex flex-wrap items-center gap-x-5 gap-y-2">
