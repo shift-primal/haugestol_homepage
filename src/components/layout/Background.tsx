@@ -1,6 +1,7 @@
 import { useTheme } from "next-themes";
 import { useEffect, useRef } from "react";
 import MetaBalls from "#/components/shadcn/metaballs.tsx";
+import { useMediaQuery } from "#/hooks/useMediaQuery";
 import { PAGE_SCROLL_CONTAINER_ID } from "#/lib/scroll";
 
 const DIMMED_OPACITY = 0.35;
@@ -8,6 +9,7 @@ const DIMMED_OPACITY = 0.35;
 export const Background = () => {
     const { resolvedTheme } = useTheme();
     const ref = useRef<HTMLDivElement>(null);
+    const isMobile = useMediaQuery("(max-width: 639px)");
 
     useEffect(() => {
         const container = document.getElementById(PAGE_SCROLL_CONTAINER_ID);
@@ -34,13 +36,14 @@ export const Background = () => {
             className="fixed inset-0 -z-10 pointer-events-none print:hidden"
         >
             <MetaBalls
+                key={isMobile ? "mobile" : "desktop"}
                 color={resolvedTheme === "dark" ? "#fafafa" : "#CB5E26"}
                 cursorBallColor="#FF712F"
                 cursorBallSize={1.5}
                 variant="contour"
                 motion="lava"
-                ballCount={12}
-                animationSize={20}
+                ballCount={isMobile ? 6 : 12}
+                animationSize={isMobile ? 26 : 20}
                 gooeyness={0.7}
                 stretch={0.2}
                 wobble={0}
@@ -50,10 +53,11 @@ export const Background = () => {
                 hoverSmoothness={0.03}
                 stickiness={0.5}
                 lineWidth={1.5}
-                rings={4}
+                rings={isMobile ? 3 : 4}
                 fade={0.85}
-                enableMouseInteraction={true}
-                clickBurst
+                enableMouseInteraction={!isMobile}
+                clickBurst={false}
+                dpr={isMobile ? 1 : undefined}
                 returnOnLeave={false}
                 intro={false}
             />
