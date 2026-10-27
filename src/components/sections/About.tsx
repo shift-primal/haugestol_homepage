@@ -41,7 +41,7 @@ export const About = () => {
 
             <div className="grid gap-12 pointer-events-auto lg:grid-cols-12 lg:grid-rows-[auto_auto_1fr] lg:gap-x-16 lg:gap-y-10">
                 {bio && (
-                    <p className="max-w-prose text-lg leading-relaxed text-pretty text-foreground/85 lg:col-span-5">
+                    <p className="max-w-[62ch] font-sans text-[1.0625rem] leading-[1.7] text-pretty text-foreground/85 sm:text-lg lg:col-span-5">
                         {bio.body}
                     </p>
                 )}

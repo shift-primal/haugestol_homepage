@@ -14,10 +14,11 @@ const CvPage = () => {
 
     return (
         <div className="mx-auto flex w-full max-w-[210mm] flex-col gap-6 px-4 pt-24 pb-16 sm:px-0 lg:pt-32 print:block print:max-w-none print:p-0">
-            <div className="flex flex-wrap items-center justify-between gap-3 print:hidden">
+            <div className="flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between print:hidden">
                 <Button
                     variant="ghost"
                     nativeButton={false}
+                    className="-ml-2.5"
                     render={(props) => (
                         <Link
                             {...props}

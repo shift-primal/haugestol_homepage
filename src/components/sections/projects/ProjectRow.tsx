@@ -93,10 +93,12 @@ export const ProjectRow = ({
                         <p
                             className={cn(
                                 "text-foreground/80",
-                                featured ? "mt-2 text-base" : "text-sm"
+                                featured
+                                    ? "mt-2 text-sm sm:text-base"
+                                    : "text-sm"
                             )}
                         >
-                            {subtitle}
+                            {subtitle.replaceAll(" · ", "\u00a0· ")}
                         </p>
                     )}
                     {status && (
@@ -106,13 +108,13 @@ export const ProjectRow = ({
                     )}
                 </div>
 
-                <p className="max-w-prose text-sm leading-relaxed text-pretty text-muted-foreground">
+                <p className="max-w-[62ch] font-sans text-[0.9375rem] leading-[1.65] text-pretty text-muted-foreground">
                     {description}
                 </p>
 
                 {tech && (
                     <p className="text-xs text-muted-foreground">
-                        {tech.join(" · ")}
+                        {tech.join("\u00a0· ")}
                     </p>
                 )}
 
