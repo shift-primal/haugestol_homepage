@@ -1,19 +1,7 @@
+import photo from "#/assets/cv/photo.jpg?w=640&format=jpg";
 import { CvMain } from "#/components/cv/CvMain";
 import { CvSidebar } from "#/components/cv/CvSidebar";
 import type { Cv } from "#/content";
-
-// The photo is kept out of the public repo: drop it in src/assets/private/
-// (gitignored, dockerignored) to include it in a local PDF export. The
-// deployed site never has it, so the CV renders without it there.
-const privatePhotos = import.meta.glob<string>(
-    "/src/assets/private/photo.jpg",
-    {
-        eager: true,
-        import: "default",
-        query: "?w=640&format=jpg",
-    }
-);
-const photo = Object.values(privatePhotos)[0];
 
 const PAGE_VARS = {
     "--page-top": "10mm",

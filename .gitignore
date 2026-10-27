@@ -15,6 +15,3 @@ todos.json
 /.impeccable
 /DESIGN.md
 /PRODUCT.md
-
-# local-only CV assets (e.g. photo for PDF export) - never committed or deployed
-src/assets/private/

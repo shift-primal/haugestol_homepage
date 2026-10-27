@@ -242,9 +242,13 @@ const TARGETS: Target[] = [
         explicitOnly: true,
         shots: [
             {
+                name: "01-office-off-product",
+                path: "/produkt/trenchcoat?farge=Beige",
+            },
+            {
                 // the split hero is taller than the viewport, so show its
                 // lower half with both line panels
-                name: "01-office-off-home",
+                name: "02-office-off-home",
                 path: "/",
                 stage: async (page) => {
                     await page
@@ -264,7 +268,7 @@ const TARGETS: Target[] = [
             },
             {
                 // scrolled past the line banner to the product grid
-                name: "02-office-off-listing",
+                name: "03-office-off-listing",
                 path: "/office/herre",
                 stage: async (page) => {
                     await page
@@ -277,10 +281,6 @@ const TARGETS: Target[] = [
                         });
                     await settle(page);
                 },
-            },
-            {
-                name: "03-office-off-product",
-                path: "/produkt/trenchcoat?farge=Beige",
             },
         ],
     },

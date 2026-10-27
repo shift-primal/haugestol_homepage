@@ -65,7 +65,7 @@ const SITE_EXTRAS: Record<
     },
 };
 
-export const FEATURED_PROJECT_ID = "wastescope";
+export const FEATURED_PROJECT_ID = "gront-lys";
 
 // The CV's projects, featured one first, the rest in CV order. Functions
 // rather than constants so copy follows the active locale.
