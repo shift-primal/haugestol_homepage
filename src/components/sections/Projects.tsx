@@ -13,7 +13,7 @@ export const Projects = () => {
     return (
         <SectionContainer sectionName="projects">
             <SectionHeading text={m.projects_heading()} />
-            <div className="flex flex-col gap-16">
+            <div className="flex flex-col gap-12 sm:gap-16">
                 {featured && (
                     <ProjectRow
                         project={featured}

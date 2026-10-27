@@ -18,6 +18,7 @@ const CvPage = () => {
                 <Button
                     variant="ghost"
                     nativeButton={false}
+                    className="-ml-2.5"
                     render={(props) => (
                         <Link
                             {...props}

@@ -98,7 +98,7 @@ export const ProjectRow = ({
                                     : "text-sm"
                             )}
                         >
-                            {subtitle}
+                            {subtitle.replaceAll(" · ", "\u00a0· ")}
                         </p>
                     )}
                     {status && (
@@ -114,7 +114,7 @@ export const ProjectRow = ({
 
                 {tech && (
                     <p className="text-xs text-muted-foreground">
-                        {tech.join(" · ")}
+                        {tech.join("\u00a0· ")}
                     </p>
                 )}
 

@@ -107,7 +107,8 @@ body {
 @theme inline {
   --font-heading: var(--font-mono);
   --font-mono: "JetBrains Mono Variable", monospace;
-  --font-sans: "Schibsted Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans:
+    "Schibsted Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
   --color-ring: var(--ring);
   --color-signal: var(--signal);
   --color-input: var(--input);
