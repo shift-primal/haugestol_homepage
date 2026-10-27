@@ -52,12 +52,12 @@ const SITE_EXTRAS: Record<
     },
     "office-and-off": {
         isPrivate: true,
-        images: {},
+        images: screenshotsFor("office-off"),
     },
     "gront-lys": {
         isPrivate: true,
         demoOnRequest: true,
-        images: {},
+        images: screenshotsFor("gront-lys"),
     },
     spot: {
         githubHref: "https://github.com/shift-primal/spot",
@@ -119,15 +119,6 @@ const getOtherProjects = (): Project[] => [
         ],
         githubHref: "https://github.com/shift-primal/bfq",
         images: screenshotsFor("bfq"),
-    },
-    {
-        id: "groovehaus",
-        title: "Groovehaus",
-        description: m.project_groovehaus_description(),
-        status: m.project_status_not_live(),
-        links: [],
-        githubHref: "https://github.com/shift-primal/groovehaus",
-        images: screenshotsFor("groovehaus"),
     },
 ];
 

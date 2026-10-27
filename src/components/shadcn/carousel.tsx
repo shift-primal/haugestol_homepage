@@ -302,7 +302,7 @@ function CarouselDots({ className }: { className?: string }) {
                     >
                         <span
                             className={cn(
-                                "block size-1.5 rounded-full transition-colors duration-fast",
+                                "block size-1.5 rounded-full transition-colors duration-base",
                                 index === selectedIndex
                                     ? "bg-foreground"
                                     : "bg-foreground/25 group-hover/dot:bg-foreground/50"

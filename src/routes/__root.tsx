@@ -38,7 +38,10 @@ const RootDocument = ({ children }: { children: React.ReactNode }) => {
                 <HeadContent />
             </head>
             <body className="overflow-hidden print:overflow-visible">
-                <ThemeProvider attribute="class">
+                <ThemeProvider
+                    attribute="class"
+                    disableTransitionOnChange
+                >
                     <div className="fixed inset-0 flex flex-col print:static">
                         <Background />
                         <div

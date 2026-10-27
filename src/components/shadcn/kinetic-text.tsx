@@ -34,7 +34,7 @@ export function KineticText({
                     // biome-ignore lint/suspicious/noArrayIndexKey: <has-no-stable-id>
                     key={i}
                     aria-hidden="true"
-                    className="will-change-[font-weight,-webkit-text-stroke-width,padding] [-webkit-text-stroke-color:transparent] [-webkit-text-stroke-width:var(--text-stroke-width)] [transition:font-weight_0.4s,color_0.4s,-webkit-text-stroke-color_0.4s,padding_0.4s] motion-reduce:transition-none hover:px-(--hover-padding) hover:font-extrabold hover:text-primary hover:[-webkit-text-stroke-color:currentcolor] hover:[-webkit-text-stroke-width:calc(var(--text-stroke-width)*2)] has-[+span+span:hover]:font-medium has-[+span:hover]:px-(--hover-padding) has-[+span:hover]:font-bold [:hover+&]:px-(--hover-padding) [:hover+&]:font-bold [:hover+span+&]:font-medium pointer-events-auto"
+                    className="will-change-[font-weight,-webkit-text-stroke-width,padding] [-webkit-text-stroke-color:transparent] [-webkit-text-stroke-width:var(--text-stroke-width)] transition-[font-weight,color,-webkit-text-stroke-color,padding] duration-slow motion-reduce:transition-none hover:px-(--hover-padding) hover:font-extrabold hover:text-primary hover:[-webkit-text-stroke-color:currentcolor] hover:[-webkit-text-stroke-width:calc(var(--text-stroke-width)*2)] has-[+span+span:hover]:font-medium has-[+span:hover]:px-(--hover-padding) has-[+span:hover]:font-bold [:hover+&]:px-(--hover-padding) [:hover+&]:font-bold [:hover+span+&]:font-medium pointer-events-auto"
                 >
                     {letter === " " ? "\u00A0" : letter}
                 </span>

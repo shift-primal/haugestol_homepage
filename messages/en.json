@@ -23,7 +23,6 @@
 	"projects_all": "All projects ({count})",
 	"project_more_projects": "More on GitHub",
 	"project_private": "Private project",
-	"project_status_not_live": "not live yet",
 	"project_screenshots_coming": "Screenshots coming",
 	"project_screenshot_alt": "Screenshot of {title}",
 	"project_lightbox_title": "Screenshots of {title}",
@@ -38,7 +37,6 @@
 
 	"project_pokedex_description": "A Pokédex built on PokéAPI. Virtualised search across every Pokémon, evolution chains, per-form details and advanced filtering.",
 	"project_bfq_description": "A quiz about me: how well do you know Kasper? Running score, store-based state and a live leaderboard.",
-	"project_groovehaus_description": "Concept web shop for vinyl, music gear and instruments, with a cart, login and Stripe checkout.",
 
 	"about_heading": "About me",
 	"about_courses_toggle": "Courses and certificates ({count})",
