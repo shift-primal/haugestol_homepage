@@ -128,7 +128,7 @@ export const Rope = () => {
                         height={KNOB_HEIGHT}
                         viewBox="0 -150 100 150"
                         preserveAspectRatio="xMidYMid meet"
-                        className="text-primary select-none [-webkit-user-drag:none]"
+                        className="text-foreground drop-shadow-sm select-none [-webkit-user-drag:none]"
                         onDragStart={(event) => event.preventDefault()}
                     >
                         <path

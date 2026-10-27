@@ -13,7 +13,7 @@ const CvPage = () => {
     const { ref, scale } = useFitWidth<HTMLDivElement>(A4_WIDTH_PX);
 
     return (
-        <div className="mx-auto flex w-full max-w-[210mm] flex-col gap-6 px-4 pt-24 pb-16 sm:px-0 lg:pt-32 print:block print:max-w-none print:p-0">
+        <div className="mx-auto flex w-full max-w-[210mm] flex-col gap-6 px-4 pt-40 pb-16 sm:px-0 lg:pt-32 print:block print:max-w-none print:p-0">
             <div className="flex flex-wrap items-center justify-between gap-3 print:hidden">
                 <Button
                     variant="ghost"
