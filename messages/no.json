@@ -36,7 +36,7 @@
 	"carousel_position": "Bilde {current} av {total}",
 
 	"project_pokedex_description": "Pokédex bygget på PokéAPI. Virtualisert søk i alle Pokémon, utviklingskjeder, detaljer for hver form og avansert filtrering.",
-	"project_bfq_description": "Quiz om meg: hvor godt kjenner du Kasper? Poengsum underveis, state i en store og en toppliste som oppdateres live.",
+	"project_klyndre_description": "Discord-bot som henger i serveren som et vanlig medlem: prater med en karakter og et minne som utvikler seg, spiller musikk i talekanaler, og har et dashboard for innstillinger per server som lastes inn live.",
 
 	"about_heading": "Om meg",
 	"about_courses_toggle": "Kurs og sertifikater ({count})",

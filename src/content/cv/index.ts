@@ -10,7 +10,6 @@ import { getLocale } from "#/paraglide/runtime";
 
 export type * from "#/content/cv/types";
 
-// a function rather than a constant so it follows the active locale
 export const getCv = (): Cv => (getLocale() === "en" ? cvEn : cvNo);
 
 export const getCvEntries = (id: CvEntriesSection["id"]) =>
@@ -22,7 +21,6 @@ export const getCvEntries = (id: CvEntriesSection["id"]) =>
 export const formatCvPeriod = ({ start, end }: CvPeriod) =>
     `${start} – ${end ?? getCv().present}`;
 
-// location is written once, in the CV's contact list
 export const getCvLocation = () =>
     getCv()
         .sidebar.find(

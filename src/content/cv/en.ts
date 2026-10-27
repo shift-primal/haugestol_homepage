@@ -1,7 +1,5 @@
 import type { Cv } from "#/content/cv/types";
 
-// English translation of no.ts, which is the source of truth: change facts
-// there first, then mirror them here.
 export const cvEn: Cv = {
     name: {
         first: "Kasper",
@@ -10,7 +8,6 @@ export const cvEn: Cv = {
     role: "Full-stack developer",
     present: "present",
 
-    // left column, rendered top to bottom
     sidebar: [
         {
             type: "contact",
@@ -139,7 +136,7 @@ export const cvEn: Cv = {
         {
             type: "text",
             title: "About me",
-            body: "Student at GET Academy. Coursework is done, and I need an internship to complete the programme. I build complete solutions from database to interface, with a focus on solid structure, testing and usability. Looking for an internship or a junior position in web development.",
+            body: "I like taking a product all the way, from the first sketch to running it in production. I've worked as a support worker and taught tech courses to colleagues, so I'm used to explaining things simply and working closely with people. GET Academy coursework is done, and I'm looking for an internship or junior role in software development.",
         },
         {
             type: "entries",
@@ -219,7 +216,9 @@ export const cvEn: Cv = {
                     description:
                         "Upload an export from DNB or Valle, and the transactions are categorised so you can see where the money goes. The parsing lives in txcategorizer, my own TypeScript library published on npm.",
                     tech: [
-                        "Drizzle ORM",
+                        "TanStack Start",
+                        "PostgreSQL",
+                        "Drizzle",
                         "Better Auth",
                         "Recharts",
                         "txcategorizer",
@@ -248,9 +247,9 @@ export const cvEn: Cv = {
                         start: 2022,
                         end: 2023,
                     },
-                    subtitle: "Østre Toten municipality",
+                    subtitle: "Østre Toten kommune",
                     description:
-                        "Supported and followed up users with special needs, working closely with colleagues and families.",
+                        "Supported users with special needs, working closely with staff and families.",
                 },
                 {
                     title: "Sales and service associate",

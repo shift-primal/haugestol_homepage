@@ -42,8 +42,6 @@ export const ProjectLightbox = ({
                 className="max-w-full border-none bg-transparent px-0 pt-14 ring-0 sm:max-w-7xl sm:px-4"
                 overlayClassName="bg-black/85"
                 closeButtonClassName="top-1 right-1 size-11 text-white hover:bg-white/10 hover:text-white [&_svg:not([class*='size-'])]:size-5"
-                // the carousel only handles arrows while focus is inside it; the
-                // dialog opens with focus elsewhere, so handle them for the whole popup
                 onKeyDown={(event) => {
                     if (event.defaultPrevented) return;
                     if (event.key === "ArrowLeft") {
@@ -69,7 +67,6 @@ export const ProjectLightbox = ({
                     className="flex w-full cursor-default flex-col gap-4"
                 >
                     <div className="flex items-center gap-6">
-                        {/* phones swipe; the arrows are for pointer and keyboard */}
                         <CarouselPrevious
                             variant="secondary"
                             className="hidden shrink-0 md:inline-flex"

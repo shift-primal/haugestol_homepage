@@ -1,13 +1,3 @@
-// Captures the project screenshots in src/assets/screenshots/projects/ so
-// they can be retaken after a redesign instead of cropped by hand. Every shot
-// is the 1280×720 viewport at 2× (2560×1440, exactly 16:9) with motion off.
-//
-//   pnpm screenshots                  every target that's reachable
-//   pnpm screenshots ws bfq           only these folders
-//
-// Local targets are skipped unless their dev server is up. Shots not listed
-// here (the npm page, ws import preview) are left as they are. Set CHROME_PATH if Playwright's own Chromium won't run (NixOS).
-
 import { execSync } from "node:child_process";
 import { createHmac } from "node:crypto";
 import { mkdirSync } from "node:fs";
@@ -16,7 +6,6 @@ import { chromium, type Page } from "playwright";
 interface Shot {
     name: string;
     path: string;
-    // stage the page after it's loaded: open a dialog, hover a chart, …
     stage?: (page: Page) => Promise<void>;
 }
 
@@ -25,63 +14,30 @@ interface Target {
     baseUrl: string;
     colorScheme: "light" | "dark";
     locale?: string;
-    // seeded before any page script runs, e.g. a stored theme
+    width?: number;
     localStorage?: Record<string, string>;
-    // runs once before the shots, e.g. to sign in
     setup?: (page: Page) => Promise<void>;
     shots: Shot[];
-    // only run when named on the command line
     explicitOnly?: boolean;
 }
 
 const OUT_DIR = "src/assets/screenshots/projects";
+const GRONT_LYS_URL = process.env.GRONT_LYS_URL ?? "http://localhost:3000";
+const KLYNDRE_URL = process.env.KLYNDRE_URL ?? "http://localhost:3001";
+const KLYNDRE_GUILD_ID = "1339339272926265344";
 
 const TARGETS: Target[] = [
-    {
-        folder: "bfq",
-        baseUrl: "https://quiz.haugestol.com",
-        colorScheme: "dark",
-        locale: "nb-NO",
-        // ignores the system theme, only follows its own toggle
-        localStorage: {
-            theme: "dark",
-        },
-        shots: [
-            {
-                name: "01-bfq-home",
-                path: "/",
-            },
-            {
-                name: "02-bfq-in-progress",
-                path: "/quiz/start",
-                stage: async (page) => {
-                    await page.getByPlaceholder("Kasper...").fill("Kasper");
-                    await page
-                        .getByRole("button", {
-                            name: "Neste",
-                        })
-                        .click();
-                    await settle(page);
-                },
-            },
-            {
-                name: "03-bfq-leaderboard",
-                path: "/leaderboard",
-            },
-        ],
-    },
     {
         folder: "pokemon",
         baseUrl: "https://pokemon.haugestol.com",
         colorScheme: "light",
+        width: 1920,
         shots: [
             {
                 name: "01-pokemon-home",
                 path: "/",
             },
             {
-                // the hero fills a 16:9 viewport, so the featured grid
-                // gets its own shot
                 name: "02-pokemon-featured",
                 path: "/",
                 stage: async (page) => {
@@ -114,7 +70,6 @@ const TARGETS: Target[] = [
         baseUrl: "https://spot.haugestol.com",
         colorScheme: "light",
         shots: [
-            // joining is remembered, so the welcome dialog goes first
             {
                 name: "002-spot-welcome",
                 path: "/",
@@ -138,9 +93,6 @@ const TARGETS: Target[] = [
                 },
             },
             {
-                // the synthwave sunset drawn at world (14000, 16000); the
-                // camera is read from localStorage on load, and spot saves
-                // its own on unload, so it's set before the next load
                 name: "001-spot-sunset",
                 path: "/",
                 stage: async (page) => {
@@ -161,7 +113,6 @@ const TARGETS: Target[] = [
         ],
     },
     {
-        // the npm page (01) sits behind a Cloudflare bot check, so it's by hand
         folder: "txcategorizer",
         baseUrl: "https://github.com",
         colorScheme: "dark",
@@ -177,7 +128,6 @@ const TARGETS: Target[] = [
         baseUrl: "https://ws.haugestol.com",
         colorScheme: "dark",
         shots: [
-            // signed out, so it goes first
             {
                 name: "05-ws-home",
                 path: "/",
@@ -194,7 +144,6 @@ const TARGETS: Target[] = [
                 name: "03-ws-import",
                 path: "/import",
             },
-            // last, since the light scheme sticks for the rest of the page
             {
                 name: "02-ws-dashboardlight",
                 path: "/dashboard",
@@ -209,8 +158,8 @@ const TARGETS: Target[] = [
     },
     {
         folder: "gront-lys",
-        baseUrl: "http://localhost:3000",
-        colorScheme: "light",
+        baseUrl: GRONT_LYS_URL,
+        colorScheme: "dark",
         locale: "nb-NO",
         setup: signInGrontLys,
         shots: [
@@ -221,6 +170,10 @@ const TARGETS: Target[] = [
             {
                 name: "02-gront-lys-saker",
                 path: "/s/trafikkskole-nord/saker",
+                stage: async (page) => {
+                    await page.getByText("Slakk dobbeltpedal i bil 3").click();
+                    await settle(page);
+                },
             },
             {
                 name: "03-gront-lys-klasser",
@@ -233,8 +186,47 @@ const TARGETS: Target[] = [
         ],
     },
     {
-        // the seeded catalogue uses Zalando's photos, which mustn't be
-        // published, so this only runs on request (pnpm screenshots office-off)
+        folder: "klyndre",
+        baseUrl: KLYNDRE_URL,
+        colorScheme: "light",
+        setup: signInKlyndre,
+        explicitOnly: true,
+        shots: [
+            {
+                name: "01-klyndre-settings",
+                path: `/guilds/${KLYNDRE_GUILD_ID}/settings`,
+            },
+            {
+                name: "02-klyndre-character",
+                path: `/guilds/${KLYNDRE_GUILD_ID}/character`,
+            },
+            {
+                name: "03-klyndre-replies",
+                path: `/guilds/${KLYNDRE_GUILD_ID}/settings`,
+                stage: async (page) => {
+                    await page
+                        .getByRole("tab", {
+                            name: "Replies",
+                        })
+                        .click();
+                    await settle(page);
+                },
+            },
+            {
+                name: "04-klyndre-memory",
+                path: `/guilds/${KLYNDRE_GUILD_ID}/settings`,
+                stage: async (page) => {
+                    await page
+                        .getByRole("tab", {
+                            name: "Memory",
+                        })
+                        .click();
+                    await settle(page);
+                },
+            },
+        ],
+    },
+    {
         folder: "office-off",
         baseUrl: "http://localhost:8000",
         colorScheme: "light",
@@ -246,8 +238,6 @@ const TARGETS: Target[] = [
                 path: "/produkt/trenchcoat?farge=Beige",
             },
             {
-                // the split hero is taller than the viewport, so show its
-                // lower half with both line panels
                 name: "02-office-off-home",
                 path: "/",
                 stage: async (page) => {
@@ -267,7 +257,6 @@ const TARGETS: Target[] = [
                 },
             },
             {
-                // scrolled past the line banner to the product grid
                 name: "03-office-off-listing",
                 path: "/office/herre",
                 stage: async (page) => {
@@ -286,8 +275,6 @@ const TARGETS: Target[] = [
     },
 ];
 
-// hides scrollbars and the text caret, which otherwise blink into shots, and
-// the TanStack devtools button local dev servers show
 const CLEANUP_CSS = `
     * { scrollbar-width: none !important; caret-color: transparent !important; }
     *::-webkit-scrollbar { display: none !important; }
@@ -295,7 +282,6 @@ const CLEANUP_CSS = `
 `;
 
 const settle = async (page: Page) => {
-    // sockets and polling keep some pages from ever going idle
     await page
         .waitForLoadState("networkidle", {
             timeout: 10_000,
@@ -316,7 +302,6 @@ const signInWsDemo = async (page: Page) => {
     await settle(page);
 };
 
-// shows the tooltip on the monthly trend chart, roughly at the second-last month
 const hoverChart = async (page: Page) => {
     const chart = page.locator(".recharts-surface").first();
     const box = await chart.boundingBox();
@@ -325,9 +310,6 @@ const hoverChart = async (page: Page) => {
     await page.waitForTimeout(400);
 };
 
-// demo accounts share one TOTP key derived from DEMO_PASSWORD (see
-// gront-lys-app packages/db/src/seed/demo-key.ts); pass that repo's
-// DEMO_PASSWORD as GRONT_LYS_DEMO_PASSWORD so it stays out of this repo
 const GRONT_LYS_DEMO_PASSWORD = process.env.GRONT_LYS_DEMO_PASSWORD ?? "";
 
 const totpCode = (key: Buffer) => {
@@ -345,7 +327,7 @@ async function signInGrontLys(page: Page) {
     if (!GRONT_LYS_DEMO_PASSWORD) {
         throw new Error("set GRONT_LYS_DEMO_PASSWORD to sign in");
     }
-    const baseUrl = "http://localhost:3000";
+    const baseUrl = GRONT_LYS_URL;
     const headers = {
         origin: baseUrl,
     };
@@ -376,6 +358,27 @@ async function signInGrontLys(page: Page) {
     if (!verify.ok()) throw new Error(`2FA failed: ${verify.status()}`);
 }
 
+const KLYNDRE_DEMO_PASSWORD = process.env.KLYNDRE_DEMO_PASSWORD ?? "";
+
+async function signInKlyndre(page: Page) {
+    if (!KLYNDRE_DEMO_PASSWORD) {
+        throw new Error("set KLYNDRE_DEMO_PASSWORD to sign in");
+    }
+    const signIn = await page.request.post(
+        `${KLYNDRE_URL}/api/auth/sign-in/email`,
+        {
+            headers: {
+                origin: KLYNDRE_URL,
+            },
+            data: {
+                email: "demo@example.com",
+                password: KLYNDRE_DEMO_PASSWORD,
+            },
+        }
+    );
+    if (!signIn.ok()) throw new Error(`sign-in failed: ${signIn.status()}`);
+}
+
 const isReachable = async (url: string) => {
     try {
         await fetch(url, {
@@ -396,7 +399,6 @@ const findChrome = () => {
             .split("\n")[0]
             .trim();
     } catch {
-        // fall back to Playwright's bundled Chromium
         return undefined;
     }
 };
@@ -417,15 +419,15 @@ for (const target of targets) {
         console.log(`skip ${target.folder}: ${target.baseUrl} isn't up`);
         continue;
     }
+    const width = target.width ?? 1280;
     const context = await browser.newContext({
         viewport: {
-            width: 1280,
-            height: 720,
+            width,
+            height: (width * 9) / 16,
         },
-        deviceScaleFactor: 2,
+        deviceScaleFactor: 2560 / width,
         colorScheme: target.colorScheme,
         reducedMotion: "reduce",
-        // lets CLEANUP_CSS in on pages with a strict CSP
         bypassCSP: true,
         locale: target.locale ?? "en-US",
     });

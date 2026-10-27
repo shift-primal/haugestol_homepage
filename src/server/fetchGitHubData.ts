@@ -2,7 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { graphqlWithAuth } from "#/services/graphql";
 
 const REPOS_LIMIT = 5;
-const COMMITS_PER_REPO = 5;
+const COMMITS_PER_REPO = 10;
 const RECENT_COMMITS_LIMIT = 5;
 
 const DAY_MS = 24 * 60 * 60 * 1000;
@@ -33,6 +33,9 @@ query GetActivity(
                   message
                   committedDate
                   url
+                  parents(first: 1) {
+                    totalCount
+                  }
                 }
               }
             }
@@ -67,6 +70,9 @@ interface GitHubActivityResponse {
                                 message: string;
                                 committedDate: string;
                                 url: string;
+                                parents: {
+                                    totalCount: number;
+                                };
                             }>;
                         };
                     } | null;
@@ -127,14 +133,15 @@ export const fetchGitHubData = createServerFn({
     const allCommits: RecentCommit[] =
         response.viewer.repositories.nodes.flatMap((repo) => {
             const commits = repo.defaultBranchRef?.target?.history.nodes ?? [];
-            return commits.map((commit) => ({
-                repo: repo.name,
-                repoUrl: repo.url,
-                // first line only — commit bodies can be multi-paragraph
-                message: commit.message.split("\n")[0],
-                committedDate: commit.committedDate,
-                url: commit.url,
-            }));
+            return commits
+                .filter((commit) => commit.parents.totalCount < 2)
+                .map((commit) => ({
+                    repo: repo.name,
+                    repoUrl: repo.url,
+                    message: commit.message.split("\n")[0],
+                    committedDate: commit.committedDate,
+                    url: commit.url,
+                }));
         });
 
     allCommits.sort(

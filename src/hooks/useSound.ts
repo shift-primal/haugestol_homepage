@@ -48,9 +48,7 @@ export function useSound(
         if (sourceRef.current) {
             try {
                 sourceRef.current.stop();
-            } catch {
-                // Already stopped
-            }
+            } catch {}
             sourceRef.current = null;
         }
         setIsPlaying(false);

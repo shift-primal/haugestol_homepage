@@ -19,7 +19,6 @@ export const Activity = ({
     stats: CommitStats;
 }) => {
     const locale = getLocale();
-    // the loader returns no commits when the GitHub API is unreachable
     const unavailable = commits.length === 0;
 
     return (

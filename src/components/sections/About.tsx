@@ -18,9 +18,6 @@ const SubHeading = ({ children }: { children: React.ReactNode }) => (
     </h3>
 );
 
-// Bio, skills and experience all come from the CV data, so the page and
-// the PDF say the same thing. Courses sit behind a disclosure: useful for
-// the curious, not something to lead with.
 export const About = () => {
     const cv = getCv();
     const bio = cv.main.find(
@@ -41,9 +38,7 @@ export const About = () => {
     return (
         <SectionContainer sectionName="about">
             <SectionHeading text={m.about_heading()} />
-            {/* history on the left (bio, experience, courses), capability on
-                the right (skills). Skills comes before courses in the DOM, so
-                phones and screen readers still reach the courses last */}
+
             <div className="grid gap-12 pointer-events-auto lg:grid-cols-12 lg:grid-rows-[auto_auto_1fr] lg:gap-x-16 lg:gap-y-10">
                 {bio && (
                     <p className="max-w-prose text-lg leading-relaxed text-pretty text-foreground/85 lg:col-span-5">
@@ -77,8 +72,7 @@ export const About = () => {
                 {skills && (
                     <div className="lg:col-span-7 lg:col-start-6 lg:row-span-3 lg:row-start-1">
                         <SubHeading>{skills.title}</SubHeading>
-                        {/* a spec sheet: labels share one edge and every row
-                            is as tall as its own content */}
+
                         <dl className="border-b border-border">
                             {skills.groups.map((group) => (
                                 <div
@@ -89,8 +83,6 @@ export const About = () => {
                                         {group.label}
                                     </dt>
                                     <dd className="text-sm text-pretty text-muted-foreground">
-                                        {/* the dot stays with the item before
-                                            it, so no line starts with one */}
                                         {group.items.join("\u00a0· ")}
                                     </dd>
                                 </div>

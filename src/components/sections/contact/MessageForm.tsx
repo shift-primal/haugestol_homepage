@@ -28,8 +28,6 @@ export const MessageForm = () => {
         useContactForm();
     const messageRef = useRef<HTMLTextAreaElement>(null);
 
-    // a "Be om demo" button elsewhere may have left a starting message,
-    // either before this form mounted or while it's on screen
     useEffect(() => {
         const applyPrefill = () => {
             const message = takeContactPrefill();
@@ -48,7 +46,7 @@ export const MessageForm = () => {
     }, []);
 
     return (
-        <Card className="order-last w-full max-w-md py-0 pointer-events-auto sm:max-w-full lg:order-none lg:flex-2">
+        <Card className="order-last w-full max-w-md py-0 pointer-events-auto sm:max-w-full lg:order-0 lg:flex-2">
             <form
                 onSubmit={handleSubmit}
                 onBlur={handleBlur}
@@ -57,7 +55,6 @@ export const MessageForm = () => {
             >
                 <CardContent className="p-6 sm:p-8">
                     <FieldGroup className="gap-6">
-                        {/* honeypot field */}
                         <div
                             aria-hidden="true"
                             className="absolute left-[-9999px] top-auto h-0 w-0 overflow-hidden"
@@ -220,7 +217,6 @@ export const MessageForm = () => {
                             </span>
                             <ArrowRightIcon data-icon="inline-end" />
                         </Button>
-                        {/* always mounted so screen readers announce the result */}
                         <div
                             role="status"
                             aria-live="polite"

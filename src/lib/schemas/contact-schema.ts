@@ -1,6 +1,5 @@
 import { z } from "zod";
 
-// also applied as the inputs' maxLength in MessageForm
 export const CONTACT_FIELD_MAX_LENGTH = {
     name: 100,
     email: 254,
@@ -18,7 +17,6 @@ export const contactFormSchema = z.object({
         .optional()
         .transform((value) => value || undefined),
     message: z.string().trim().min(1).max(CONTACT_FIELD_MAX_LENGTH.message),
-    // honeypot — must stay empty; bots that fill every field trip it
     company: z.string().max(0).optional(),
 });
 

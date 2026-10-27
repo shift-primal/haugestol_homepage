@@ -172,7 +172,6 @@ float noise(vec2 p) {
   );
 }
 
-// two octaves of value noise drifting slowly, 0..1
 float shade(vec2 p) {
   vec2 q = p * uFadeScale + vec2(uTime * 0.03, -uTime * 0.02);
   float n = 0.65 * noise(q) + 0.35 * noise(q * 2.3 + 17.0);

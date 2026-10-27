@@ -60,7 +60,6 @@ function Carousel({
         },
         plugins
     );
-    // reduced motion: jump straight to a slide instead of animating there
     const jump = useMediaQuery("(prefers-reduced-motion: reduce)");
     const [canScrollPrev, setCanScrollPrev] = React.useState(false);
     const [canScrollNext, setCanScrollNext] = React.useState(false);
@@ -273,8 +272,6 @@ function CarouselNext({
     );
 }
 
-// Position dots: the touch-friendly alternative to the arrow buttons. The
-// visible dot is small; each button keeps a finger-sized hit area.
 function CarouselDots({ className }: { className?: string }) {
     const { scrollTo, selectedIndex, slideCount } = useCarousel();
     if (slideCount < 2) return null;
@@ -315,7 +312,6 @@ function CarouselDots({ className }: { className?: string }) {
     );
 }
 
-// "2 / 5", announced politely as the slide changes
 function CarouselCounter({ className }: { className?: string }) {
     const { selectedIndex, slideCount } = useCarousel();
     if (slideCount < 2) return null;

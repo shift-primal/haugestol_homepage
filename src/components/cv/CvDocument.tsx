@@ -13,8 +13,6 @@ const PAGE_VARS = {
         "calc(var(--header-height) + var(--header-rule) - var(--page-top))",
 } as React.CSSProperties;
 
-// One A4 sheet. Spacing utilities inside run on a 1mm unit (--spacing), so
-// the layout reads in print measurements.
 export const CvDocument = ({ cv }: { cv: Cv }) => (
     <article
         style={PAGE_VARS}

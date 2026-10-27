@@ -11,11 +11,8 @@ export interface Project {
     tech?: string[];
     links: CvLink[];
     githubHref?: string;
-    // code and app aren't public; shown with a note instead of links
     isPrivate?: boolean;
-    // offers a "Be om demo" button that prefills the contact form
     demoOnRequest?: boolean;
-    // empty = placeholder until real screenshots exist
     images: Record<string, Img>;
 }
 
@@ -35,10 +32,6 @@ const screenshotsFor = (project: string): Record<string, Img> =>
         )
     );
 
-// What the site adds on top of the CV entries (which own title, copy, tech
-// and public links), keyed by CV entry id. To add screenshots to a project,
-// drop PNGs in src/assets/screenshots/projects/<folder>/ (numbered for order)
-// and set `images: screenshotsFor("<folder>")`; the placeholder goes away.
 const SITE_EXTRAS: Record<
     string,
     Pick<Project, "githubHref" | "isPrivate" | "demoOnRequest" | "images">
@@ -67,8 +60,6 @@ const SITE_EXTRAS: Record<
 
 export const FEATURED_PROJECT_ID = "gront-lys";
 
-// The CV's projects, featured one first, the rest in CV order. Functions
-// rather than constants so copy follows the active locale.
 export const getCvProjects = (): Project[] => {
     const projects = getCvEntries("projects").map(
         (entry): Project => ({
@@ -92,7 +83,6 @@ export const getCvProjects = (): Project[] => {
     ];
 };
 
-// earlier and smaller projects that aren't on the CV; only on /projects
 const getOtherProjects = (): Project[] => [
     {
         id: "pokedex",
@@ -108,17 +98,12 @@ const getOtherProjects = (): Project[] => [
         images: screenshotsFor("pokemon"),
     },
     {
-        id: "bfq",
-        title: "BFQ",
-        description: m.project_bfq_description(),
-        links: [
-            {
-                href: "https://quiz.haugestol.com",
-                label: "quiz.haugestol.com",
-            },
-        ],
-        githubHref: "https://github.com/shift-primal/bfq",
-        images: screenshotsFor("bfq"),
+        id: "klyndre",
+        title: "Klyndre",
+        description: m.project_klyndre_description(),
+        links: [],
+        githubHref: "https://github.com/shift-primal/klyndre",
+        images: screenshotsFor("klyndre"),
     },
 ];
 

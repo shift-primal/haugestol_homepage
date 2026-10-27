@@ -13,8 +13,6 @@ import { scrollBehavior } from "#/lib/scroll";
 import { cn } from "#/lib/shadcn.utils";
 import { m } from "#/paraglide/messages";
 
-// One project: screenshots beside the write-up. The featured project gets
-// the wider image and larger title; the rest share a quieter layout.
 export const ProjectRow = ({
     project,
     featured = false,
@@ -22,7 +20,6 @@ export const ProjectRow = ({
 }: {
     project: Project;
     featured?: boolean;
-    // h3 under the homepage's section heading, h2 on the /projects page
     headingLevel?: "h2" | "h3";
 }) => {
     const {
@@ -39,8 +36,6 @@ export const ProjectRow = ({
     } = project;
     const navigate = useNavigate();
 
-    // prefill the contact form, then take the visitor to it: in place on the
-    // homepage, via navigation from /projects
     const requestDemo = () => {
         requestContactPrefill(
             m.project_demo_message({
@@ -131,7 +126,6 @@ export const ProjectRow = ({
                     {links.map((link, index) => (
                         <Button
                             key={link.href}
-                            // the flagship's live site is the one to open first
                             variant={
                                 featured && index === 0 ? "default" : "outline"
                             }

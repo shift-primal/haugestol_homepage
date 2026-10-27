@@ -49,7 +49,6 @@ const ProjectsPage = () => (
             ))}
         </div>
 
-        {/* end on the next step, not a dead end */}
         <div className="flex flex-col gap-4 border-t border-border pt-12">
             <p className="text-xl font-bold tracking-tight">
                 {m.projects_contact_heading()}

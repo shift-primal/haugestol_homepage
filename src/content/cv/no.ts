@@ -1,7 +1,5 @@
 import type { Cv } from "#/content/cv/types";
 
-// Source of truth for the CV. The /cv page renders it; the homepage reads
-// projects, skills and experience from it so the two never disagree.
 export const cvNo: Cv = {
     name: {
         first: "Kasper",
@@ -10,7 +8,6 @@ export const cvNo: Cv = {
     role: "Fullstack-utvikler",
     present: "nå",
 
-    // left column, rendered top to bottom
     sidebar: [
         {
             type: "contact",
@@ -139,7 +136,7 @@ export const cvNo: Cv = {
         {
             type: "text",
             title: "Om meg",
-            body: "Student ved GET Academy. Undervisning er ferdig, og jeg trenger en praksisplass for å fullføre fagskolen. Jeg bygger hele løsninger fra database til grensesnitt, med vekt på solid struktur, testing og brukervennlighet. Ser etter praksisplass eller juniorstilling innen webutvikling.",
+            body: "Jeg liker å ta et produkt hele veien, fra første skisse til det kjører i drift. Jeg har jobbet som miljøarbeider og holdt teknologikurs for kollegaer, så jeg er vant til å forklare ting enkelt og jobbe tett med folk. Undervisningen ved GET Academy er ferdig, og jeg ser etter praksisplass eller juniorstilling innen systemutvikling.",
         },
         {
             type: "entries",
@@ -217,7 +214,9 @@ export const cvNo: Cv = {
                     description:
                         "Last opp en eksport fra DNB eller Valle, så blir transaksjonene kategorisert og du ser hvor pengene går. Parsingen ligger i txcategorizer, mitt eget TypeScript-bibliotek publisert på npm.",
                     tech: [
-                        "Drizzle ORM",
+                        "TanStack Start",
+                        "PostgreSQL",
+                        "Drizzle",
                         "Better Auth",
                         "Recharts",
                         "txcategorizer",

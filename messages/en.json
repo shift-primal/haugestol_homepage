@@ -36,7 +36,7 @@
 	"carousel_position": "Image {current} of {total}",
 
 	"project_pokedex_description": "A Pokédex built on PokéAPI. Virtualised search across every Pokémon, evolution chains, per-form details and advanced filtering.",
-	"project_bfq_description": "A quiz about me: how well do you know Kasper? Running score, store-based state and a live leaderboard.",
+	"project_klyndre_description": "A Discord bot that hangs out like a regular member: chats with an evolving character and server memory, plays music in voice, and has a dashboard for per-server settings that reload live.",
 
 	"about_heading": "About me",
 	"about_courses_toggle": "Courses and certificates ({count})",

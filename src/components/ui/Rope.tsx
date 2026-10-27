@@ -13,7 +13,6 @@ import {
 import { unlockAudioContext } from "#/lib/sound-engine";
 import { m } from "#/paraglide/messages";
 
-// Intensity for the brightness filter applied to the page while pulling down.
 const BRIGHTNESS_FILTER = 0.25;
 
 const KNOB_PATH = `M 97.65 -11.77
@@ -58,7 +57,6 @@ export const Rope = () => {
             setPullFilter(null);
             if (armed) {
                 playDragUp();
-                // the new theme spreads out from where the knob hangs
                 const knob = knobRef.current?.getBoundingClientRect();
                 toggle(
                     knob && {

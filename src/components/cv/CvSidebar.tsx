@@ -133,8 +133,6 @@ export const CvSidebar = ({
     <div
         className={cn(
             "col-start-1 flex flex-col gap-5 text-cv-body leading-[1.4]",
-            // with a photo the column starts up in the header band; without
-            // one it starts below it, level with the main column
             photo ? "row-[1/span_2]" : "row-start-2"
         )}
     >

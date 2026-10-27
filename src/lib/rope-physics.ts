@@ -18,39 +18,32 @@ export interface RopeConfig {
     hitboxHeight: number;
 }
 
-// Layout tunables — adjust these to change how the rope looks and feels.
 export const CONTAINER_WIDTH = 32;
-export const SEGMENT_LENGTH = 14; // px per simulated link — controls curve resolution
+export const SEGMENT_LENGTH = 14;
 export const KNOB_WIDTH = 24;
 export const KNOB_HEIGHT = 32;
 export const ANCHOR_X = CONTAINER_WIDTH / 2;
 
-const ROPE_LENGTH_DESKTOP = 150; // target resting (unpulled) length of the cord
+const ROPE_LENGTH_DESKTOP = 150;
 const ROPE_LENGTH_MOBILE = 100;
-const PULL_RATIO_DESKTOP = 1.62; // how far past its resting length it can be pulled
+const PULL_RATIO_DESKTOP = 1.62;
 const PULL_RATIO_MOBILE = 1.62;
-const STRETCH_TRIGGER_RATIO = 0.43; // fraction of resting length that must stretch taut before a pull arms the switch
+const STRETCH_TRIGGER_RATIO = 0.43;
 const HITBOX_EXTRA_SIDE_DESKTOP = 10;
 const HITBOX_EXTRA_BOTTOM_DESKTOP = 10;
 const HITBOX_EXTRA_SIDE_MOBILE = 24;
 const HITBOX_EXTRA_BOTTOM_MOBILE = 24;
 
-// Physics tunables.
 export const GRAVITY = 0.7;
 export const DAMPING = 0.985;
 export const CONSTRAINT_ITERATIONS = 8;
 export const MIN_PULL_Y = -100;
-// The retracted pose is a straight, correctly-spaced line tilted this many
-// degrees off vertical (from the anchor, pointing up) — so it starts as a
-// valid, unstretched chain above the screen and swings down like a released
-// pendulum instead of snapping/popping into place.
 export const FALL_TILT_DEGREES = 20;
 
-// Simulation loop tunables.
 export const REFERENCE_FRAME_MS = 1000 / 60;
-export const MAX_SUBSTEPS = 10; // caps catch-up after a stall (tab/focus change) instead of injecting one big kick
-export const SETTLE_EPSILON = 0.02; // px of per-step movement below which a point counts as still
-export const SETTLE_STEPS = 45; // consecutive still steps (~0.75s of sim time) before the loop parks itself
+export const MAX_SUBSTEPS = 10;
+export const SETTLE_EPSILON = 0.02;
+export const SETTLE_STEPS = 45;
 
 function computeConfig(
     ropeLength: number,
@@ -106,10 +99,6 @@ export function createPoints(numPoints: number): Point[] {
     );
 }
 
-// A straight line from the anchor, tilted up and to one side, with every
-// point already exactly SEGMENT_LENGTH apart — so no constraint is violated
-// at rest. Released with nothing holding it, it swings down through vertical
-// under gravity like a dropped pendulum, landing in the normal hang.
 export function createFallPoints(numPoints: number): Point[] {
     const angle = (FALL_TILT_DEGREES * Math.PI) / 180;
     const dirX = -Math.sin(angle);
@@ -155,9 +144,6 @@ export function buildPath(points: Point[], alpha: number): string {
     return d;
 }
 
-// One physics tick: integrates unfixed points and relaxes segment-length
-// constraints along the chain. Mutates `points` in place; returns the
-// largest per-point movement, used by the caller to detect settling.
 export function stepSimulation(
     points: Point[],
     isFixed: (p: Point) => boolean

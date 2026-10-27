@@ -13,9 +13,6 @@ import {
 } from "#/components/shadcn/carousel";
 import { m } from "#/paraglide/messages";
 
-// Stand-in until real screenshots exist: a title card that says what it is
-// rather than faking a screenshot. Swapped out automatically once the
-// project has images (see SITE_EXTRAS in content/projects.ts).
 const GalleryPlaceholder = ({
     title,
     isPrivate,
@@ -81,7 +78,6 @@ export const ProjectGallery = ({
                 <CarouselContent>
                     {imageEntries.map(([id, img], index) => (
                         <CarouselItem key={id}>
-                            {/* tap or click for full screen, on every size */}
                             <button
                                 type="button"
                                 className="block w-full cursor-zoom-in outline-none focus-ring"
@@ -98,8 +94,6 @@ export const ProjectGallery = ({
                 </CarouselContent>
                 {imageEntries.length > 1 && (
                     <>
-                        {/* arrows over the image fight with swiping, so
-                            phones get the dots below instead */}
                         <CarouselPrevious
                             variant="secondary"
                             className="absolute top-[calc(50%-1.25rem)] left-3 my-0 hidden opacity-65 md:inline-flex"

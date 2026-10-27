@@ -79,7 +79,7 @@ const renderSection = (section: Section) => {
                     key={section.id}
                     title={section.title}
                 >
-                    <div className="flex flex-col gap-3">
+                    <div className="flex flex-col gap-2">
                         {section.items.map((item) => (
                             <Entry
                                 key={item.title}
@@ -93,7 +93,7 @@ const renderSection = (section: Section) => {
 };
 
 export const CvMain = ({ sections }: { sections: Section[] }) => (
-    <div className="col-start-2 row-start-2 flex flex-col gap-5 text-cv-body leading-[1.4]">
+    <div className="col-start-2 row-start-2 flex flex-col gap-4 text-cv-body leading-[1.4]">
         {sections.map(renderSection)}
     </div>
 );

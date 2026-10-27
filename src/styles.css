@@ -13,9 +13,6 @@
   @apply focus-visible:border-ring focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring focus-visible:duration-fast;
 }
 
-/* map-label halo: a soft glow in the page colour clears the metaballs from
-   behind text. It is invisible on the plain background. Filled controls
-   carry their own background, so they opt out */
 @utility text-halo {
   text-shadow:
     0 0 0.15em var(--background),
@@ -33,16 +30,10 @@
   }
 }
 
-/* full-width rows: draw the outline inside so a clipping parent can't cut it off */
 @utility focus-ring-lg {
   @apply focus-visible:outline-solid focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ring focus-visible:duration-fast;
 }
 
-/* Motion tokens: every transition and animation on the site uses these.
-   fast = focus and press feedback, base = hover and colour changes, and
-   closing; slow = opening and showing (panels, dialogs, entrances);
-   reveal = the theme switch. One curve for all of it. Static, so the
-   theme switch can read them from JS (see useThemeTransition). */
 @theme static {
   --transition-duration-fast: 100ms;
   --transition-duration-base: 200ms;
@@ -54,7 +45,6 @@
   --default-transition-timing-function: var(--ease-out-expo);
 }
 
-/* CV document (/cv): its own print-first design, ported from ~/jobbsok/resume */
 @theme {
   --color-cv-navy: #323d53;
   --color-cv-accent: #dce8fb;
@@ -229,10 +219,6 @@ body {
   }
 }
 
-/* Disclosures (<details class="disclosure">): the panel slides open, faster
-   to close than to open, and rows marked .disclosure-row print in one after
-   another like terminal lines. Browsers without ::details-content just open
-   instantly. Reduced motion keeps only the fade. */
 .disclosure {
   interpolate-size: allow-keywords;
 }
@@ -280,9 +266,6 @@ body {
   }
 }
 
-/* Pulling the cord: the new theme spreads out from the knob like light from
-   a lamp (see useThemeTransition). The browser's default crossfade is off so
-   only that circle moves; clicks pass through while it plays. */
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
@@ -293,8 +276,6 @@ body {
   pointer-events: none;
 }
 
-/* while the circle grows, colours switch at once so the new theme inside
-   it is already settled instead of fading in a second time */
 .theme-switching *,
 .theme-switching *::before,
 .theme-switching *::after {

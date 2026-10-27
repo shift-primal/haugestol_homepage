@@ -1,4 +1,4 @@
-import type { FocusEvent, FormEvent, SubmitEvent } from "react";
+import type { ChangeEvent, FocusEvent, SubmitEvent } from "react";
 import { useState } from "react";
 import { contactFormSchema } from "#/lib/schemas/contact-schema";
 import { m } from "#/paraglide/messages";
@@ -15,13 +15,11 @@ const fieldErrorMessages = {
 type ValidatedField = keyof typeof fieldErrorMessages;
 type FieldErrors = Partial<Record<ValidatedField, string>>;
 
-// DOM order, so the first invalid field is the one that gets focus
 const VALIDATED_FIELDS = Object.keys(fieldErrorMessages) as ValidatedField[];
 
 const isValidatedField = (name: string): name is ValidatedField =>
     name in fieldErrorMessages;
 
-// form-level blur/change events can come from any element inside the form
 const getFieldInput = (target: EventTarget) =>
     target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement
         ? target
@@ -46,8 +44,6 @@ export const useContactForm = () => {
                   }
         );
 
-    // check a field once the visitor leaves it, but don't nag about empty
-    // fields they simply tabbed past
     const handleBlur = (event: FocusEvent<HTMLFormElement>) => {
         const input = getFieldInput(event.target);
         if (!input) return;
@@ -57,8 +53,7 @@ export const useContactForm = () => {
         setFieldError(name, validateField(name, value));
     };
 
-    // once a field has an error, clear it the moment the input becomes valid
-    const handleChange = (event: FormEvent<HTMLFormElement>) => {
+    const handleChange = (event: ChangeEvent<HTMLFormElement>) => {
         const input = getFieldInput(event.target);
         if (!input) return;
         const { name, value } = input;

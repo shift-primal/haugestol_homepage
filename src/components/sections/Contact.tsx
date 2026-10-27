@@ -9,8 +9,6 @@ export const Contact = () => {
         <SectionContainer sectionName="contact">
             <SectionHeading text={m.contact_heading()} />
 
-            {/* phones get the one-tap email and phone before the form; desktop
-                keeps the form first */}
             <div className="flex flex-col items-center gap-8 lg:flex-row lg:items-start">
                 <MessageForm />
                 <div className="w-full lg:w-auto flex flex-col gap-8 items-center lg:flex-row lg:items-stretch lg:self-stretch">

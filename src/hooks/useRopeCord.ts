@@ -18,17 +18,11 @@ import {
 
 interface UseRopeCordOptions {
     config: RopeConfig;
-    /** Fires once per drag, the moment the pull stretches past the arm threshold. */
     onStretchArmed: () => void;
-    /** Fires on pointer release; `armed` is true if the pull had cleared the threshold. */
     onRelease: (armed: boolean) => void;
-    /** prefers-reduced-motion: hang straight, no fall-in, no swing after release. */
     reducedMotion?: boolean;
 }
 
-// Drives the verlet rope simulation and drag interaction for a cord that
-// always starts bunched at the anchor and falls into its resting hang on
-// mount — see `createFallPoints` in rope-physics.ts.
 export function useRopeCord({
     config,
     onStretchArmed,
@@ -42,15 +36,9 @@ export function useRopeCord({
     const draggingRef = useRef(false);
     const pulledPastThresholdRef = useRef(false);
     const wakeRef = useRef<() => void>(() => {});
-    // True once the fall has actually finished (or a drag has started) — not
-    // merely once this effect has run once. useMediaQuery starts every
-    // consumer at its SSR-safe default and corrects itself in an effect after
-    // mount, so on a phone `config` can flip from desktop to mobile while the
-    // cord is still mid-fall; without this distinction that correction reads
-    // as "already resting, just resize" and snaps the fall away entirely.
+
     const hasSettledRef = useRef(false);
 
-    // Refs so the physics effect doesn't need these callbacks as deps.
     const onStretchArmedRef = useRef(onStretchArmed);
     const onReleaseRef = useRef(onRelease);
     onStretchArmedRef.current = onStretchArmed;
@@ -58,15 +46,11 @@ export function useRopeCord({
 
     useEffect(() => {
         if (pointsRef.current.length !== config.numPoints) {
-            // Still falling (or hasn't started yet): reseed the fall pose for the
-            // corrected breakpoint instead of losing the drop. Already settled:
-            // just resize straight to the resting pose, no need to re-fall.
             pointsRef.current = hasSettledRef.current
                 ? createPoints(config.numPoints)
                 : createFallPoints(config.numPoints);
         }
 
-        // reduced motion: skip the fall-in and start at rest
         if (reducedMotion && !hasSettledRef.current) {
             pointsRef.current = createPoints(config.numPoints);
             hasSettledRef.current = true;
@@ -164,8 +148,6 @@ export function useRopeCord({
         reducedMotion,
     ]);
 
-    // reduced motion: put the cord straight back at rest instead of letting
-    // it swing out the energy of the release
     const snapToRest = () => {
         const rest = createPoints(config.numPoints);
         pointsRef.current.forEach((point, index) => {
@@ -212,14 +194,9 @@ export function useRopeCord({
         onReleaseRef.current(armed);
     };
 
-    // Keyboard equivalent of a drag: scripts the knob through the same
-    // "pull past the arm threshold, then let go" path a pointer drag takes,
-    // so Enter/Space gets the same physics, sound, and brightness-dip
-    // feedback as a real tug instead of silently toggling the theme.
     const simulatePull = useCallback(() => {
         if (draggingRef.current) return;
 
-        // reduced motion: same feedback (sound, dip, toggle), no scripted tug
         if (reducedMotion) {
             onStretchArmedRef.current();
             onReleaseRef.current(true);
@@ -266,7 +243,6 @@ export function useRopeCord({
         reducedMotion,
     ]);
 
-    // Static pose for the very first paint, before the loop's first tick runs.
     const initialPose = useMemo(
         () =>
             reducedMotion

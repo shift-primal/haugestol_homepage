@@ -67,9 +67,7 @@ export async function playSound(
         stop: () => {
             try {
                 source.stop();
-            } catch {
-                // No-op if already stopped.
-            }
+            } catch {}
         },
     };
 }

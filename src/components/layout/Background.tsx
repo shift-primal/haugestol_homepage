@@ -3,7 +3,6 @@ import { useEffect, useRef } from "react";
 import MetaBalls from "#/components/shadcn/metaballs.tsx";
 import { PAGE_SCROLL_CONTAINER_ID } from "#/lib/scroll";
 
-// full strength behind the hero, calmer behind the body text
 const DIMMED_OPACITY = 0.35;
 
 export const Background = () => {
@@ -15,8 +14,6 @@ export const Background = () => {
         const layer = ref.current;
         if (!container || !layer) return;
 
-        // write the style directly: re-rendering on every scroll event
-        // would re-render the canvas component too
         const handleScroll = () => {
             const progress = Math.min(
                 1,

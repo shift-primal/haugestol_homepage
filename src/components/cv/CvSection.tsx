@@ -1,6 +1,3 @@
-// Section shells: the sidebar uses an underlined heading, the main column a
-// solid navy band.
-
 export const CvSideSection = ({
     title,
     children,

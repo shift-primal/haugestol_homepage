@@ -7,7 +7,6 @@ import { useFitWidth } from "#/hooks/useFitWidth";
 import { absoluteUrl, localizedPageLinks } from "#/lib/seo";
 import { m } from "#/paraglide/messages";
 
-// 210mm at 96dpi
 const A4_WIDTH_PX = 793.7;
 
 const CvPage = () => {

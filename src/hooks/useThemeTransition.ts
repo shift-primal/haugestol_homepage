@@ -1,11 +1,9 @@
 import { useTheme } from "next-themes";
 import { useCallback, useEffect, useState } from "react";
 
-// the reveal's timing comes from the motion tokens in styles.css
 const motionToken = (name: string) =>
     getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 
-// the CSS minifier may rewrite 700ms as .7s
 const toMs = (time: string) =>
     time.endsWith("ms")
         ? Number.parseFloat(time)
@@ -17,9 +15,6 @@ export function useThemeTransition() {
     useEffect(() => setMounted(true), []);
     const isDark = mounted && resolvedTheme === "dark";
 
-    // With an origin (the cord knob), the new theme grows out of it as a
-    // circle. Without one, or with reduced motion or no View Transitions,
-    // the theme just switches.
     const toggle = useCallback(
         (origin?: { x: number; y: number }) => {
             const next = isDark ? "light" : "dark";
@@ -35,8 +30,6 @@ export function useThemeTransition() {
 
             const transition = document.startViewTransition(() => {
                 root.classList.add("theme-switching");
-                // apply the class here so the new snapshot is ready at once;
-                // next-themes sets the same class when its state catches up
                 root.classList.remove(isDark ? "dark" : "light");
                 root.classList.add(next);
                 root.style.colorScheme = next;
@@ -66,9 +59,7 @@ export function useThemeTransition() {
                         }
                     );
                 })
-                .catch(() => {
-                    // transition skipped (e.g. tab hidden): the theme still changed
-                });
+                .catch(() => {});
             transition.finished.finally(() =>
                 root.classList.remove("theme-switching")
             );

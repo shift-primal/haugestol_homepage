@@ -22,7 +22,7 @@ export const Hero = () => {
                                 aria-hidden
                                 className="relative mt-1.75 flex size-2.5 shrink-0"
                             >
-                                <span className="absolute inset-0 animate-ping rounded-full bg-primary opacity-60 [animation-duration:2.4s] motion-reduce:animate-none" />
+                                <span className="absolute inset-0 animate-ping rounded-full bg-primary opacity-60 animation-duration-[2.4s] motion-reduce:animate-none" />
                                 <span className="relative size-2.5 rounded-full bg-primary" />
                             </span>
                             {m.hero_status()}

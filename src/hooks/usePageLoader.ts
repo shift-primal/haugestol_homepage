@@ -12,8 +12,6 @@ const waitForPageReady = (maxWait: number) =>
             resolve();
         };
 
-        // give layout (fonts, images, ResizeObserver-driven content) a couple of
-        // frames to settle after everything has loaded before revealing the page
         const settle = () =>
             requestAnimationFrame(() => requestAnimationFrame(finish));
 
@@ -33,7 +31,6 @@ const waitForPageReady = (maxWait: number) =>
             });
         }
 
-        // never block the page forever if something above doesn't resolve
         setTimeout(finish, maxWait);
     });
 
