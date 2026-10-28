@@ -110,9 +110,45 @@ export interface GitHubActivity {
     stats: CommitStats;
 }
 
+// GitHub's contribution counts take a second or two to compute, so every page load
+// paid for them. Serve the last result and refresh it in the background once stale.
+const CACHE_TTL_MS = 10 * 60 * 1000;
+
+let cached:
+    | {
+          data: GitHubActivity;
+          fetchedAt: number;
+      }
+    | undefined;
+let refreshing: Promise<GitHubActivity> | undefined;
+
+function refresh(): Promise<GitHubActivity> {
+    refreshing ??= loadGitHubData()
+        .then((data) => {
+            cached = {
+                data,
+                fetchedAt: Date.now(),
+            };
+            return data;
+        })
+        .finally(() => {
+            refreshing = undefined;
+        });
+    return refreshing;
+}
+
 export const fetchGitHubData = createServerFn({
     method: "GET",
 }).handler(async (): Promise<GitHubActivity> => {
+    if (!cached) return refresh();
+    if (Date.now() - cached.fetchedAt > CACHE_TTL_MS) {
+        // A failed refresh keeps the old data until the next try.
+        refresh().catch(() => {});
+    }
+    return cached.data;
+});
+
+async function loadGitHubData(): Promise<GitHubActivity> {
     const now = new Date();
 
     const response = await graphqlWithAuth<GitHubActivityResponse>(query, {
@@ -158,4 +194,4 @@ export const fetchGitHubData = createServerFn({
             year: response.viewer.year.totalCommitContributions,
         },
     };
-});
+}
