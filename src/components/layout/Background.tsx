@@ -5,6 +5,7 @@ import { useMediaQuery } from "#/hooks/useMediaQuery";
 import { PAGE_SCROLL_CONTAINER_ID } from "#/lib/scroll";
 
 const DIMMED_OPACITY = 0.35;
+const DIMMED_BLUR = 10;
 
 export const Background = () => {
     const { resolvedTheme } = useTheme();
@@ -22,6 +23,7 @@ export const Background = () => {
                 container.scrollTop / container.clientHeight
             );
             layer.style.opacity = String(1 - progress * (1 - DIMMED_OPACITY));
+            layer.style.filter = `blur(${0 - progress * (0 - DIMMED_BLUR)}px)`;
         };
         handleScroll();
         container.addEventListener("scroll", handleScroll, {
