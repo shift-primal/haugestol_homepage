@@ -33,6 +33,7 @@ export const ProjectRow = ({
         isPrivate,
         demoOnRequest,
         images,
+        recording,
     } = project;
     const navigate = useNavigate();
 
@@ -68,6 +69,7 @@ export const ProjectRow = ({
                 <ProjectGallery
                     title={title}
                     images={images}
+                    recording={recording}
                     isPrivate={isPrivate}
                 />
             </div>

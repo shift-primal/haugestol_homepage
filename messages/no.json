@@ -25,6 +25,7 @@
 	"project_private": "Privat prosjekt",
 	"project_screenshots_coming": "Skjermbilder kommer",
 	"project_screenshot_alt": "Skjermbilde av {title}",
+	"project_recording_label": "Skjermopptak av {title}",
 	"project_lightbox_title": "Skjermbilder av {title}",
 	"project_github_aria": "{title} på GitHub",
 	"project_request_demo": "Be om demo",

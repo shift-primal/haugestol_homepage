@@ -25,6 +25,7 @@
 	"project_private": "Private project",
 	"project_screenshots_coming": "Screenshots coming",
 	"project_screenshot_alt": "Screenshot of {title}",
+	"project_recording_label": "Screen recording of {title}",
 	"project_lightbox_title": "Screenshots of {title}",
 	"project_github_aria": "{title} on GitHub",
 	"project_request_demo": "Request a demo",

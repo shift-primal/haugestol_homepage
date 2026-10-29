@@ -3,6 +3,7 @@ import { useState } from "react";
 import type { Img } from "vite-imagetools";
 import { ProjectImage } from "#/components/sections/projects/ProjectImage";
 import { ProjectLightbox } from "#/components/sections/projects/ProjectLightbox";
+import { ProjectVideo } from "#/components/sections/projects/ProjectVideo";
 import {
     Carousel,
     CarouselContent,
@@ -11,6 +12,7 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "#/components/shadcn/carousel";
+import type { Recording } from "#/content";
 import { m } from "#/paraglide/messages";
 
 const GalleryPlaceholder = ({
@@ -43,18 +45,21 @@ const GalleryPlaceholder = ({
 export const ProjectGallery = ({
     title,
     images,
+    recording,
     isPrivate,
 }: {
     title: string;
     images: Record<string, Img>;
+    recording?: Recording;
     isPrivate?: boolean;
 }) => {
     const imageEntries = Object.entries(images);
+    const slideCount = imageEntries.length + (recording ? 1 : 0);
 
     const [lightboxOpen, setLightboxOpen] = useState(false);
     const [startIndex, setStartIndex] = useState(0);
 
-    if (imageEntries.length === 0) {
+    if (slideCount === 0) {
         return (
             <GalleryPlaceholder
                 title={title}
@@ -76,12 +81,29 @@ export const ProjectGallery = ({
                 }}
             >
                 <CarouselContent>
+                    {recording && (
+                        <CarouselItem>
+                            <button
+                                type="button"
+                                className="block w-full cursor-zoom-in outline-none focus-ring"
+                                onClick={() => openLightbox(0)}
+                            >
+                                <ProjectVideo
+                                    recording={recording}
+                                    title={title}
+                                    className="border"
+                                />
+                            </button>
+                        </CarouselItem>
+                    )}
                     {imageEntries.map(([id, img], index) => (
                         <CarouselItem key={id}>
                             <button
                                 type="button"
                                 className="block w-full cursor-zoom-in outline-none focus-ring"
-                                onClick={() => openLightbox(index)}
+                                onClick={() =>
+                                    openLightbox(index + (recording ? 1 : 0))
+                                }
                             >
                                 <ProjectImage
                                     img={img}
@@ -92,7 +114,7 @@ export const ProjectGallery = ({
                         </CarouselItem>
                     ))}
                 </CarouselContent>
-                {imageEntries.length > 1 && (
+                {slideCount > 1 && (
                     <>
                         <CarouselPrevious
                             variant="secondary"
@@ -110,6 +132,7 @@ export const ProjectGallery = ({
             <ProjectLightbox
                 title={title}
                 imageEntries={imageEntries}
+                recording={recording}
                 open={lightboxOpen}
                 onOpenChange={setLightboxOpen}
                 startIndex={startIndex}

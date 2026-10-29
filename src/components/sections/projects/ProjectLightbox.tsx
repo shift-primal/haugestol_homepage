@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { Img } from "vite-imagetools";
 import { ProjectImage } from "#/components/sections/projects/ProjectImage";
+import { ProjectVideo } from "#/components/sections/projects/ProjectVideo";
 import {
     Carousel,
     type CarouselApi,
@@ -11,12 +12,14 @@ import {
     CarouselPrevious,
 } from "#/components/shadcn/carousel";
 import { Dialog, DialogContent, DialogTitle } from "#/components/shadcn/dialog";
+import type { Recording } from "#/content";
 import { useMediaQuery } from "#/hooks/useMediaQuery";
 import { m } from "#/paraglide/messages";
 
 export const ProjectLightbox = ({
     title,
     imageEntries,
+    recording,
     open,
     onOpenChange,
     startIndex,
@@ -26,6 +29,7 @@ export const ProjectLightbox = ({
         string,
         Img,
     ][];
+    recording?: Recording;
     open: boolean;
     onOpenChange: (open: boolean) => void;
     startIndex: number;
@@ -73,6 +77,16 @@ export const ProjectLightbox = ({
                         />
                         <div className="min-w-0 flex-1">
                             <CarouselContent>
+                                {recording && (
+                                    <CarouselItem className="flex items-center justify-center">
+                                        <ProjectVideo
+                                            recording={recording}
+                                            title={title}
+                                            controls
+                                            className="max-h-[80dvh] max-w-full"
+                                        />
+                                    </CarouselItem>
+                                )}
                                 {imageEntries.map(([id, img]) => (
                                     <CarouselItem
                                         key={id}
